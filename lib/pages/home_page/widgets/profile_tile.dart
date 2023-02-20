@@ -7,6 +7,7 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/tutor_info.dart';
+import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({Key? key, required this.tutor}) : super(key: key);
@@ -37,13 +38,8 @@ class ProfileTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //avatar
-            Center(
-              child: CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(tutor.ava_url),
-              ),
-            ),
+            //avatar and heart
+            AvatarAndHeartWidget(tutor: tutor),
 
             //name
 

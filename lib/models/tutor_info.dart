@@ -1,5 +1,4 @@
-class Tutor
-{
+class Tutor {
   final String name;
 
   final String ava_url;
@@ -12,13 +11,16 @@ class Tutor
 
   final String description;
 
+  bool isFavorite;
+
   Tutor(
       {required this.name,
       required this.country,
       required this.rated_star,
       required this.ava_url,
       required this.skills,
-      required this.description});
+      required this.description,
+      required this.isFavorite});
 
   Map<String, dynamic> toMap() {
     return {
@@ -28,6 +30,7 @@ class Tutor
       'rated_star': this.rated_star,
       'skills': this.skills,
       'description': this.description,
+      'isFavorite': this.isFavorite,
     };
   }
 
@@ -39,6 +42,7 @@ class Tutor
       rated_star: map['rated_star'] as double,
       skills: map['skills'] as List<String>,
       description: map['description'] as String,
+      isFavorite: map['isFavorite'] as bool,
     );
   }
 }
