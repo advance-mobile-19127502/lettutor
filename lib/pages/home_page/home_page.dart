@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/common_widget/common_btn.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:lettutor/data/list_tutor.dart';
 import 'package:lettutor/pages/home_page/widgets/current_course.dart';
 import 'package:lettutor/pages/home_page/widgets/list_chip_widget.dart';
+import 'package:lettutor/pages/home_page/widgets/profile_tile.dart';
 import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
 
@@ -60,31 +63,16 @@ class HomePage extends StatelessWidget {
                 const ListChipWidget(),
 
                 //Reset filter button
-
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(StyleConst.defaultRadius),
-                      ),
-                      side: const BorderSide(
-                        color: Colors.blue,
-                      )),
-                  child: Text(
-                    "Reset filters",
-                    style: GoogleFonts.roboto(
-                        textStyle: FontConst.regular
-                            .copyWith(fontSize: 14, color: Colors.blue)),
-                  ),
-                ),
+                CommonButtonWidget(title: "Reset filter", onPress: () {},),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
 
-                const Divider(height: 2,thickness: 1,),
+                const Divider(
+                  height: 2,
+                  thickness: 1,
+                ),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
@@ -96,6 +84,18 @@ class HomePage extends StatelessWidget {
                       textStyle: FontConst.semiBold
                           .copyWith(fontWeight: FontWeight.bold, fontSize: 25)),
                 ),
+
+                const SizedBox(
+                  height: StyleConst.kDefaultPadding,
+                ),
+
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: listTutors.length,
+                    itemBuilder: (context, index) {
+                      return ProfileTile(tutor: listTutors[index]);
+                    })
 
                 //Recommended tutor
               ],
