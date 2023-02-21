@@ -7,6 +7,7 @@ import 'package:lettutor/data/list_tutor.dart';
 import 'package:lettutor/pages/home_page/widgets/current_course.dart';
 import 'package:lettutor/pages/home_page/widgets/list_chip_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/profile_tile.dart';
+import 'package:lettutor/pages/home_page/widgets/recommended_show_favorite_row.dart';
 import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
 
@@ -63,7 +64,10 @@ class HomePage extends StatelessWidget {
                 const ListChipWidget(),
 
                 //Reset filter button
-                CommonButtonWidget(title: "Reset filter", onPress: () {},),
+                CommonButtonWidget(
+                  title: "Reset filter",
+                  onPress: () {},
+                ),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
@@ -81,12 +85,32 @@ class HomePage extends StatelessWidget {
                 Text(
                   "Recommended Tutors",
                   style: GoogleFonts.roboto(
-                      textStyle: FontConst.semiBold
-                          .copyWith(fontWeight: FontWeight.bold, fontSize: 25)),
+                      textStyle: FontConst.bold.copyWith(fontSize: 25)),
+                ),
+
+                Row(
+                  children: [
+                    Spacer(),
+                    InkWell(
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Text(
+                            "See your favorite tutors",
+                            style: GoogleFonts.roboto(
+                                textStyle: FontConst.regular.copyWith(
+                                    fontSize: 12, color: Colors.blueAccent)),
+                          ),
+                          const Icon(Icons.arrow_forward_ios_outlined,
+                              size: 12, color: Colors.blueAccent)
+                        ],
+                      ),
+                    )
+                  ],
                 ),
 
                 const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  height: StyleConst.kDefaultPadding / 3,
                 ),
 
                 ListView.builder(
