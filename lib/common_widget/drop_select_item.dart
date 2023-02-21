@@ -51,14 +51,15 @@ class _DropDownSelectMenuItemState extends State<DropDownSelectMenuItem> {
             prefixIcon: widget.selectedList.length < 1
                 ? null
                 : Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Wrap(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Wrap(
                       spacing: 5,
                       runSpacing: 5,
                       children: widget.selectedList
                           .map((e) => Container(
-                        constraints: BoxConstraints(maxWidth: screenSize.width / 3.25),
-                            child: Chip(
+                                constraints: BoxConstraints(
+                                    maxWidth: screenSize.width / 3.25),
+                                child: Chip(
                                   label: Text(
                                     e,
                                     overflow: TextOverflow.ellipsis,
@@ -69,10 +70,10 @@ class _DropDownSelectMenuItemState extends State<DropDownSelectMenuItem> {
                                     });
                                   },
                                 ),
-                          ))
+                              ))
                           .toList(),
                     ),
-                )),
+                  )),
         style: const TextStyle(fontSize: 14),
       ),
     );
