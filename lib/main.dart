@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/pages/main_page/main_page.dart';
+import 'package:lettutor/route_generator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'WorkSans',
         primarySwatch: Colors.blue,
       ),
-      home: const MainPage(),
+      initialRoute: '/splash',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
