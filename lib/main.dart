@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'WorkSans',
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/main-page',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
