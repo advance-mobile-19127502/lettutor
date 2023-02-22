@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/pages/login_page/login_page.dart';
 import 'package:lettutor/pages/main_page/main_page.dart';
+import 'package:lettutor/pages/register_page/register_page.dart';
 import 'package:lettutor/pages/splash_screen/splash_screen.dart';
 
 class RouteGenerator {
@@ -10,6 +11,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => const SplashPage());
       case '/login':
         return MaterialPageRoute(builder: (context) => LoginPage());
+      case '/register':
+        return MaterialPageRoute(builder: (context) => const RegisterPage());
       case '/main-page':
         return MaterialPageRoute(builder: (context) => const MainPage());
       default:

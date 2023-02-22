@@ -6,14 +6,14 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 
-class LoginFormField extends StatefulWidget {
-  const LoginFormField({Key? key}) : super(key: key);
+class SignUpFormField extends StatefulWidget {
+  const SignUpFormField({Key? key}) : super(key: key);
 
   @override
-  State<LoginFormField> createState() => _LoginFormFieldState();
+  State<SignUpFormField> createState() => _SignUpFormFieldState();
 }
 
-class _LoginFormFieldState extends State<LoginFormField> {
+class _SignUpFormFieldState extends State<SignUpFormField> {
 
   bool _obsecureText = true;
 
@@ -22,18 +22,15 @@ class _LoginFormFieldState extends State<LoginFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Text(
           "EMAIL",
           style: GoogleFonts.openSans(
               textStyle: FontConst.semiBold
                   .copyWith(fontSize: 14, color: Colors.grey)),
         ),
-
         const SizedBox(
           height: StyleConst.kDefaultPadding / 3,
         ),
-
         TextFormField(
           autovalidateMode:AutovalidateMode.always,
           validator: validateEmail,
@@ -69,18 +66,18 @@ class _LoginFormFieldState extends State<LoginFormField> {
           obscureText: _obsecureText,
           style: const TextStyle(fontSize: 14),
           decoration: InputDecoration(
-            isDense: true,
-            border: OutlineInputBorder(
-                borderSide:
-                const BorderSide(color: ColorConst.hintTextColor),
-                borderRadius: BorderRadius.circular(
-                    StyleConst.defaultRadius)),
-            hintText: "*******",
-            suffixIcon: IconButton(onPressed: () {
-              setState(() {
-                _obsecureText = !_obsecureText;
-              });
-            }, icon: Icon(_obsecureText ? Icons.visibility : Icons.visibility_off),)
+              isDense: true,
+              border: OutlineInputBorder(
+                  borderSide:
+                  const BorderSide(color: ColorConst.hintTextColor),
+                  borderRadius: BorderRadius.circular(
+                      StyleConst.defaultRadius)),
+              hintText: "*******",
+              suffixIcon: IconButton(onPressed: () {
+                setState(() {
+                  _obsecureText = !_obsecureText;
+                });
+              }, icon: Icon(_obsecureText ? Icons.visibility : Icons.visibility_off),)
           ),
         )
       ],
@@ -88,19 +85,18 @@ class _LoginFormFieldState extends State<LoginFormField> {
   }
 
   String? validateEmail(String? value) {
-    print(value);
-      if (value == null || value.isEmpty)
-      {
-        return "Please input your Email!";
-      }
-      if (value.length < 7)
-      {
-        return "The input is not valid E-mail!";
-      }
-      else
-      {
-        return null;
-      }
+    if (value == null || value.isEmpty)
+    {
+      return "Please input your Email!";
+    }
+    if (value.length < 7)
+    {
+      return "The input is not valid E-mail!";
+    }
+    else
+    {
+      return null;
+    }
   }
 
   String? validatePassword(String? value) {
