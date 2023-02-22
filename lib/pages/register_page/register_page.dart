@@ -8,8 +8,8 @@ import '../../constants/colors_const.dart';
 import '../../constants/font_const.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
-
+  RegisterPage({Key? key}) : super(key: key);
+  final _formSignUpKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -57,7 +57,7 @@ class RegisterPage extends StatelessWidget {
               ),
 
               //Validate login
-              SignUpWidgetColumn(),
+              SignUpWidgetColumn(formSignUpKey: _formSignUpKey,),
 
               const SizedBox(
                 height: StyleConst.kDefaultPadding,

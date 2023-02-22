@@ -88,7 +88,6 @@ class _LoginFormFieldState extends State<LoginFormField> {
   }
 
   String? validateEmail(String? value) {
-    print(value);
       if (value == null || value.isEmpty)
       {
         return "Please input your Email!";

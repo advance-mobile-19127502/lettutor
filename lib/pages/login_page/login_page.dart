@@ -7,8 +7,8 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/login_page/widgets/login_widget_column.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
+  LoginPage({Key? key}) : super(key: key);
+  final _formLoginKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               //Validate login
-              LoginWidgetColumn(),
+              LoginWidgetColumn(formLoginKey: _formLoginKey,),
 
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
