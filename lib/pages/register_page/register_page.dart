@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/constants/colors_const.dart';
-import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/pages/login_page/widgets/login_widget_column.dart';
+import 'package:lettutor/pages/register_page/widgets/sign_up_widget_column.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
-  final _formLoginKey = GlobalKey<FormState>();
+import '../../constants/colors_const.dart';
+import '../../constants/font_const.dart';
+
+class RegisterPage extends StatelessWidget {
+  RegisterPage({Key? key}) : super(key: key);
+  final _formSignUpKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -30,8 +31,8 @@ class LoginPage extends StatelessWidget {
               ),
               //Say hello
               Text(
-                "Say hello to your \n"
-                "English tutors",
+                "Start learning with \n"
+                "LetTutor",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                     textStyle: FontConst.semiBold
@@ -42,7 +43,9 @@ class LoginPage extends StatelessWidget {
                 height: StyleConst.kDefaultPadding,
               ),
               Text(
-                "Become fluent faster through one on one video chat lessons tailored to your goals.",
+                "Become fluent faster through one on"
+                    " one video chat lessons tailored to"
+                    " your goals.",
                 style: GoogleFonts.poppins(
                   textStyle: FontConst.regular.copyWith(fontSize: 16),
                 ),
@@ -54,7 +57,7 @@ class LoginPage extends StatelessWidget {
               ),
 
               //Validate login
-              LoginWidgetColumn(formLoginKey: _formLoginKey,),
+              SignUpWidgetColumn(formSignUpKey: _formSignUpKey,),
 
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
@@ -85,16 +88,16 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Not a member yer?",
+                    "Already have an account?",
                     style: GoogleFonts.roboto(
                         textStyle: FontConst.regular.copyWith(fontSize: 14)),
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/register");
+                        Navigator.of(context).pop();
                       },
                       child: Text(
-                        "Sign up",
+                        "Login",
                         style: GoogleFonts.roboto(
                             textStyle:
                                 FontConst.regular.copyWith(fontSize: 14)),
