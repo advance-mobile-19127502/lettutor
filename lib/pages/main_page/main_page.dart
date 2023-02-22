@@ -12,12 +12,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   List<Widget> listPages = [
-    HomePage(),
-    CoursePage(),
-    ProfilePage()
+    const HomePage(),
+    const CoursePage(),
+    const ProfilePage()
   ];
 
   @override
@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
