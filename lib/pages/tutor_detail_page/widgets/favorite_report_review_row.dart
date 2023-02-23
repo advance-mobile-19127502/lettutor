@@ -20,7 +20,7 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    tutor = Provider.of<Tutor>(context);
+    tutor = Provider.of<Tutor>(context, listen: true);
   }
 
   @override
@@ -30,9 +30,7 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
       children: [
         InkWell(
           onTap: () {
-            setState(() {
-              tutor.isFavorite = !tutor.isFavorite;
-            });
+            tutor.setFavorite(!tutor.isFavorite);
           },
           child: Column(
             children: [
