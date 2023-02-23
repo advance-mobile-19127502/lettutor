@@ -19,10 +19,11 @@ class TutorDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tutor = Provider.of<Tutor>(context);
+    final tutor = Provider.of<Tutor>(context, listen: false);
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
@@ -60,7 +61,7 @@ class TutorDetailPage extends StatelessWidget {
 
                 //Row favorite, report, reviews
 
-                const FavoriteReportReviewRow(),
+                FavoriteReportReviewRow(),
 
                 //Video player
                 const SizedBox(

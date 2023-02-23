@@ -10,6 +10,7 @@ import 'package:lettutor/pages/home_page/widgets/profile_tile.dart';
 import 'package:lettutor/pages/home_page/widgets/recommended_show_favorite_row.dart';
 import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -115,10 +116,12 @@ class HomePage extends StatelessWidget {
 
                 ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: listTutors.length,
                     itemBuilder: (context, index) {
-                      return ProfileTile(tutor: listTutors[index]);
+                      return ChangeNotifierProvider.value(
+                          value: listTutors[index],
+                          child: const ProfileTile());
                     })
 
                 //Recommended tutor

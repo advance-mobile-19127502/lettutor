@@ -1,4 +1,6 @@
-class Tutor {
+import 'package:flutter/cupertino.dart';
+
+class Tutor extends ChangeNotifier {
   final String name;
 
   final String ava_url;
@@ -20,8 +22,13 @@ class Tutor {
   final String teaching_experience;
 
 
-
   bool isFavorite;
+
+  setFavorite(bool value)
+  {
+    isFavorite = value;
+    notifyListeners();
+  }
 
 //<editor-fold desc="Data Methods">
   Tutor({

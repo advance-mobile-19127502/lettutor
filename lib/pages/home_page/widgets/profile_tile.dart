@@ -9,23 +9,23 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTile extends StatelessWidget {
-  const ProfileTile({Key? key, required this.tutor}) : super(key: key);
-
-  final Tutor tutor;
+  const ProfileTile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed("/tutor-detail", arguments: {'tutor' : tutor});
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(
-            left: StyleConst.kDefaultPadding / 2,
-            right: StyleConst.kDefaultPadding,
-            bottom: StyleConst.kDefaultPadding),
+    final Tutor tutor = Provider.of<Tutor>(context);
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: StyleConst.kDefaultPadding / 2,
+          right: StyleConst.kDefaultPadding,
+          bottom: StyleConst.kDefaultPadding),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed("/tutor-detail", arguments: {'tutor' : tutor});
+        },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
           decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class ProfileTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //avatar and heart
-              AvatarAndHeartWidget(tutor: tutor),
+              AvatarAndHeartWidget(),
 
               //name
 
