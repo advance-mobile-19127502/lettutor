@@ -32,14 +32,16 @@ class _AvatarAndHeartWidgetState extends State<AvatarAndHeartWidget> {
         ),
         Positioned(
             right: 0,
-            child: IconButton(
-              onPressed: () {
-                tutor.setFavorite(!tutor.isFavorite);
-              },
-              icon: tutor.isFavorite
-                  ? const Icon(Icons.favorite)
-                  : const Icon(Icons.favorite_border),
-              color: tutor.isFavorite ? Colors.red : Colors.blue,
+            child: Consumer<Tutor>(
+              builder: (context, tutor, child) => IconButton(
+                onPressed: () {
+                  tutor.setFavorite(!tutor.isFavorite);
+                },
+                icon: tutor.isFavorite
+                    ? const Icon(Icons.favorite)
+                    : const Icon(Icons.favorite_border),
+                color: tutor.isFavorite ? Colors.red : Colors.blue,
+              ),
             ))
       ],
     );

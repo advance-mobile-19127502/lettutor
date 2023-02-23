@@ -20,7 +20,7 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    tutor = Provider.of<Tutor>(context, listen: true);
+    tutor = Provider.of<Tutor>(context, listen: false);
   }
 
   @override
@@ -28,28 +28,32 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        InkWell(
-          onTap: () {
-            tutor.setFavorite(!tutor.isFavorite);
-          },
-          child: Column(
-            children: [
-              Icon(
-                tutor.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: tutor.isFavorite ? Colors.red : Colors.blue,
-              ),
-              Text(
-                "Favorites",
-                style: GoogleFonts.roboto(
-                    textStyle: FontConst.medium.copyWith(
-                        fontSize: 13,
-                        color: tutor.isFavorite ? Colors.red : Colors.blue)),
-              )
-            ],
+        Consumer<Tutor>(
+          builder: (context, tutor, child) => InkWell(
+            onTap: () {
+              tutor.setFavorite(!tutor.isFavorite);
+            },
+            child: Column(
+              children: [
+                Icon(
+                  tutor.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: tutor.isFavorite ? Colors.red : Colors.blue,
+                ),
+                Text(
+                  "Favorites",
+                  style: GoogleFonts.roboto(
+                      textStyle: FontConst.medium.copyWith(
+                          fontSize: 13,
+                          color: tutor.isFavorite ? Colors.red : Colors.blue)),
+                )
+              ],
+            ),
           ),
         ),
-        IconTextButton(title: "Report", icon: Icons.report_gmailerrorred, onPress: () {}),
-        IconTextButton(title: "Review", icon: Icons.star_border_outlined, onPress: () {}),
+        IconTextButton(
+            title: "Report", icon: Icons.report_gmailerrorred, onPress: () {}),
+        IconTextButton(
+            title: "Review", icon: Icons.star_border_outlined, onPress: () {}),
       ],
     );
   }

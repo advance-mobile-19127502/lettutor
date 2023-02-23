@@ -16,7 +16,8 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Tutor tutor = Provider.of<Tutor>(context);
+    final Tutor tutor = Provider.of<Tutor>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.only(
           left: StyleConst.kDefaultPadding / 2,
@@ -44,7 +45,7 @@ class ProfileTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //avatar and heart
-              AvatarAndHeartWidget(),
+              const AvatarAndHeartWidget(),
 
               //name
 

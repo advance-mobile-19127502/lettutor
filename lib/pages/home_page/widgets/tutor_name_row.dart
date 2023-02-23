@@ -13,7 +13,7 @@ class TutorNameRow extends StatelessWidget {
     return Row(
       children: [
         TextFormWidget(hintTitle: "Enter tutor name", widthSize: screenSize.width / 2.5,),
-        SizedBox(
+        const SizedBox(
           width: StyleConst.kDefaultPadding,
         ),
         TextFormWidget(hintTitle: "Select tutor nation", widthSize: screenSize.width / 2.5,icon: Icons.keyboard_arrow_down_sharp,),

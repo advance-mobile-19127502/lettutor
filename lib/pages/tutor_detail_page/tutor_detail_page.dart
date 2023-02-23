@@ -30,7 +30,7 @@ class TutorDetailPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AvatarNameRow(),
+                const AvatarNameRow(),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
@@ -61,7 +61,7 @@ class TutorDetailPage extends StatelessWidget {
 
                 //Row favorite, report, reviews
 
-                FavoriteReportReviewRow(),
+                const FavoriteReportReviewRow(),
 
                 //Video player
                 const SizedBox(

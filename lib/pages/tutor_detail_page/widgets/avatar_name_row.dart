@@ -13,7 +13,7 @@ class AvatarNameRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tutor = Provider.of<Tutor>(context);
+    final tutor = Provider.of<Tutor>(context, listen: false);
 
     return Row(
       children: [
