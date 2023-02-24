@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/common_widget/icon_text_btn.dart';
 import 'package:lettutor/constants/font_const.dart';
+import 'package:lettutor/data/list_review.dart';
 import 'package:lettutor/models/tutor_info.dart';
+import 'package:lettutor/pages/tutor_detail_page/widgets/review_dialog.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteReportReviewRow extends StatefulWidget {
@@ -53,7 +55,15 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
         IconTextButton(
             title: "Report", icon: Icons.report_gmailerrorred, onPress: () {}),
         IconTextButton(
-            title: "Review", icon: Icons.star_border_outlined, onPress: () {}),
+            title: "Review",
+            icon: Icons.star_border_outlined,
+            onPress: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => ReviewDialog(
+                        listReview: listReviewExample,
+                      ));
+            }),
       ],
     );
   }
