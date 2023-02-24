@@ -48,6 +48,8 @@ dependencies:
 
   syncfusion_flutter_pdfviewer: ^20.4.51
 
+  timeago: ^3.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

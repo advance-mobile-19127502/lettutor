@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage>
     });
 
     Timer(Duration(seconds: 6), () {
-      Navigator.of(context).pushNamed("/login");
+      Navigator.of(context).pushReplacementNamed("/login");
     });
 
   }
@@ -55,8 +55,9 @@ class _SplashPageState extends State<SplashPage>
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
     _controller.dispose();
+    super.dispose();
+
   }
 
   @override

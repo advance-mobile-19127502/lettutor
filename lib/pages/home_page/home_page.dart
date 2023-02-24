@@ -114,15 +114,15 @@ class HomePage extends StatelessWidget {
                   height: StyleConst.kDefaultPadding / 3,
                 ),
 
-                ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: listTutors.length,
-                    itemBuilder: (context, index) {
-                      return ChangeNotifierProvider.value(
-                          value: listTutors[index],
-                          child: const ProfileTile());
-                    })
+                Column(
+                  children: [
+                    ...listTutors.map((e) => ChangeNotifierProvider.value(
+                          value: e,
+                          child: const ProfileTile(),
+                        )),
+                    const Text("Show more")
+                  ],
+                )
 
                 //Recommended tutor
               ],

@@ -26,9 +26,9 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "Course"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
           currentIndex: _selectedIndex,
           onTap: _onTapBottomNavigation,
