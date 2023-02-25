@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch(settings.name) {
+    switch (settings.name) {
       case '/splash':
         return MaterialPageRoute(builder: (context) => const SplashPage());
       case '/login':
@@ -25,20 +25,24 @@ class RouteGenerator {
         {
           final routeArgs = settings.arguments as Map;
           final Course courseDetail = routeArgs['course'] as Course;
-          return MaterialPageRoute(builder: (context) => CourseDetailPage(course: courseDetail,));
+          return MaterialPageRoute(
+              builder: (context) => CourseDetailPage(
+                    course: courseDetail,
+                  ));
         }
       case '/tutor-detail':
         {
           final routeArgs = settings.arguments as Map;
           final Tutor tutorDetail = routeArgs['tutor'] as Tutor;
-          return MaterialPageRoute(builder: (context) => ChangeNotifierProvider.value(
-            value: tutorDetail,
-            child: const TutorDetailPage(),
-          ));
+          return MaterialPageRoute(
+              builder: (context) => Provider(
+                  create: (context) => tutorDetail,
+                  child: const TutorDetailPage()));
         }
       case '/edit-your-profile':
         {
-          return MaterialPageRoute(builder: (context) => const EditYourProfilePage());
+          return MaterialPageRoute(
+              builder: (context) => const EditYourProfilePage());
         }
       default:
         return _errorRoute();

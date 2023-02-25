@@ -1,6 +1,6 @@
 import 'package:lettutor/models/tutor_info.dart';
 
-List<Tutor> listTutors = [
+List<Tutor> listTutorExample = [
   Tutor(
     name: "Sankar",
     country: "VietNam",
