@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/course_detail_page/course_detail_page.dart';
+import 'package:lettutor/pages/edit_your_profile_page/edit_your_profile_page.dart';
 import 'package:lettutor/pages/login_page/login_page.dart';
 import 'package:lettutor/pages/main_page/main_page.dart';
 import 'package:lettutor/pages/register_page/register_page.dart';
@@ -34,6 +35,10 @@ class RouteGenerator {
             value: tutorDetail,
             child: const TutorDetailPage(),
           ));
+        }
+      case '/edit-your-profile':
+        {
+          return MaterialPageRoute(builder: (context) => const EditYourProfilePage());
         }
       default:
         return _errorRoute();
