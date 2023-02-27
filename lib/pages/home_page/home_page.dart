@@ -7,9 +7,9 @@ import 'package:lettutor/data/list_tutor.dart';
 import 'package:lettutor/pages/home_page/widgets/current_course.dart';
 import 'package:lettutor/pages/home_page/widgets/list_chip_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/profile_tile.dart';
-import 'package:lettutor/pages/home_page/widgets/recommended_show_favorite_row.dart';
 import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
+import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +17,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
+    Provider.of<ListTutorProvider>(context, listen: false).setListTutor(listTutorExample);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,14 +118,19 @@ class HomePage extends StatelessWidget {
                   height: StyleConst.kDefaultPadding / 3,
                 ),
 
-                Column(
-                  children: [
-                    ...listTutors.map((e) => ChangeNotifierProvider.value(
-                          value: e,
-                          child: const ProfileTile(),
-                        )),
-                    const Text("Show more")
-                  ],
+                Consumer<ListTutorProvider>(
+                  builder: (context, listTutorProvider, child) {
+                    print("123");
+                    return Column(
+                      children: [
+                        ...listTutorProvider.getListTutor.map((e) =>
+                            Provider(
+                                create: (context) => e,
+                                child: const ProfileTile())),
+                        const Text("Show more")
+                      ],
+                    );
+                  },
                 )
 
                 //Recommended tutor

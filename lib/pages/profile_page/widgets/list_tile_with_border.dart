@@ -19,21 +19,21 @@ class ListTileWithBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: StyleConst.kDefaultPadding),
-      child: Container(
-        padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(StyleConst.defaultRadius),
-            color: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                offset: Offset(0, 0),
-                blurRadius: 1,
-                spreadRadius: 1,
-                color: Colors.black26,
-              ),
-            ]),
-        child: InkWell(
-          onTap: onPress,
+      child: InkWell(
+        onTap: onPress,
+        child: Container(
+          padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(StyleConst.defaultRadius),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 0),
+                  blurRadius: 1,
+                  spreadRadius: 1,
+                  color: Colors.black26,
+                ),
+              ]),
           child: Row(
             children: [
               Icon(icon),

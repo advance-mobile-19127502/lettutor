@@ -5,6 +5,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/data/list_review.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/review_dialog.dart';
+import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteReportReviewRow extends StatefulWidget {
@@ -30,10 +31,10 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Consumer<Tutor>(
-          builder: (context, tutor, child) => InkWell(
+        Consumer<ListTutorProvider>(
+          builder: (context, listTutorProvider, child) => InkWell(
             onTap: () {
-              tutor.setFavorite(!tutor.isFavorite);
+              listTutorProvider.setFavoriteAt(tutor);
             },
             child: Column(
               children: [

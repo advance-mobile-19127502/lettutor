@@ -26,7 +26,9 @@ class ProfilePage extends StatelessWidget {
               thickness: 2,
             ),
             ListTileWithBorder(
-                title: "Your profile", icon: Icons.person, onPress: () {}),
+                title: "Edit your profile", icon: Icons.person, onPress: () {
+                  Navigator.of(context).pushNamed("/edit-your-profile");
+            }),
             ListTileWithBorder(
                 title: "History", icon: Icons.history, onPress: () {}),
             ListTileWithBorder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor_info.dart';
+import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:provider/provider.dart';
 
 class AvatarAndHeartWidget extends StatefulWidget {
@@ -32,10 +33,10 @@ class _AvatarAndHeartWidgetState extends State<AvatarAndHeartWidget> {
         ),
         Positioned(
             right: 0,
-            child: Consumer<Tutor>(
-              builder: (context, tutor, child) => IconButton(
+            child: Consumer<ListTutorProvider>(
+              builder: (context, listTutorProvider, child) => IconButton(
                 onPressed: () {
-                  tutor.setFavorite(!tutor.isFavorite);
+                  listTutorProvider.setFavoriteAt(tutor);
                 },
                 icon: tutor.isFavorite
                     ? const Icon(Icons.favorite)
