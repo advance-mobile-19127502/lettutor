@@ -5,7 +5,14 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 
 class FormFieldWidget extends StatefulWidget {
-  const FormFieldWidget({Key? key, required this.title, required this.hintTitle, required this.isEnabled, required this.controller, required this.textProfile}) : super(key: key);
+  const FormFieldWidget(
+      {Key? key,
+      required this.title,
+      required this.hintTitle,
+      required this.isEnabled,
+      required this.controller,
+      required this.textProfile})
+      : super(key: key);
 
   final String title, hintTitle;
   final bool isEnabled;
@@ -17,15 +24,13 @@ class FormFieldWidget extends StatefulWidget {
 }
 
 class _FormFieldWidgetState extends State<FormFieldWidget> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (widget.textProfile.isNotEmpty)
-      {
-        widget.controller.text = widget.textProfile;
-      }
+    if (widget.textProfile.isNotEmpty) {
+      widget.controller.text = widget.textProfile;
+    }
   }
 
   @override
@@ -36,8 +41,7 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         Text(
           widget.title,
           style: GoogleFonts.openSans(
-              textStyle: FontConst.semiBold
-                  .copyWith(fontSize: 14)),
+              textStyle: FontConst.semiBold.copyWith(fontSize: 14)),
         ),
         const SizedBox(
           height: StyleConst.kDefaultPadding / 3,
@@ -61,13 +65,10 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
             hintText: widget.hintTitle,
           ),
         ),
-
         const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
-
       ],
-
     );
   }
 }

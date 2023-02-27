@@ -64,9 +64,7 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const EditAvaProfile(),
-
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
@@ -77,7 +75,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _nameController,
                   textProfile: myProfile.name,
                 ),
-
                 FormFieldWidget(
                   title: "Email Address",
                   hintTitle: "Example@gmail.com",
@@ -85,7 +82,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _emailController,
                   textProfile: myProfile.email,
                 ),
-
                 FormFieldWidget(
                   title: "Country",
                   hintTitle: "Your country",
@@ -93,7 +89,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _countryController,
                   textProfile: myProfile.country,
                 ),
-
                 FormFieldWidget(
                   title: "Phone Number",
                   hintTitle: "0123456879",
@@ -101,7 +96,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _phoneController,
                   textProfile: myProfile.phoneNumber,
                 ),
-
                 FormFieldWidget(
                   title: "Birthday",
                   hintTitle: "Your birthday",
@@ -109,7 +103,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _dobController,
                   textProfile: myProfile.dateOfBirth.toString(),
                 ),
-
                 FormFieldWidget(
                   title: "My Level",
                   hintTitle: "Your Level",
@@ -117,7 +110,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _levelController,
                   textProfile: myProfile.myLevel,
                 ),
-
                 FormFieldWidget(
                   title: "Want to learn",
                   hintTitle: "Want to learn",
@@ -125,15 +117,14 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   controller: _wantToLearnController,
                   textProfile: myProfile.wantToLearn,
                 ),
-
                 FormFieldWidget(
                   title: "Study Schedule",
-                  hintTitle: "Note the time of the week you want to study on lettutor",
+                  hintTitle:
+                      "Note the time of the week you want to study on lettutor",
                   isEnabled: true,
                   controller: _studyScheduleController,
                   textProfile: myProfile.studySchedule,
                 ),
-
                 SizedBox(
                   width: screenSize.width,
                   child: ElevatedButton(
@@ -141,7 +132,6 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                     onPressed: () {},
                   ),
                 )
-
               ],
             ),
           ),
