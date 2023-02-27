@@ -4,13 +4,57 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/my_profile.dart';
+import 'package:lettutor/pages/edit_your_profile_page/widgets/edit_ava_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/form_field_widget.dart';
 
-class EditYourProfilePage extends StatelessWidget {
+class EditYourProfilePage extends StatefulWidget {
   const EditYourProfilePage({Key? key}) : super(key: key);
 
   @override
+  State<EditYourProfilePage> createState() => _EditYourProfilePageState();
+}
+
+class _EditYourProfilePageState extends State<EditYourProfilePage> {
+  late TextEditingController _nameController;
+  late TextEditingController _emailController;
+  late TextEditingController _countryController;
+  late TextEditingController _phoneController;
+  late TextEditingController _dobController;
+  late TextEditingController _levelController;
+  late TextEditingController _wantToLearnController;
+  late TextEditingController _studyScheduleController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _emailController = TextEditingController();
+    _countryController = TextEditingController();
+    _phoneController = TextEditingController();
+    _dobController = TextEditingController();
+    _levelController = TextEditingController();
+    _wantToLearnController = TextEditingController();
+    _studyScheduleController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    _countryController.dispose();
+    _phoneController.dispose();
+    _dobController.dispose();
+    _levelController.dispose();
+    _wantToLearnController.dispose();
+    _studyScheduleController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
@@ -20,107 +64,74 @@ class EditYourProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(myProfile.avaUrl),
-                        child: const Align(
-                          alignment: Alignment.bottomRight,
-                          child: CircleAvatar(
-                            radius: 12,
-                            backgroundColor: Colors.blue,
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                const EditAvaProfile(),
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
-
-                 FormFieldWidget(
-                    title: "Name",
-                    hintTitle: myProfile.name,
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
-                ),
-
-
                 FormFieldWidget(
-                    title: "Email address",
-                    hintTitle: myProfile.email,
-                    isEnabled: false),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Name",
+                  hintTitle: "Your name",
+                  isEnabled: true,
+                  controller: _nameController,
+                  textProfile: myProfile.name,
                 ),
-
                 FormFieldWidget(
-                    title: "Country",
-                    hintTitle: myProfile.country,
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Email Address",
+                  hintTitle: "Example@gmail.com",
+                  isEnabled: false,
+                  controller: _emailController,
+                  textProfile: myProfile.email,
                 ),
-
                 FormFieldWidget(
-                    title: "Phone numver",
-                    hintTitle: myProfile.phoneNumber,
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Country",
+                  hintTitle: "Your country",
+                  isEnabled: true,
+                  controller: _countryController,
+                  textProfile: myProfile.country,
                 ),
-
                 FormFieldWidget(
-                    title: "Birthday",
-                    hintTitle: myProfile.dateOfBirth.toString(),
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Phone Number",
+                  hintTitle: "0123456879",
+                  isEnabled: true,
+                  controller: _phoneController,
+                  textProfile: myProfile.phoneNumber,
                 ),
-
                 FormFieldWidget(
-                    title: "My level",
-                    hintTitle: myProfile.myLevel,
-                    isEnabled: true),
-
-                 const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Birthday",
+                  hintTitle: "Your birthday",
+                  isEnabled: true,
+                  controller: _dobController,
+                  textProfile: myProfile.dateOfBirth.toString(),
                 ),
-
                 FormFieldWidget(
-                    title: "Want to learn",
-                    hintTitle: myProfile.wantToLearn,
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "My Level",
+                  hintTitle: "Your Level",
+                  isEnabled: true,
+                  controller: _levelController,
+                  textProfile: myProfile.myLevel,
                 ),
-
                 FormFieldWidget(
-                    title: "Study schedule",
-                    hintTitle: myProfile.studySchedule,
-                    isEnabled: true),
-
-                const SizedBox(
-                  height: StyleConst.kDefaultPadding,
+                  title: "Want to learn",
+                  hintTitle: "Want to learn",
+                  isEnabled: true,
+                  controller: _wantToLearnController,
+                  textProfile: myProfile.wantToLearn,
                 ),
-
+                FormFieldWidget(
+                  title: "Study Schedule",
+                  hintTitle:
+                      "Note the time of the week you want to study on lettutor",
+                  isEnabled: true,
+                  controller: _studyScheduleController,
+                  textProfile: myProfile.studySchedule,
+                ),
+                SizedBox(
+                  width: screenSize.width,
+                  child: ElevatedButton(
+                    child: const Text("Save"),
+                    onPressed: () {},
+                  ),
+                )
               ],
             ),
           ),

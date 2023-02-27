@@ -5,7 +5,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/pages/course_detail_page/widgets/attribute_section.dart';
-import 'package:lettutor/pages/course_detail_page/widgets/section_widget.dart';
+import 'package:lettutor/common_widget/section_widget.dart';
 import 'package:lettutor/pages/course_detail_page/widgets/section_with_description.dart';
 import 'package:lettutor/pages/course_detail_page/widgets/title_des_image_course.dart';
 import 'package:lettutor/pages/course_detail_page/widgets/topic_tile.dart';
@@ -31,7 +31,7 @@ class CourseDetailPage extends StatelessWidget {
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
-              const SectionWidget(sectionTitle: "Overview"),
+              const SectionWidget(sectionTitle: "Overview", fontSize: 22,),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
@@ -61,7 +61,7 @@ class CourseDetailPage extends StatelessWidget {
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
-              const SectionWidget(sectionTitle: "List Topics  "),
+              const SectionWidget(sectionTitle: "List Topics  ", fontSize: 22,),
 
               ...List.generate(
                   course.listTopic.length,

@@ -17,10 +17,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery
-        .of(context)
-        .size;
-    Provider.of<ListTutorProvider>(context, listen: false).setListTutor(listTutorExample);
+    Size screenSize = MediaQuery.of(context).size;
+
+    ListTutorProvider listTutorProvider =
+        Provider.of<ListTutorProvider>(context, listen: false);
+
+    listTutorProvider.setListTutor(listTutorExample);
 
     return SingleChildScrollView(
       child: Column(
@@ -95,7 +97,7 @@ class HomePage extends StatelessWidget {
 
                 Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                       onTap: () {},
                       child: Row(
@@ -118,19 +120,12 @@ class HomePage extends StatelessWidget {
                   height: StyleConst.kDefaultPadding / 3,
                 ),
 
-                Consumer<ListTutorProvider>(
-                  builder: (context, listTutorProvider, child) {
-                    print("123");
-                    return Column(
-                      children: [
-                        ...listTutorProvider.getListTutor.map((e) =>
-                            Provider(
-                                create: (context) => e,
-                                child: const ProfileTile())),
-                        const Text("Show more")
-                      ],
-                    );
-                  },
+                Column(
+                  children: [
+                    ...listTutorProvider.getListTutor.map((e) => Provider(
+                        create: (context) => e, child: const ProfileTile())),
+                    const Text("Show more")
+                  ],
                 )
 
                 //Recommended tutor
