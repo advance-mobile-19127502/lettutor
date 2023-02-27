@@ -1,6 +1,6 @@
 
 
-const List<String> choicesList = [
+const List<String> choicesListExample = [
   "All",
   "English for kids",
   "English for Business",

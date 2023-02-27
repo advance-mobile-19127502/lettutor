@@ -50,6 +50,9 @@ dependencies:
 
   timeago: ^3.4.0
 
+  expandable_page_view: ^1.0.17
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

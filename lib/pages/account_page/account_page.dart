@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/constants/colors_const.dart';
-import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/my_profile.dart';
-import 'package:lettutor/pages/profile_page/widgets/ava_name_mail_row.dart';
-import 'package:lettutor/pages/profile_page/widgets/list_tile_with_border.dart';
+import 'package:lettutor/pages/account_page/widgets/ava_name_mail_row.dart';
+import 'package:lettutor/pages/account_page/widgets/list_tile_with_border.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class AccountPage extends StatelessWidget {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +23,19 @@ class ProfilePage extends StatelessWidget {
               thickness: 2,
             ),
             ListTileWithBorder(
-                title: "Edit your profile", icon: Icons.person, onPress: () {
+                title: "Edit your profile",
+                icon: Icons.person,
+                onPress: () {
                   Navigator.of(context).pushNamed("/edit-your-profile");
-            }),
+                }),
             ListTileWithBorder(
                 title: "History", icon: Icons.history, onPress: () {}),
             ListTileWithBorder(
-                title: "Become a tutor", icon: Icons.grading, onPress: () {}),
+                title: "Become a tutor",
+                icon: Icons.grading,
+                onPress: () {
+                  Navigator.of(context).pushNamed("/become-a-tutor");
+                }),
             ListTileWithBorder(
                 title: "Settings", icon: Icons.settings, onPress: () {}),
             const SizedBox(height: StyleConst.kDefaultPadding * 2),

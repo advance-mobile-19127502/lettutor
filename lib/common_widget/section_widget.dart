@@ -6,9 +6,10 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 
 class SectionWidget extends StatelessWidget {
-  const SectionWidget({Key? key, required this.sectionTitle}) : super(key: key);
+  const SectionWidget({Key? key, required this.sectionTitle, required this.fontSize}) : super(key: key);
 
   final String sectionTitle;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SectionWidget extends StatelessWidget {
         Text(
           sectionTitle,
           style: GoogleFonts.roboto(
-              textStyle: FontConst.bold.copyWith(fontSize: 22)),
+              textStyle: FontConst.bold.copyWith(fontSize: fontSize)),
         ),
         const Expanded(
             child: Divider(

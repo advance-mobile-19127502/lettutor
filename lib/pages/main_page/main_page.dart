@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:lettutor/pages/account_page/account_page.dart';
 import 'package:lettutor/pages/course_page/course_page.dart';
 import 'package:lettutor/pages/home_page/home_page.dart';
-import 'package:lettutor/pages/profile_page/profile_page.dart';
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -12,12 +12,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   List<Widget> listPages = [
     const HomePage(),
     const CoursePage(),
-    const ProfilePage()
+    const AccountPage()
   ];
 
   @override
@@ -28,14 +28,14 @@ class _MainPageState extends State<MainPage> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "Course"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
           ],
           currentIndex: _selectedIndex,
           onTap: _onTapBottomNavigation,
         ),
         body: IndexedStack(
-          children: listPages,
           index: _selectedIndex,
+          children: listPages,
         ),
       ),
     );

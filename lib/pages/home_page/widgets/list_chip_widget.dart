@@ -18,9 +18,9 @@ class _ListChipWidgetState extends State<ListChipWidget> {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 5,
-      children: List<Widget>.generate(choicesList.length, (index) {
+      children: List<Widget>.generate(choicesListExample.length, (index) {
         return ChoiceChip(
-          label: Text(choicesList[index]),
+          label: Text(choicesListExample[index]),
           labelStyle: GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
             color: _selectedIndex == index ? Colors.blue : Colors.black,
             fontSize: 12
