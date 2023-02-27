@@ -17,7 +17,7 @@ class _BasicInfoColumnState extends State<BasicInfoColumn> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         CircleAvatar(
           backgroundColor: Colors.blue,
           radius: 50,

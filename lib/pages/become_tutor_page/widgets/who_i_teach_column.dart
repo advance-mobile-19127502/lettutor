@@ -25,15 +25,15 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
         AlertContainer(
             alertContent:
                 "This is the first thing students will see when looking for tutors."),
-        SizedBox(
+        const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
-        TextFormFieldBecomeATutor(
+        const TextFormFieldBecomeATutor(
             title: "Introduction",
             hintTitle:
                 "Example: \"I was a doctor for 35 years and can help you practice business or medical English."
                 " I also enjoy teaching beginners as I am very patient and always speak slowly and clearly. "),
-        ChooseWhoRadioWidget(),
+        const ChooseWhoRadioWidget(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

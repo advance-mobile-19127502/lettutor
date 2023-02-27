@@ -25,7 +25,7 @@ class _CVColumnState extends State<CVColumn> {
 
         const SizedBox(height: StyleConst.kDefaultPadding,),
 
-        const AlertContainer(
+        AlertContainer(
             alertContent:
                 "In order to protect your privacy, please do not share your"
                     " personal information (email, phone number, social email, skype, etc)"
