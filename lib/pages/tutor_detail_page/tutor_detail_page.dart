@@ -10,6 +10,7 @@ import 'package:lettutor/pages/tutor_detail_page/widgets/avatar_name_row.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/favorite_report_review_row.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_chip.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_text.dart';
+import 'package:lettutor/pages/tutor_detail_page/widgets/timetable_widget.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/video_player_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
@@ -68,9 +69,9 @@ class TutorDetailPage extends StatelessWidget {
                   height: StyleConst.kDefaultPadding,
                 ),
 
-                VideoPlayerWidget(
-                  video_url: tutor.video_url,
-                ),
+                // VideoPlayerWidget(
+                //   video_url: tutor.video_url,
+                // ),//
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
@@ -105,8 +106,8 @@ class TutorDetailPage extends StatelessWidget {
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
-                
-                Text("Calendar still don't know how", style: TextStyle(fontSize: 50),)
+
+                TimeTableWidget(),
 
               ],
             ),
