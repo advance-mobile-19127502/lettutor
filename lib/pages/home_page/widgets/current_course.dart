@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CurrentCourse extends StatelessWidget {
   const CurrentCourse({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class CurrentCourse extends StatelessWidget {
       )),
       child: Column(
         children: [
-          Text("You have no upcoming lesson.",
+          Text(AppLocalizations.of(context)!.noUpcomingLesson,
               textAlign: TextAlign.center,
               style: GoogleFonts.roboto(
                 textStyle: FontConst.regular
@@ -34,7 +35,7 @@ class CurrentCourse extends StatelessWidget {
             height: StyleConst.kDefaultPadding,
           ),
           Text(
-            "Welcome to LetTutor!",
+            AppLocalizations.of(context)!.welcomeTo,
             style: GoogleFonts.roboto(
                 textStyle: FontConst.regular
                     .copyWith(fontSize: 16, color: Colors.white)),

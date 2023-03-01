@@ -4,6 +4,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/alert_container.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/text_form_field_become_a_tutor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CVColumn extends StatefulWidget {
   const CVColumn({Key? key}) : super(key: key);
@@ -18,28 +19,31 @@ class _CVColumnState extends State<CVColumn> {
     return Column(
       children: [
         Text(
-          "Students will view this information on your profile to decide if you're a good fit for them.",
+          AppLocalizations.of(context)!.studentWillView,
           style: GoogleFonts.openSans(
               textStyle: FontConst.regular.copyWith(fontSize: 14)),
         ),
-
-        const SizedBox(height: StyleConst.kDefaultPadding,),
-
+        const SizedBox(
+          height: StyleConst.kDefaultPadding,
+        ),
         AlertContainer(
-            alertContent:
-                "In order to protect your privacy, please do not share your"
-                    " personal information (email, phone number, social email, skype, etc)"
-                    " in your profile."),
-
-        const TextFormFieldBecomeATutor(title: 'Interests', hintTitle: "Interests, hobbies, memorable life experiences, or anything else you'd like to share!",),
-
-        const TextFormFieldBecomeATutor(title: 'Education', hintTitle: "Example: \"Bachelor of Arts in English from Cambly University; Certified yoga instructor, Second Language Acquisition and Teaching  (SLAT) certificate from Cambly University",),
-
-        const TextFormFieldBecomeATutor(title: 'Experience', hintTitle: '',),
-
-        const TextFormFieldBecomeATutor(title: 'Current or Previous Profession', hintTitle: '',),
-
-
+            alertContent: AppLocalizations.of(context)!.inOrderToProtect),
+        TextFormFieldBecomeATutor(
+          title: AppLocalizations.of(context)!.interest,
+          hintTitle: AppLocalizations.of(context)!.hintInterests,
+        ),
+        TextFormFieldBecomeATutor(
+          title: AppLocalizations.of(context)!.education,
+          hintTitle: AppLocalizations.of(context)!.hintEducation,
+        ),
+        TextFormFieldBecomeATutor(
+          title: AppLocalizations.of(context)!.experience,
+          hintTitle: '',
+        ),
+        TextFormFieldBecomeATutor(
+          title: AppLocalizations.of(context)!.currentPrevProfession,
+          hintTitle: '',
+        ),
       ],
     );
   }

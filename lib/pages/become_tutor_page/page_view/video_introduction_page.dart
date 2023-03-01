@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/common_widget/section_widget.dart';
 import 'package:lettutor/constants/font_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/alert_container.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/introducde_yourself_row.dart';
@@ -29,28 +30,27 @@ class _VideoIntroductionPageState extends State<VideoIntroductionPage> {
         const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
-        const SectionWidget(
-          sectionTitle: "Basic info  ",
+        SectionWidget(
+          sectionTitle: AppLocalizations.of(context)!.introductionVideo,
           fontSize: 16,
         ),
         const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
         AlertContainer(
-          alertContent: "A few helpful tips:\n"
-              "   1. Find a clean and quiet space\n"
-              "   2. Smile and look at the camera\n"
-              "   3. Dress smart\n"
-              "   4. Speak for 1-3 minutes\n"
+          alertContent: "${AppLocalizations.of(context)!.aFewHelpfulTips}\n"
+              "   1. ${AppLocalizations.of(context)!.firstTips}\n"
+              "   2. ${AppLocalizations.of(context)!.secondTips}\n"
+              "   3. ${AppLocalizations.of(context)!.thirdTips}\n"
+              "   4. ${AppLocalizations.of(context)!.fourthTips}\n"
               "   5. Brand yourself and have fun!\n",
-          noteContent: "Note: We only support uploading video file"
-              " that is less than 64 MB in size.",
+          noteContent: AppLocalizations.of(context)!.noteVideoIntroduction,
         ),
         const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
 
-        ElevatedButton(onPressed: () {}, child: const Text("Choose video")),
+        ElevatedButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.chooseVideo)),
 
         const SizedBox(
           height: StyleConst.kDefaultPadding,

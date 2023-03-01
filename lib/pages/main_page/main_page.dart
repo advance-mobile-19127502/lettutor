@@ -1,9 +1,10 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:lettutor/common_widget/change_locale_widget.dart';
 import 'package:lettutor/pages/account_page/account_page.dart';
 import 'package:lettutor/pages/course_page/course_page.dart';
 import 'package:lettutor/pages/home_page/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -25,17 +26,31 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "Course"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          items: [
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                label: AppLocalizations.of(context)!.home),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.menu_book),
+                label: AppLocalizations.of(context)!.course),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.person),
+                label: AppLocalizations.of(context)!.account),
           ],
           currentIndex: _selectedIndex,
           onTap: _onTapBottomNavigation,
         ),
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: listPages,
+        body: Stack(
+          children: [
+            IndexedStack(
+              index: _selectedIndex,
+              children: listPages,
+            ),
+            const Positioned(
+              right: 0,
+              child: ChangeLocaleWidget(),
+            )
+          ],
         ),
       ),
     );
@@ -47,4 +62,3 @@ class _MainPageState extends State<MainPage> {
     });
   }
 }
-

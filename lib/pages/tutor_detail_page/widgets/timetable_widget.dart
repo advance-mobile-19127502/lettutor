@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TimeTableWidget extends StatefulWidget {
   const TimeTableWidget({Key? key}) : super(key: key);
@@ -23,20 +24,26 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
   void initState() {
     _startDay = _curentDate;
     _endDay = _startDay.add(const Duration(days: 6));
-    getDateColumn(_curentDate);
-
-    getDataRow();
 
     super.initState();
   }
 
-  void getDateColumn(DateTime startingDate) {
+  @override
+  void didChangeDependencies() async {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+    _getDateColumn(_curentDate);
+    _getDataRow();
+
+  }
+
+  _getDateColumn(DateTime startingDate) {
     listDataColumn.clear();
     listDayTimeTable.clear();
     listDataColumn
         .add(DataColumn(label: Expanded(child: Center(child: Text("Time")))));
     for (int i = 0; i < 7; i++) {
-
       final tempDate = startingDate.add(Duration(days: i));
       listDayTimeTable.add(tempDate);
 
@@ -53,11 +60,12 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
     }
   }
 
-  void getDataRow() {
+  _getDataRow() {
     listDataRow.add(DataRow(cells: [DataCell(Text("7:55 - 9:55"))]));
     for (int i = 0; i < 7; i++) {
       listDataRow[0].cells.add(DataCell(i % 2 == 0
-          ? ElevatedButton(onPressed: () {}, child: Text("Book"))
+          ? ElevatedButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.book
+      ))
           : const SizedBox()));
     }
   }
@@ -74,13 +82,13 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
                     ? null
                     : () {
                         _decreaseStartDate();
-                        getDateColumn(_startDay);
+                        _getDateColumn(_startDay);
                       },
                 icon: Icon(Icons.arrow_back_ios)),
             IconButton(
                 onPressed: () {
                   _increaseStartDate();
-                  getDateColumn(_startDay);
+                  _getDateColumn(_startDay);
                 },
                 icon: Icon(Icons.arrow_forward_ios)),
             Text(

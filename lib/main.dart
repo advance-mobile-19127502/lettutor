@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        initialRoute: '/login',
+        initialRoute: '/main-page',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );

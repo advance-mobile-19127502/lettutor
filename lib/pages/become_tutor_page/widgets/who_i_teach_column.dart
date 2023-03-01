@@ -6,6 +6,7 @@ import 'package:lettutor/data/choice_list.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/alert_container.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/choose_who_best_teach_widget.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/text_form_field_become_a_tutor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WhoITeachColumn extends StatefulWidget {
   const WhoITeachColumn({Key? key}) : super(key: key);
@@ -23,22 +24,19 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         AlertContainer(
-            alertContent:
-                "This is the first thing students will see when looking for tutors."),
+            alertContent: AppLocalizations.of(context)!.firstThingStudentLook),
         const SizedBox(
           height: StyleConst.kDefaultPadding,
         ),
-        const TextFormFieldBecomeATutor(
-            title: "Introduction",
-            hintTitle:
-                "Example: \"I was a doctor for 35 years and can help you practice business or medical English."
-                " I also enjoy teaching beginners as I am very patient and always speak slowly and clearly. "),
+        TextFormFieldBecomeATutor(
+            title: AppLocalizations.of(context)!.introduction,
+            hintTitle: AppLocalizations.of(context)!.hintIntroduction),
         const ChooseWhoRadioWidget(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "My specialties are",
+              AppLocalizations.of(context)!.mySpecialties,
               style: GoogleFonts.openSans(
                   textStyle: FontConst.regular.copyWith(fontSize: 14)),
             ),

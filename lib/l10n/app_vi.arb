@@ -27,7 +27,186 @@
 
     "startLearning": "Bắt đầu học với",
 
-    "alreadyHaveAccount": "Đã có tài khoản?"
+    "alreadyHaveAccount": "Đã có tài khoản?",
 
+    "home": "Trang chủ",
+
+    "course": "Khóa học",
+
+    "account": "Tài khoản",
+
+    "noUpcomingLesson": "Bạn hiện không có lớp học nào sắp tới",
+
+    "welcomeTo": "Chào mừng tới LetTutor!",
+
+    "findATutor": "Tìm kiếm gia sư",
+
+    "enterTutorName": "Nhập tên gia sư",
+
+    "selectTutorNation": "Chọn quốc tịch gia sư",
+
+    "selectAvailableTime": "Chọn thời gian có thể học",
+
+    "selectADay": "Chọn ngày",
+
+    "resetFilter": "Đặt lại",
+
+    "recommendedTutor": "Gia sư được đề xuất",
+
+    "seeFavoriteTutor": "Xem gia sư yêu thích của bạn",
+
+    "book": "Đặt lịch học",
+
+    "favorites": "Yêu thích",
+
+    "report": "Báo cáo",
+
+    "review": "Đánh giá",
+
+    "languages": "Ngôn ngữ",
+
+    "specialities": "Chuyên ngành",
+
+    "interest": "Sở thích",
+
+    "teachingExperience": "Kinh nghiệm giảng dạy",
+
+    "discoverCourse": "Khám phá khóa học",
+
+    "liveTutorHasBuilt": "LiveTutor đã xây dựng những khóa học chất lượng, bài bản và khoa học nhất về các lĩnh vực trong cuộc sống dành cho những ai đang có nhu cầu nâng cao kiến thức về các lĩnh vực.",
+
+    "selectLevel": "Chọn cấp độ",
+
+    "selectCategory": "Chọn danh mục",
+
+    "sortLevel": "Sắp xếp theo độ khó",
+
+    "overview": "Tổng quan",
+
+    "whyTakeCourse": "Tại sao bạn nên học khóa học này",
+
+    "whatWillAbleDo": "Bạn sẽ học được gì",
+
+    "experienceLevel": "Trình độ yêu cầu",
+
+    "courseLength": "Thời lượng khóa học",
+
+    "topics": "Chủ đề",
+
+    "listTopic": "Danh sách chủ đề",
+
+    "editProfile": "Chỉnh sửa hồ sơ",
+
+    "history": "Lịch sử",
+
+    "becomeATutor": "Đăng ký làm gia sư",
+
+    "settings": "Cài đặt",
+
+    "logOut": "Đăng xuất",
+
+    "name": "Tên",
+
+    "emailAddress": "Địa chỉ email",
+
+    "country": "Quốc gia",
+
+    "phoneNumber": "Số điện thoại",
+
+    "birthDay": "Ngày sinh",
+
+    "myLevel": "Trình độ",
+
+    "wantToLearn": "Muốn học",
+
+    "studySchedule": "Lịch học",
+
+    "save": "Lưu",
+
+    "noteTheTime": "Ghi chú thời gian trong tuần mà bạn muốn học trên LetTutor",
+
+    "completeProfile": "Hoàn thành hồ sơ",
+
+    "videoIntroduction": "Video giới thiệu",
+
+    "approval": "Phê duyệt",
+
+    "setUpTutorProfile": "Thiết lập hồ sơ gia sư của bạn",
+
+    "yourTutorProfile": "Hồ sơ gia sư của bạn là cơ hội tiếp cận với học viên trên Tutoring. Bạn có thể sửa lại sau tại trang hồ sơ cá nhân.",
+
+    "newStudentMay": "Học viên mới có thể duyệt qua hồ sơ gia sư để tìm một gia sư phù hợp với mục tiêu học tập và tính cách của họ. Khi một học viên quay trở lại họ có thể tìm từ hồ sơ của gia sư người mà sẵn sàng cho họ những trải nghiệm tuyệt vời.",
+
+    "basicInfo": "Thông tin cơ bản",
+
+    "plsUpProPhoto": "Vui lòng tải lên một bức ảnh đại diện. Xem hướng dẫn.",
+
+    "tutoringName": "Tên gia sư",
+
+    "imFrom": "Tôi đến từ",
+
+    "dob": "Ngày sinh",
+
+    "studentWillView": "Học viên sẽ xem thông tin từ hồ sơ của bạn để quyết định nếu bạn phù hợp với nhu cầu của họ.",
+
+    "inOrderToProtect": "Để bảo mật quyền riêng tư của bạn, vui lòng không chia sẻ bất cứ thông tin các nhân như email, số điện thoại, skype,... Trong hồ sơ của bạn.",
+
+    "hintInterests": "Những điều thú vị, sở thích, những trải nghiệm đáng nhớ hoặc bất cứ điều gì mà bạn muốn chia sẻ.",
+
+    "education": "Học vấn",
+
+    "hintEducation": "Ví dụ: 'Bằng cử nghệ thuật của đại học Cambly; Chứng nhận huấn luyện viên Yoga, Chứng chỉ Tiếp thu và Giảng dạy Ngôn ngữ Thứ hai (SLAT) của Đại học Cambly'",
+
+    "experience": "Kinh nghiệm",
+
+    "currentPrevProfession": "Nghề nghiệp hiện tại hoặc trước đây",
+
+    "languesISpeak": "Về ngôn ngữ",
+
+    "hintLanguages": "Ví dụ: Tiếng Anh, Tiếng Việt, Tiếng Trung, Tiếng Hàn",
+
+    "whoITeach": "Về việc dạy",
+
+    "firstThingStudentLook": "Đây là điều đầu tiên mà học viên nhìn thấy khi tìm kiếm gia sư.",
+
+    "introduction": "Giới thiệu",
+
+    "hintIntroduction": "Ví dụ: 'Tôi là bác sĩ, năm nay 35 tuổi và có thể giúp bạn thực hành tiếng Anh thương mại và y tế. Tôi cũng thích dạy cho người mới bắt đầu vì có tính kiên nhẫn và luôn nói chậm, rõ ràng. '",
+
+    "bestAtTeachingWho": "Tôi giỏi nhất trong việc dạy những học viên",
+
+    "beginner": "Người mới bắt đầu",
+
+    "intermediate": "Trung cấp",
+
+    "advanced": "Trình độ cao",
+
+    "mySpecialties": "Chuyên ngành của tôi là",
+
+    "introduceYourself": "Giới thiệu bản thân",
+
+    "letStudentKnowWhat": "Hãy để học viên biết những gì họ có thể mong đợi từ khoá học của bạn bằng việc quay lại video điểm nhấn về việc dạy, chuyên môn và tính cách của bạn. Học viên có thể lo lắng khi nói chuyện với người bản xứ, vì vậy sẽ thực sự hữu ích khi có một video thân thiện giới thiệu bản thân và mời học viên gọi điện cho bạn.",
+
+    "introductionVideo": "Video giới thiệu",
+
+    "aFewHelpfulTips": "Một số mẹo hữu dụng:",
+
+    "firstTips": "Tìm một không gian trong lành và yên tĩnh",
+
+    "secondTips": "Cười thật tự nhiên, nhìn vào camera",
+
+    "thirdTips": "Ăn mặc lịch sự",
+
+    "fourthTips": "Nói trong 1-3 phút",
+
+    "fifthTips": "Trung",
+
+    "noteVideoIntroduction": "Lưu ý: Chúng tôi chỉ hỗ trợ tải lên video có kích thước nhỏ hơn 64 MB.",
+
+    "chooseVideo": "Chọn video",
+
+    "haveDoneAllTheStep": "Bạn đã thực hiện tất cả các bước",
+
+    "plsWaitForApprove": "Vui lòng đợi chúng tôi phê duyệt"
 
 }

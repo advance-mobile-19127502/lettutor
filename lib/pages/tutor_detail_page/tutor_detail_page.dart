@@ -14,6 +14,7 @@ import 'package:lettutor/pages/tutor_detail_page/widgets/timetable_widget.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/video_player_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TutorDetailPage extends StatelessWidget {
   const TutorDetailPage({Key? key}) : super(key: key);
@@ -79,7 +80,7 @@ class TutorDetailPage extends StatelessWidget {
 
                 //Language
 
-                SectionWithChipWidget(title: "Languages", listChip: tutor.languages),
+                SectionWithChipWidget(title: AppLocalizations.of(context)!.languages, listChip: tutor.languages),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
@@ -87,21 +88,21 @@ class TutorDetailPage extends StatelessWidget {
 
                 //Specialities
 
-                SectionWithChipWidget(title: "Specialities", listChip: tutor.specialites),
+                SectionWithChipWidget(title: AppLocalizations.of(context)!.specialities, listChip: tutor.specialites),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
 
                 //Interests
-                SectionWithTextWidget(title: "Interests", description: tutor.interests),
+                SectionWithTextWidget(title: AppLocalizations.of(context)!.interest, description: tutor.interests),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,
                 ),
                 
                 //Teaching experience
-                SectionWithTextWidget(title: "Teaching experience", description: tutor.teaching_experience),
+                SectionWithTextWidget(title: AppLocalizations.of(context)!.teachingExperience, description: tutor.teaching_experience),
 
                 const SizedBox(
                   height: StyleConst.kDefaultPadding,

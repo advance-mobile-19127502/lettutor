@@ -5,6 +5,7 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/course_page/widgets/ListCourseWidget.dart';
 import 'package:lettutor/pages/course_page/widgets/discovery_search_row.dart';
 import 'package:lettutor/pages/course_page/widgets/filters_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CoursePage extends StatelessWidget {
   const CoursePage({Key? key}) : super(key: key);
@@ -25,9 +26,7 @@ class CoursePage extends StatelessWidget {
             SizedBox(height: StyleConst.kDefaultPadding,),
 
             Text(
-              "LiveTutor has built the most quality, methodical and scientific courses"
-              " in the fields of life for those who are in need of improving their knowledge"
-              " of the fields.",
+              AppLocalizations.of(context)!.liveTutorHasBuilt,
               style: GoogleFonts.openSans(
                   textStyle: FontConst.regular.copyWith(fontSize: 14)),
             ),

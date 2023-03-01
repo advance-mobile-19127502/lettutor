@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/pages/home_page/widgets/text_form_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SelectDateTimeWidget extends StatefulWidget {
   const SelectDateTimeWidget({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _SelectDateTimeWidgetState extends State<SelectDateTimeWidget> {
         .of(context)
         .size;
     return TextFormWidget(
-      hintTitle: "Select a day",
+      hintTitle: AppLocalizations.of(context)!.selectADay,
       widthSize: screenSize.width / 2.6,
       icon: Icons.calendar_month,
       onPressIcon: pickDateTime

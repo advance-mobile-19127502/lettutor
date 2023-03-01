@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IntroduceYourselfRow extends StatelessWidget {
   const IntroduceYourselfRow({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class IntroduceYourselfRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Introduce yourself",
+                AppLocalizations.of(context)!.introduceYourself,
                 style: GoogleFonts.poppins(
                     textStyle: FontConst.medium.copyWith(fontSize: 21)),
               ),
@@ -31,11 +32,7 @@ class IntroduceYourselfRow extends StatelessWidget {
                 height: StyleConst.kDefaultPadding / 3,
               ),
               Text(
-                "Let students know what they can expect from a "
-                "lesson with you by recording a video highlighting your teaching"
-                " style, expertise and personality. Students can be nervous to speak"
-                " with a foreigner, so it really helps to have a friendly video that introduces"
-                " yourself and invites students to call you.",
+                AppLocalizations.of(context)!.letStudentKnowWhat,
                 style: GoogleFonts.openSans(
                     textStyle: FontConst.regular.copyWith(fontSize: 14)),
               ),

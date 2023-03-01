@@ -10,6 +10,8 @@ import 'package:lettutor/pages/course_detail_page/widgets/section_with_descripti
 import 'package:lettutor/pages/course_detail_page/widgets/title_des_image_course.dart';
 import 'package:lettutor/pages/course_detail_page/widgets/topic_tile.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class CourseDetailPage extends StatelessWidget {
   const CourseDetailPage({Key? key, required this.course}) : super(key: key);
 
@@ -31,37 +33,37 @@ class CourseDetailPage extends StatelessWidget {
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
-              const SectionWidget(sectionTitle: "Overview", fontSize: 22,),
+              SectionWidget(sectionTitle: AppLocalizations.of(context)!.overview, fontSize: 22,),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
               SectionWithDescriptionWidget(
-                  sectionTitle: "Why take this course",
+                  sectionTitle: AppLocalizations.of(context)!.whyTakeCourse,
                   description: course.reason),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
               SectionWithDescriptionWidget(
-                  sectionTitle: "What will you be able to do",
+                  sectionTitle: AppLocalizations.of(context)!.whatWillAbleDo,
                   description: course.achievement),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
               AttributeSection(
-                  sectionTitle: "Experience Level  ",
+                  sectionTitle: AppLocalizations.of(context)!.experienceLevel,
                   attribute: course.level,
                   icon: Icons.people_outline),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
               AttributeSection(
-                  sectionTitle: "Course Length  ",
-                  attribute: "${course.numLessons} topics",
+                  sectionTitle: AppLocalizations.of(context)!.courseLength,
+                  attribute: "${course.numLessons} ${AppLocalizations.of(context)!.topics}",
                   icon: Icons.book_outlined),
               const SizedBox(
                 height: StyleConst.kDefaultPadding,
               ),
-              const SectionWidget(sectionTitle: "List Topics  ", fontSize: 22,),
+              SectionWidget(sectionTitle: AppLocalizations.of(context)!.listTopic, fontSize: 22,),
 
               ...List.generate(
                   course.listTopic.length,
