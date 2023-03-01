@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class StepperWidget extends StatelessWidget {
   const StepperWidget({Key? key, this.curentIndex}) : super(key: key);
@@ -38,7 +40,7 @@ class StepperWidget extends StatelessWidget {
               width: StyleConst.kDefaultPadding,
             ),
             Text(
-              "Complete Profile",
+              AppLocalizations.of(context)!.completeProfile,
               style:
                   GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
                     fontSize: 16,
@@ -75,7 +77,7 @@ class StepperWidget extends StatelessWidget {
             const SizedBox(
               width: StyleConst.kDefaultPadding,
             ),
-            Text("Video introduction",
+            Text(AppLocalizations.of(context)!.videoIntroduction,
               style:
               GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
                   fontSize: 16,
@@ -111,7 +113,7 @@ class StepperWidget extends StatelessWidget {
             const SizedBox(
               width: StyleConst.kDefaultPadding,
             ),
-            Text("Approval",
+            Text(AppLocalizations.of(context)!.approval,
               style:
               GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
                   fontSize: 16,

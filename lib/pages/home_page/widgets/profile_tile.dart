@@ -10,6 +10,7 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({Key? key}) : super(key: key);
@@ -25,7 +26,8 @@ class ProfileTile extends StatelessWidget {
           bottom: StyleConst.kDefaultPadding),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed("/tutor-detail", arguments: {'tutor' : tutor});
+          Navigator.of(context)
+              .pushNamed("/tutor-detail", arguments: {'tutor': tutor});
         },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
@@ -58,8 +60,8 @@ class ProfileTile extends StatelessWidget {
               Text(
                 tutor.country,
                 style: GoogleFonts.roboto(
-                    textStyle: FontConst.regular
-                        .copyWith(fontSize: 14, color: ColorConst.hintTextColor)),
+                    textStyle: FontConst.regular.copyWith(
+                        fontSize: 14, color: ColorConst.hintTextColor)),
               ),
 
               //rating star
@@ -85,7 +87,8 @@ class ProfileTile extends StatelessWidget {
                 runSpacing: -10,
                 spacing: 5,
                 maxLines: 2,
-                children: List<Widget>.generate(tutor.specialites.length, (index) {
+                children:
+                    List<Widget>.generate(tutor.specialites.length, (index) {
                   return ItemChip(content: tutor.specialites[index]);
                 }).toList(),
               ),
@@ -113,7 +116,7 @@ class ProfileTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   CommonButtonWidget(
-                    title: "Book",
+                    title: AppLocalizations.of(context)!.book,
                     onPress: () {},
                     icon: Icons.my_library_books,
                   )

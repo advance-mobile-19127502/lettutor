@@ -5,6 +5,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/alert_container.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/text_form_field_become_a_tutor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BasicInfoColumn extends StatefulWidget {
   const BasicInfoColumn({Key? key}) : super(key: key);
@@ -25,13 +26,13 @@ class _BasicInfoColumnState extends State<BasicInfoColumn> {
 
         SizedBox(height: StyleConst.kDefaultPadding,),
 
-        AlertContainer(alertContent: "Please upload a professional photo. See guidelines"),
+        AlertContainer(alertContent: AppLocalizations.of(context)!.plsUpProPhoto),
 
-        TextFormFieldBecomeATutor(title: 'Tutoring name', hintTitle: '',),
+        TextFormFieldBecomeATutor(title: AppLocalizations.of(context)!.tutoringName, hintTitle: '',),
 
-        TextFormFieldBecomeATutor(title: "I'm from", hintTitle: '',),
+        TextFormFieldBecomeATutor(title: AppLocalizations.of(context)!.imFrom, hintTitle: '',),
 
-        TextFormFieldBecomeATutor(title: 'Date of birth', hintTitle: '',),
+        TextFormFieldBecomeATutor(title: AppLocalizations.of(context)!.dob, hintTitle: '',),
 
 
       ],

@@ -6,6 +6,9 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 class LoginFormField extends StatefulWidget {
   const LoginFormField({Key? key}) : super(key: key);
 
@@ -54,7 +57,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
         ),
 
         Text(
-          "PASSWORD",
+          AppLocalizations.of(context)!.password.toUpperCase(),
           style: GoogleFonts.openSans(
               textStyle: FontConst.semiBold
                   .copyWith(fontSize: 14, color: Colors.grey)),
@@ -90,11 +93,11 @@ class _LoginFormFieldState extends State<LoginFormField> {
   String? validateEmail(String? value) {
       if (value == null || value.isEmpty)
       {
-        return "Please input your Email!";
+        return AppLocalizations.of(context)!.inputMail;
       }
       if (value.length < 7)
       {
-        return "The input is not valid E-mail!";
+        return AppLocalizations.of(context)!.validEmail;
       }
       else
       {
@@ -105,11 +108,11 @@ class _LoginFormFieldState extends State<LoginFormField> {
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty)
     {
-      return "Please input your Password!";
+      return AppLocalizations.of(context)!.inputPassword;
     }
     if (value.length < 7)
     {
-      return "Enter min. 7 characters";
+      return AppLocalizations.of(context)!.validPassword;
     }
     else
     {

@@ -7,6 +7,7 @@ import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/review_dialog.dart';
 import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoriteReportReviewRow extends StatefulWidget {
   const FavoriteReportReviewRow({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
                   color: tutor.isFavorite ? Colors.red : Colors.blue,
                 ),
                 Text(
-                  "Favorites",
+                  AppLocalizations.of(context)!.favorites,
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.medium.copyWith(
                           fontSize: 13,
@@ -54,9 +55,9 @@ class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
           ),
         ),
         IconTextButton(
-            title: "Report", icon: Icons.report_gmailerrorred, onPress: () {}),
+            title: AppLocalizations.of(context)!.report, icon: Icons.report_gmailerrorred, onPress: () {}),
         IconTextButton(
-            title: "Review",
+            title: AppLocalizations.of(context)!.review,
             icon: Icons.star_border_outlined,
             onPress: () {
               showDialog(

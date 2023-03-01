@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/pages/login_page/widgets/login_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginWidgetColumn extends StatefulWidget {
   const LoginWidgetColumn({Key? key, required this.formLoginKey})
@@ -29,7 +30,7 @@ class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const LoginFormField(),
-          TextButton(onPressed: () {}, child: const Text("Forgot Password?")),
+          TextButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.forgotPassword)),
           ElevatedButton(
               onPressed: !isValid
                   ? null
@@ -38,7 +39,7 @@ class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
                     },
               child: Center(
                 child: Text(
-                  "LOG IN",
+                  AppLocalizations.of(context)!.login.toUpperCase(),
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.semiBold.copyWith(fontSize: 20)),
                 ),

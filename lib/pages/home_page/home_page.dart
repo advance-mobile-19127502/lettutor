@@ -11,13 +11,13 @@ import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
 import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
 
     ListTutorProvider listTutorProvider =
         Provider.of<ListTutorProvider>(context, listen: false);
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               children: [
                 //find a tutor
                 Text(
-                  "Find a Tutor",
+                  AppLocalizations.of(context)!.findATutor,
                   style: GoogleFonts.poppins(
                       textStyle: FontConst.semiBold
                           .copyWith(fontWeight: FontWeight.bold, fontSize: 29)),
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
 
                 //Select available tutoring time:
                 Text(
-                  "Select available tutoring time:",
+                  AppLocalizations.of(context)!.selectAvailableTime,
                   //
                   style: GoogleFonts.openSans(
                     textStyle: FontConst.bold.copyWith(fontSize: 14),
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
 
                 //Reset filter button
                 CommonButtonWidget(
-                  title: "Reset filter",
+                  title: AppLocalizations.of(context)!.resetFilter,
                   onPress: () {},
                 ),
 
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                 ),
 
                 Text(
-                  "Recommended Tutors",
+                  AppLocalizations.of(context)!.recommendedTutor,
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.bold.copyWith(fontSize: 25)),
                 ),
@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "See your favorite tutors",
+                            AppLocalizations.of(context)!.seeFavoriteTutor,
                             style: GoogleFonts.roboto(
                                 textStyle: FontConst.regular.copyWith(
                                     fontSize: 12, color: Colors.blueAccent)),

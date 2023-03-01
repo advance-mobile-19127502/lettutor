@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class DiscoverySeachRow extends StatelessWidget {
   const DiscoverySeachRow({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class DiscoverySeachRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Discover Courses",
+                AppLocalizations.of(context)!.discoverCourse,
                 style: GoogleFonts.poppins(
                     textStyle: FontConst.semiBold.copyWith(fontSize: 25)),
               ),
@@ -36,24 +38,24 @@ class DiscoverySeachRow extends StatelessWidget {
               //search
               Row(
                 children: [
-                  const Expanded(
+                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                         isDense: true,
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        border: OutlineInputBorder(
+                        contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        border: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                         ),
-                        hintText: "course",
-                        hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                        hintText: AppLocalizations.of(context)!.course.toLowerCase(),
+                        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
                       ),
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ),
                   IconButton(
                     iconSize: 16,
                     onPressed: () {},
-                    icon: Icon(Icons.search_outlined),
+                    icon: const Icon(Icons.search_outlined),
                   ),
                 ],
               )

@@ -6,6 +6,8 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/edit_ava_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/form_field_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class EditYourProfilePage extends StatefulWidget {
   const EditYourProfilePage({Key? key}) : super(key: key);
@@ -69,58 +71,57 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                   height: StyleConst.kDefaultPadding,
                 ),
                 FormFieldWidget(
-                  title: "Name",
-                  hintTitle: "Your name",
+                  title: AppLocalizations.of(context)!.name,
+                  hintTitle: "",
                   isEnabled: true,
                   controller: _nameController,
                   textProfile: myProfile.name,
                 ),
                 FormFieldWidget(
-                  title: "Email Address",
+                  title: AppLocalizations.of(context)!.emailAddress,
                   hintTitle: "Example@gmail.com",
                   isEnabled: false,
                   controller: _emailController,
                   textProfile: myProfile.email,
                 ),
                 FormFieldWidget(
-                  title: "Country",
-                  hintTitle: "Your country",
+                  title: AppLocalizations.of(context)!.country,
+                  hintTitle: "",
                   isEnabled: true,
                   controller: _countryController,
                   textProfile: myProfile.country,
                 ),
                 FormFieldWidget(
-                  title: "Phone Number",
+                  title: AppLocalizations.of(context)!.phoneNumber,
                   hintTitle: "0123456879",
                   isEnabled: true,
                   controller: _phoneController,
                   textProfile: myProfile.phoneNumber,
                 ),
                 FormFieldWidget(
-                  title: "Birthday",
-                  hintTitle: "Your birthday",
+                  title: AppLocalizations.of(context)!.birthDay,
+                  hintTitle: "",
                   isEnabled: true,
                   controller: _dobController,
                   textProfile: myProfile.dateOfBirth.toString(),
                 ),
                 FormFieldWidget(
-                  title: "My Level",
-                  hintTitle: "Your Level",
+                  title: AppLocalizations.of(context)!.myLevel,
+                  hintTitle: "",
                   isEnabled: true,
                   controller: _levelController,
                   textProfile: myProfile.myLevel,
                 ),
                 FormFieldWidget(
-                  title: "Want to learn",
-                  hintTitle: "Want to learn",
+                  title: AppLocalizations.of(context)!.wantToLearn,
+                  hintTitle: "",
                   isEnabled: true,
                   controller: _wantToLearnController,
                   textProfile: myProfile.wantToLearn,
                 ),
                 FormFieldWidget(
-                  title: "Study Schedule",
-                  hintTitle:
-                      "Note the time of the week you want to study on lettutor",
+                  title: AppLocalizations.of(context)!.studySchedule,
+                  hintTitle: AppLocalizations.of(context)!.noteTheTime,
                   isEnabled: true,
                   controller: _studyScheduleController,
                   textProfile: myProfile.studySchedule,
@@ -128,7 +129,7 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                 SizedBox(
                   width: screenSize.width,
                   child: ElevatedButton(
-                    child: const Text("Save"),
+                    child: Text(AppLocalizations.of(context)!.save),
                     onPressed: () {},
                   ),
                 )

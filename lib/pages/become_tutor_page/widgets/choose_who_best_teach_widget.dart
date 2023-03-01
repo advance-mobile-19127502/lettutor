@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class ChooseWhoRadioWidget extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ChooseWhoRadioWidgetState extends State<ChooseWhoRadioWidget> {
         Row(
           children: [
             Text(
-              "I am best at teaching students who are",
+              AppLocalizations.of(context)!.bestAtTeachingWho,
               style: GoogleFonts.openSans(
                   textStyle: FontConst.regular.copyWith(fontSize: 14)),
             ),
@@ -47,7 +48,7 @@ class _ChooseWhoRadioWidgetState extends State<ChooseWhoRadioWidget> {
                       checkRadio(value!);
                     }),
                 Text(
-                  'Beginner',
+                  AppLocalizations.of(context)!.beginner,
                   style: GoogleFonts.openSans(
                       textStyle: FontConst.regular.copyWith(fontSize: 14)),
                 ),
@@ -63,7 +64,7 @@ class _ChooseWhoRadioWidgetState extends State<ChooseWhoRadioWidget> {
                       checkRadio(value!);
                     }),
                 Text(
-                  'Intermediate',
+                  AppLocalizations.of(context)!.intermediate,
                   style: GoogleFonts.openSans(
                       textStyle: FontConst.regular.copyWith(fontSize: 14)),
                 ),
@@ -80,7 +81,7 @@ class _ChooseWhoRadioWidgetState extends State<ChooseWhoRadioWidget> {
                       checkRadio(value!);
                     }),
                 Text(
-                  'Advanced',
+                  AppLocalizations.of(context)!.advanced,
                   style: GoogleFonts.openSans(
                       textStyle: FontConst.regular.copyWith(fontSize: 14)),
                 ),

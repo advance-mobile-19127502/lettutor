@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/pages/register_page/widgets/sign_up_form_field.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SignUpWidgetColumn extends StatefulWidget {
   const SignUpWidgetColumn({Key? key, required this.formSignUpKey})
       : super(key: key);
@@ -37,7 +39,7 @@ class _SignUpWidgetColumnState extends State<SignUpWidgetColumn> {
                     },
               child: Center(
                 child: Text(
-                  "SIGN UP",
+                  AppLocalizations.of(context)!.signUp.toUpperCase(),
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.semiBold.copyWith(fontSize: 20)),
                 ),

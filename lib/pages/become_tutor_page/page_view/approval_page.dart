@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ApprovalPage extends StatefulWidget {
   const ApprovalPage({Key? key}) : super(key: key);
 
@@ -21,8 +23,8 @@ class _ApprovalPageState extends State<ApprovalPage> {
           fit: BoxFit.fill,
         ),
         Text(
-          "You have done all the steps \n"
-          "Please, wait for the operator's approval",
+          "${AppLocalizations.of(context)!.haveDoneAllTheStep} \n"
+          "${AppLocalizations.of(context)!.plsWaitForApprove}",
           textAlign: TextAlign.center,
           style: GoogleFonts.openSans(
               textStyle: FontConst.medium.copyWith(fontSize: 21)),
