@@ -1,0 +1,33 @@
+{
+    "helloTutor": "Gửi lời chào đến gia sư",
+
+    "englishTutor": "tiếng Anh của bạn",
+
+    "becomeFluent": "Trở nên thông thạo nhanh hơn thông qua các bài học trò chuyện video trực tiếp phù hợp với mục tiêu của bạn.",
+
+    "inputMail": "Vui lòng nhập Email của bạn!",
+
+    "password": "Mật khẩu",
+
+    "inputPassword": "Vui lòng nhập Mật khẩu của bạn!",
+
+    "forgotPassword": "Quên mật khẩu?",
+
+    "validEmail": "Email không hợp lệ!",
+
+    "validPassword": "Nhập tối thiểu 7 ký tự!",
+
+    "login": "Đăng nhập",
+
+    "orContinue": "Hoặc tiếp tục với",
+
+    "notAMember": "Chưa phải là thành viên?",
+
+    "signUp": "Đăng ký",
+
+    "startLearning": "Bắt đầu học với",
+
+    "alreadyHaveAccount": "Đã có tài khoản?"
+
+
+}

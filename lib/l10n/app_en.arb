@@ -1,0 +1,78 @@
+{
+  "helloTutor": "Say hello to your",
+  "@helloTutor": {
+    "description": "Say hello to your"
+  },
+
+  "englishTutor": "English tutors",
+    "@englishTutor": {
+      "description": "English tutors"
+    },
+
+    "becomeFluent": "Become fluent faster through one on one video chat lessons tailored to your goals.",
+      "@becomeFluent": {
+        "description": "Become fluent faster through one on one video chat lessons tailored to your goals."
+      },
+
+  "inputMail": "Please input your Email!",
+        "@inputMail": {
+          "description": "Please input your Email!"
+        },
+
+  "validEmail": "The input is not valid Email!",
+          "@validEmail": {
+            "description": "The input is not valid Email!"
+          },
+
+  "password": "Password",
+        "@password": {
+          "description": "Password"
+        },
+
+    "inputPassword": "Please input your Password!",
+          "@inputPassword": {
+            "description": "Please input your Password!"
+          },
+
+    "validPassword": "Enter min. 7 characters!",
+              "@validPassword": {
+                "description": "Enter min. 7 characters!"
+              },
+
+    "forgotPassword": "Forgot Password?",
+          "@helloTutor": {
+            "description": "Forgot Password?"
+          },
+
+  "login": "Log in",
+    "@login": {
+      "description": "Log in"
+    },
+
+    "orContinue": "Or continue with",
+        "@orContinue": {
+          "description": "Or continue with"
+        },
+
+    "notAMember": "Not a member yet?",
+        "@notAMember": {
+          "description": "Not a member yet?"
+        },
+
+  "signUp": "Sign up",
+      "@signUp": {
+        "description": "Sign up"
+      },
+
+  "startLearning": "Start learning with",
+        "@startLearning": {
+          "description": "Start learning with"
+        },
+
+    "alreadyHaveAccount": "Already have an account?",
+          "@alreadyHaveAccount": {
+            "description": "Already have an account?"
+          }
+
+
+}
