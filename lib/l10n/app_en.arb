@@ -519,6 +519,72 @@
    "plsWaitForApprove": "Please, wait for the operator's approval",
                                "@plsWaitForApprove": {
                                  "description": "plsWaitForApprove"
-                               }
+                               },
+
+   "resetPass": "Reset Password",
+             "@resetPass": {
+               "description": "resetPass"
+             },
+
+ "plsEnterEmail": "Please enter your email address to search for your account.",
+              "@plsEnterEmail": {
+                "description": "plsEnterEmail"
+              },
+
+  "sendResetLink": "Send reset link",
+               "@sendResetLink": {
+                 "description": "sendResetLink"
+               },
+
+   "othersReview": "Others review",
+                  "@othersReview": {
+                    "description": "othersReview"
+                  },
+
+  "bookingDetail": "Booking details",
+                    "@bookingDetail": {
+                      "description": "bookingDetail"
+                    },
+
+    "bookingTime": "Booking Time",
+                      "@bookingTime": {
+                        "description": "bookingTime"
+                      },
+
+  "balance": "Balance",
+                    "@balance": {
+                      "description": "balance"
+                    },
+
+    "price": "Price",
+                      "@price": {
+                        "description": "price"
+                      },
+
+    "haveNumLessonLeft": "You have {num} lesson left",
+                        "@haveNumLessonLeft": {
+                          "description": "haveNumLessonLeft",
+                          "placeholders": {
+                            "num": {
+                                "type": "int"
+                            }
+                          }
+                        },
+
+    "priceLesson": "{num} lesson",
+                            "@priceLesson": {
+                              "description": "priceLesson",
+                              "placeholders": {
+                                  "num": {
+                                      "type": "int"
+                                  }
+                                }
+                            },
+
+    "cancel": "Cancel",
+                          "@cancel": {
+                            "description": "cancel"
+                          }
+
 
 }

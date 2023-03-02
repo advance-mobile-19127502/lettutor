@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/pages/tutor_detail_page/widgets/booking_dialog.dart';
 
 class TimeTableWidget extends StatefulWidget {
   const TimeTableWidget({Key? key}) : super(key: key);
@@ -35,7 +36,6 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
 
     _getDateColumn(_curentDate);
     _getDataRow();
-
   }
 
   _getDateColumn(DateTime startingDate) {
@@ -64,8 +64,12 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
     listDataRow.add(DataRow(cells: [DataCell(Text("7:55 - 9:55"))]));
     for (int i = 0; i < 7; i++) {
       listDataRow[0].cells.add(DataCell(i % 2 == 0
-          ? ElevatedButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.book
-      ))
+          ? ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context, builder: (context) => BookingDialog());
+              },
+              child: Text(AppLocalizations.of(context)!.book))
           : const SizedBox()));
     }
   }
