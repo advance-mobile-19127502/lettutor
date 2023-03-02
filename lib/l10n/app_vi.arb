@@ -207,6 +207,28 @@
 
     "haveDoneAllTheStep": "Bạn đã thực hiện tất cả các bước",
 
-    "plsWaitForApprove": "Vui lòng đợi chúng tôi phê duyệt"
+    "plsWaitForApprove": "Vui lòng đợi chúng tôi phê duyệt",
+
+    "resetPass": "Đặt lại mật khẩu",
+
+    "plsEnterEmail": "Vui lòng nhập email để tìm kiếm tài khoản của bạn.",
+
+    "sendResetLink": "Xác nhận",
+
+    "othersReview": "Người khác đánh giá",
+
+    "bookingDetail": "Chi tiết đặt lịch",
+
+    "bookingTime": "Thời gian đặt lịch",
+
+    "balance": "Số dư",
+
+    "price": "Giá",
+
+    "haveNumLessonLeft": "Bạn còn {num} buổi học",
+
+    "priceLesson": "{num} buổi học",
+
+    "cancel": "Hủy"
 
 }

@@ -10,4 +10,8 @@ class ColorConst {
   static const hintTextColor = Color.fromRGBO(11, 34, 57, 1);
   static const greyTextColor = Color.fromRGBO(120, 120, 120, 1);
 
+  static const lightPurple = Color.fromRGBO(238, 234, 255, 1);
+  static const purpleText = Color.fromRGBO(119, 102, 199, 1);
+
+
 }

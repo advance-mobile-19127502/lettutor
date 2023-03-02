@@ -30,7 +30,9 @@ class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const LoginFormField(),
-          TextButton(onPressed: () {}, child: Text(AppLocalizations.of(context)!.forgotPassword)),
+          TextButton(onPressed: () {
+            Navigator.of(context).pushNamed("/forgot-pass-page");
+          }, child: Text(AppLocalizations.of(context)!.forgotPassword)),
           ElevatedButton(
               onPressed: !isValid
                   ? null
