@@ -30,7 +30,9 @@ class AccountPage extends StatelessWidget {
                   Navigator.of(context).pushNamed("/edit-your-profile");
                 }),
             ListTileWithBorder(
-                title: AppLocalizations.of(context)!.history, icon: Icons.history, onPress: () {}),
+                title: AppLocalizations.of(context)!.history, icon: Icons.history, onPress: () {
+                  Navigator.of(context).pushNamed("/history");
+            }),
             ListTileWithBorder(
                 title: AppLocalizations.of(context)!.becomeATutor,
                 icon: Icons.grading,

@@ -58,6 +58,8 @@ dependencies:
   intl: ^0.17.0
   flutter_localization: ^0.1.10
 
+  expandable: ^5.0.1
+
 
 dev_dependencies:
   flutter_test:

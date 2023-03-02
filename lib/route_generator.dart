@@ -5,6 +5,7 @@ import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
 import 'package:lettutor/pages/course_detail_page/course_detail_page.dart';
 import 'package:lettutor/pages/edit_your_profile_page/edit_your_profile_page.dart';
 import 'package:lettutor/pages/forgot_pass_page/forgot_pass_page.dart';
+import 'package:lettutor/pages/history_page/history_page.dart';
 import 'package:lettutor/pages/login_page/login_page.dart';
 import 'package:lettutor/pages/main_page/main_page.dart';
 import 'package:lettutor/pages/register_page/register_page.dart';
@@ -52,6 +53,11 @@ class RouteGenerator {
         {
           return MaterialPageRoute(
               builder: (context) => const BecomeTutorPage());
+        }
+      case "/history":
+        {
+          return MaterialPageRoute(
+              builder: (context) => const HistoryPage());
         }
       default:
         return _errorRoute();
