@@ -22,9 +22,10 @@ class HistoryPage extends StatelessWidget {
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
           child: Column(
             children: [
-              HeaderHistoryRow(),
+              const HeaderHistoryRow(),
+              const SizedBox(height: StyleConst.kDefaultPadding,),
               ...listHistoryExample
-                  .map((e) => Provider(create: (_) => e, child: HistoryTile()))
+                  .map((e) => Provider(create: (_) => e, child: const HistoryTile()))
             ],
           ),
         ),
