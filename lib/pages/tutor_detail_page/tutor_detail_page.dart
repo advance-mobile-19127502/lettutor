@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/common_widget/item_chip.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
@@ -11,7 +9,6 @@ import 'package:lettutor/pages/tutor_detail_page/widgets/favorite_report_review_
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_chip.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_text.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/timetable_widget.dart';
-import 'package:lettutor/pages/tutor_detail_page/widgets/video_player_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

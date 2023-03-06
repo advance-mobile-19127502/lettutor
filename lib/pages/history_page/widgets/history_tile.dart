@@ -6,7 +6,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/history_list.dart';
 import 'package:lettutor/models/booking_history.dart';
-import 'package:lettutor/pages/history_page/widgets/ava_name_container.dart';
+import 'package:lettutor/pages/history_page/widgets/ava_name_history_container.dart';
 import 'package:lettutor/pages/history_page/widgets/expansion_container.dart';
 import 'package:lettutor/pages/history_page/widgets/time_ago_widget.dart';
 import 'package:lettutor/providers/locale_provider.dart';
@@ -34,7 +34,7 @@ class HistoryTile extends StatelessWidget {
             const SizedBox(
               height: StyleConst.kDefaultPadding / 2,
             ),
-            const AvaNameContainer(),
+            const AvaNameHistoryContainer(),
             const SizedBox(
               height: StyleConst.kDefaultPadding / 2,
             ),

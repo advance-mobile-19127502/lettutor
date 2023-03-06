@@ -5,8 +5,8 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/booking_history.dart';
 import 'package:provider/provider.dart';
 
-class AvaNameContainer extends StatelessWidget {
-  const AvaNameContainer({Key? key}) : super(key: key);
+class AvaNameHistoryContainer extends StatelessWidget {
+  const AvaNameHistoryContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
