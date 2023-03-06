@@ -1,17 +1,19 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/booking_history.dart';
+import 'package:lettutor/models/booking_schedule.dart';
 import 'package:provider/provider.dart';
 
-class AvaNameHistoryContainer extends StatelessWidget {
-  const AvaNameHistoryContainer({Key? key}) : super(key: key);
+class AvaNameScheduleContainer extends StatelessWidget {
+  const AvaNameScheduleContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    BookingHostory history =
-        Provider.of<BookingHostory>(context, listen: false);
+    BookingSchedule schedule =
+    Provider.of<BookingSchedule>(context, listen: false);
 
     return Container(
       padding: const EdgeInsets.all(StyleConst.kDefaultPadding / 2),
@@ -19,7 +21,7 @@ class AvaNameHistoryContainer extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(history.avaTutorUrl),
+            backgroundImage: NetworkImage(schedule.avaTutorUrl),
             radius: 25,
           ),
           const SizedBox(
@@ -30,11 +32,11 @@ class AvaNameHistoryContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  history.nameTutor,
+                  schedule.nameTutor,
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.medium.copyWith(fontSize: 20)),
                 ),
-                Text(history.countryTutor,
+                Text(schedule.countryTutor,
                     style: GoogleFonts.roboto(
                         textStyle: FontConst.regular.copyWith(fontSize: 14))),
                 TextButton(
@@ -47,7 +49,7 @@ class AvaNameHistoryContainer extends StatelessWidget {
                     child: Text("Direct Message",
                         style: GoogleFonts.roboto(
                             textStyle:
-                                FontConst.regular.copyWith(fontSize: 14))))
+                            FontConst.regular.copyWith(fontSize: 14))))
               ],
             ),
           )

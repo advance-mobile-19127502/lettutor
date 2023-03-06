@@ -49,7 +49,9 @@ class AccountPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                                 StyleConst.defaultRadius))),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed("/login");
+                    },
                     child: Text(AppLocalizations.of(context)!.logOut.toUpperCase())))
           ],
         ),
