@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:lettutor/pages/splash_screen/widgets/animation_widget.dart';
+import 'package:lettutor/route_generator.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -47,9 +48,8 @@ class _SplashPageState extends State<SplashPage>
     });
 
     Timer(Duration(seconds: 6), () {
-      Navigator.of(context).pushReplacementNamed("/login");
+      Navigator.of(context).pushReplacementNamed(RouteGenerator.loginRoute);
     });
-
   }
 
   @override
@@ -57,7 +57,6 @@ class _SplashPageState extends State<SplashPage>
     // TODO: implement dispose
     _controller.dispose();
     super.dispose();
-
   }
 
   @override
@@ -75,58 +74,50 @@ class _SplashPageState extends State<SplashPage>
                   width: 255,
                   height: 255,
                   colorWidget: Colors.blue[900]),
-
               AnimationWidget(
                   rotationValue: _rotationAnimation.value + 0.2,
                   radiusValue: _radiusAnimation.value,
                   width: 200,
                   height: 200,
                   colorWidget: Colors.blue[800]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.4,
+                  rotationValue: _rotationAnimation.value + 0.4,
                   radiusValue: _radiusAnimation.value,
                   width: 175,
                   height: 175,
                   colorWidget: Colors.blue[700]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 150,
                   height: 150,
                   colorWidget: Colors.blue[600]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 125,
                   height: 125,
                   colorWidget: Colors.blue[500]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 100,
                   height: 100,
                   colorWidget: Colors.blue[400]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 75,
                   height: 75,
                   colorWidget: Colors.blue[300]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 50,
                   height: 50,
                   colorWidget: Colors.blue[200]),
-
               AnimationWidget(
-                  rotationValue: _rotationAnimation.value +0.6,
+                  rotationValue: _rotationAnimation.value + 0.6,
                   radiusValue: _radiusAnimation.value,
                   width: 25,
                   height: 25,

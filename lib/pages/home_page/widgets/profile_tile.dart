@@ -9,6 +9,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
+import 'package:lettutor/route_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -26,8 +27,8 @@ class ProfileTile extends StatelessWidget {
           bottom: StyleConst.kDefaultPadding),
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed("/tutor-detail", arguments: {'tutor': tutor});
+          Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
+              arguments: {'tutor': tutor});
         },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
