@@ -4,6 +4,7 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/course.dart';
+import 'package:lettutor/route_generator.dart';
 
 class CourseTile extends StatelessWidget {
   final Course course;
@@ -14,8 +15,8 @@ class CourseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed("/course-detail", arguments: {'course': course});
+        Navigator.of(context).pushNamed(RouteGenerator.courseDetailRoute,
+            arguments: {'course': course});
       },
       child: Container(
         width: 288,
@@ -58,7 +59,8 @@ class CourseTile extends StatelessWidget {
                   Text(
                     course.description,
                     style: GoogleFonts.poppins(
-                        textStyle: FontConst.regular.copyWith(fontSize: 12, color: Colors.grey)),
+                        textStyle: FontConst.regular
+                            .copyWith(fontSize: 12, color: Colors.grey)),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

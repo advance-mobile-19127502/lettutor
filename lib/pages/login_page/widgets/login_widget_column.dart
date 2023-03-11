@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/pages/login_page/widgets/login_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/route_generator.dart';
 
 class LoginWidgetColumn extends StatefulWidget {
   const LoginWidgetColumn({Key? key, required this.formLoginKey})
@@ -30,14 +31,17 @@ class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const LoginFormField(),
-          TextButton(onPressed: () {
-            Navigator.of(context).pushNamed("/forgot-pass-page");
-          }, child: Text(AppLocalizations.of(context)!.forgotPassword)),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(RouteGenerator.forgotPassRoute);
+              },
+              child: Text(AppLocalizations.of(context)!.forgotPassword)),
           ElevatedButton(
               onPressed: !isValid
                   ? null
                   : () {
-                      Navigator.of(context).pushNamed("/main-page");
+                      Navigator.of(context)
+                          .pushNamed(RouteGenerator.mainPageRoute);
                     },
               child: Center(
                 child: Text(
