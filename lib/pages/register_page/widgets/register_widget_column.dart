@@ -1,94 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
+import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/constants/font_const.dart';
-import 'package:lettutor/pages/login_page/widgets/login_form_field.dart';
+import 'package:lettutor/pages/register_page/widgets/register_form_field.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/route_generator.dart';
 
-class LoginWidgetColumn extends StatefulWidget {
-  const LoginWidgetColumn({Key? key, required this.formLoginKey})
+class RegisterWidgetColumn extends StatefulWidget {
+  const RegisterWidgetColumn({Key? key, required this.formSignUpKey})
       : super(key: key);
-  final GlobalKey<FormState> formLoginKey;
+  final GlobalKey<FormState> formSignUpKey;
 
   @override
-  State<LoginWidgetColumn> createState() => _LoginWidgetColumnState();
+  State<RegisterWidgetColumn> createState() => _RegisterWidgetColumnState();
 }
 
-class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
+class _RegisterWidgetColumnState extends State<RegisterWidgetColumn> {
   bool isValid = false;
-  late AuthBloc authBloc;
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController passwordEditingController = TextEditingController();
+  late RegisterBloc authBloc;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    authBloc = BlocProvider.of(context);
+    authBloc = BlocProvider.of<RegisterBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthBloc, AuthState>(
+    return BlocConsumer<RegisterBloc, RegisterState>(
       bloc: authBloc,
       listener: (context, state) {
-        if (state is Authenticated) {
-          Navigator.of(context).pushNamed(RouteGenerator.mainPageRoute);
+        if (state is RegisterSuccess) {
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
         return Form(
-          key: widget.formLoginKey,
+          key: widget.formSignUpKey,
+          autovalidateMode: AutovalidateMode.always,
           onChanged: () {
             setState(() {
-              isValid = widget.formLoginKey.currentState!.validate();
+              isValid = widget.formSignUpKey.currentState!.validate();
             });
           },
-          autovalidateMode: AutovalidateMode.always,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoginFormField(
+              RegisterFormField(
                 emailController: emailEditingController,
                 passwordController: passwordEditingController,
               ),
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed(RouteGenerator.forgotPassRoute);
-                  },
-                  child: Text(AppLocalizations.of(context)!.forgotPassword)),
-              if (state is AuthError)
+              if (state is RegisterFailure)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Center(
                     child: Text(
-                      state.message,
+                      state.message ?? "Error",
                       style: GoogleFonts.roboto(
                           textStyle: const TextStyle(color: Colors.red)),
                     ),
                   ),
                 ),
               ElevatedButton(
-                  onPressed: !isValid || state is AuthLoading
+                  onPressed: !isValid || state is RegisterLoading
                       ? null
                       : () {
-                          authBloc.add(LoginEvent(emailEditingController.text,
+                          authBloc.add(RegisterEvent(
+                              emailEditingController.text,
                               passwordEditingController.text));
                         },
                   child: Center(
-                    child: state is AuthLoading
+                    child: state is RegisterLoading
                         ? const SizedBox(
-                            width: 20,
-                            height: 20,
+                            height: 15,
+                            width: 15,
                             child: CircularProgressIndicator(
                               color: Colors.white,
                             ),
                           )
                         : Text(
-                            AppLocalizations.of(context)!.login.toUpperCase(),
+                            AppLocalizations.of(context)!.signUp.toUpperCase(),
                             style: GoogleFonts.roboto(
                                 textStyle:
                                     FontConst.semiBold.copyWith(fontSize: 20)),

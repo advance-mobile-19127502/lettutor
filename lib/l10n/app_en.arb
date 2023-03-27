@@ -34,9 +34,9 @@
             "description": "Please input your Password!"
           },
 
-    "validPassword": "Enter min. 7 characters!",
+    "validPassword": "Enter min. 6 characters!",
               "@validPassword": {
-                "description": "Enter min. 7 characters!"
+                "description": "Enter min. 6 characters!"
               },
 
     "forgotPassword": "Forgot Password?",

@@ -62,6 +62,12 @@ dependencies:
 
   jitsi_meet_wrapper: ^0.0.6
 
+  dio: ^5.1.0
+
+  bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.5
+
 
 dev_dependencies:
   flutter_test:

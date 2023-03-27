@@ -15,7 +15,7 @@
 
     "validEmail": "Email không hợp lệ!",
 
-    "validPassword": "Nhập tối thiểu 7 ký tự!",
+    "validPassword": "Nhập tối thiểu 6 ký tự!",
 
     "login": "Đăng nhập",
 

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
+
+import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
+import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/data/list_tutor.dart';
 import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:lettutor/providers/locale_provider.dart';
+import 'package:lettutor/repositories/auth_repository.dart';
 import 'package:lettutor/route_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -35,17 +41,24 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => ListTutorProvider()),
         ],
-        child: MaterialApp(
-          locale: Provider.of<LocaleProvider>(context).getLocale,
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) =>
+                    AuthBloc(AuthRepository("${UrlConst.baseUrl}/auth")))
+          ],
+          child: MaterialApp(
+            locale: Provider.of<LocaleProvider>(context).getLocale,
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            initialRoute: RouteGenerator.splashRoute,
+            onGenerateRoute: RouteGenerator.generateRoute,
           ),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: RouteGenerator.splashRoute,
-          onGenerateRoute: RouteGenerator.generateRoute,
         ),
       ),
     );

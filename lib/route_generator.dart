@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
+import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
@@ -11,6 +14,7 @@ import 'package:lettutor/pages/main_page/main_page.dart';
 import 'package:lettutor/pages/register_page/register_page.dart';
 import 'package:lettutor/pages/splash_screen/splash_screen.dart';
 import 'package:lettutor/pages/tutor_detail_page/tutor_detail_page.dart';
+import 'package:lettutor/repositories/auth_repository.dart';
 import 'package:provider/provider.dart';
 
 class RouteGenerator {
@@ -34,7 +38,12 @@ class RouteGenerator {
       case forgotPassRoute:
         return MaterialPageRoute(builder: (context) => const ForgotPassPage());
       case registerRoute:
-        return MaterialPageRoute(builder: (context) => RegisterPage());
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) =>
+                      RegisterBloc(AuthRepository("${UrlConst.baseUrl}/auth")),
+                  child: RegisterPage(),
+                ));
       case mainPageRoute:
         return MaterialPageRoute(builder: (context) => const MainPage());
       case courseDetailRoute:
