@@ -4,6 +4,7 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/pages/register_page/widgets/sign_up_form_field.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/route_generator.dart';
 
 class SignUpWidgetColumn extends StatefulWidget {
   const SignUpWidgetColumn({Key? key, required this.formSignUpKey})
@@ -35,7 +36,8 @@ class _SignUpWidgetColumnState extends State<SignUpWidgetColumn> {
               onPressed: !isValid
                   ? null
                   : () {
-                      Navigator.of(context).pushNamed("/login");
+                      Navigator.of(context)
+                          .pushNamed(RouteGenerator.loginRoute);
                     },
               child: Center(
                 child: Text(

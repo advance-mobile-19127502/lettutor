@@ -4,6 +4,7 @@ import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/account_page/widgets/ava_name_mail_row.dart';
 import 'package:lettutor/pages/account_page/widgets/list_tile_with_border.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/route_generator.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -27,18 +28,26 @@ class AccountPage extends StatelessWidget {
                 title: AppLocalizations.of(context)!.editProfile,
                 icon: Icons.person,
                 onPress: () {
-                  Navigator.of(context).pushNamed("/edit-your-profile");
+                  Navigator.of(context)
+                      .pushNamed(RouteGenerator.editProfileRoute);
                 }),
             ListTileWithBorder(
-                title: AppLocalizations.of(context)!.history, icon: Icons.history, onPress: () {}),
+                title: AppLocalizations.of(context)!.history,
+                icon: Icons.history,
+                onPress: () {
+                  Navigator.of(context).pushNamed(RouteGenerator.historyRoute);
+                }),
             ListTileWithBorder(
                 title: AppLocalizations.of(context)!.becomeATutor,
                 icon: Icons.grading,
                 onPress: () {
-                  Navigator.of(context).pushNamed("/become-a-tutor");
+                  Navigator.of(context)
+                      .pushNamed(RouteGenerator.becomeTutorRoute);
                 }),
             ListTileWithBorder(
-                title: AppLocalizations.of(context)!.settings, icon: Icons.settings, onPress: () {}),
+                title: AppLocalizations.of(context)!.settings,
+                icon: Icons.settings,
+                onPress: () {}),
             const SizedBox(height: StyleConst.kDefaultPadding * 2),
             SizedBox(
                 width: double.infinity,
@@ -47,8 +56,12 @@ class AccountPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                                 StyleConst.defaultRadius))),
-                    onPressed: () {},
-                    child: Text(AppLocalizations.of(context)!.logOut.toUpperCase())))
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(RouteGenerator.loginRoute);
+                    },
+                    child: Text(
+                        AppLocalizations.of(context)!.logOut.toUpperCase())))
           ],
         ),
       ),

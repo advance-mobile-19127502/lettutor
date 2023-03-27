@@ -4,6 +4,7 @@ import 'package:lettutor/pages/account_page/account_page.dart';
 import 'package:lettutor/pages/course_page/course_page.dart';
 import 'package:lettutor/pages/home_page/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/pages/schedule_page/schedule_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,8 +18,9 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> listPages = [
     const HomePage(),
+    const SchedulePage(),
     const CoursePage(),
-    const AccountPage()
+    const AccountPage(),
   ];
 
   @override
@@ -26,16 +28,21 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
                 icon: const Icon(Icons.home),
                 label: AppLocalizations.of(context)!.home),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.schedule),
+                label: "Schedule"),
             BottomNavigationBarItem(
                 icon: const Icon(Icons.menu_book),
                 label: AppLocalizations.of(context)!.course),
             BottomNavigationBarItem(
                 icon: const Icon(Icons.person),
                 label: AppLocalizations.of(context)!.account),
+
           ],
           currentIndex: _selectedIndex,
           onTap: _onTapBottomNavigation,
