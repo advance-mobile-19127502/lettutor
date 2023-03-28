@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/tutor_info.dart';
-import 'package:lettutor/providers/list_tutor_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:lettutor/models/from_api/tutor_info.dart';
 
 class AvatarAndHeartWidget extends StatefulWidget {
-
-  const AvatarAndHeartWidget({Key? key}) : super(key: key);
+  const AvatarAndHeartWidget({Key? key, required this.tutorInfo})
+      : super(key: key);
+  final TutorInfo tutorInfo;
 
   @override
   State<AvatarAndHeartWidget> createState() => _AvatarAndHeartWidgetState();
 }
 
 class _AvatarAndHeartWidgetState extends State<AvatarAndHeartWidget> {
-  late Tutor tutor;
+  // late Tutor tutor;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    tutor = Provider.of<Tutor>(context, listen: false);
-
   }
 
   @override
@@ -26,24 +24,28 @@ class _AvatarAndHeartWidgetState extends State<AvatarAndHeartWidget> {
     return Stack(
       children: [
         Center(
-          child: CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage(tutor.ava_url),
+          child: ClipOval(
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(40),
+              child: Image.network(
+                widget.tutorInfo.avatar ?? "",
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) {
+                  return Image.network(
+                      "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
+                },
+              ),
+            ),
           ),
         ),
         Positioned(
-            right: 0,
-            child: Consumer<ListTutorProvider>(
-              builder: (context, listTutorProvider, child) => IconButton(
-                onPressed: () {
-                  listTutorProvider.setFavoriteAt(tutor);
-                },
-                icon: tutor.isFavorite
-                    ? const Icon(Icons.favorite)
-                    : const Icon(Icons.favorite_border),
-                color: tutor.isFavorite ? Colors.red : Colors.blue,
-              ),
-            ))
+          right: 0,
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite_border),
+            color: Colors.blue,
+          ),
+        )
       ],
     );
   }

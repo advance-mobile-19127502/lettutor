@@ -7,19 +7,20 @@ import 'package:lettutor/common_widget/item_chip.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
+import 'package:lettutor/models/from_api/tutor_info.dart';
 import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
 import 'package:lettutor/route_generator.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileTile extends StatelessWidget {
-  const ProfileTile({Key? key}) : super(key: key);
+  const ProfileTile({Key? key, required this.tutorInfo}) : super(key: key);
+
+  final TutorInfo tutorInfo;
 
   @override
   Widget build(BuildContext context) {
-    final Tutor tutor = Provider.of<Tutor>(context, listen: false);
-
+    List<String> specialities = tutorInfo.specialties?.split(",") ?? [];
     return Padding(
       padding: const EdgeInsets.only(
           left: StyleConst.kDefaultPadding / 2,
@@ -27,8 +28,8 @@ class ProfileTile extends StatelessWidget {
           bottom: StyleConst.kDefaultPadding),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
-              arguments: {'tutor': tutor});
+          // Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
+          //     arguments: {'tutor': tutor});
         },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
@@ -48,18 +49,18 @@ class ProfileTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //avatar and heart
-              const AvatarAndHeartWidget(),
+              AvatarAndHeartWidget(tutorInfo: tutorInfo),
 
               //name
 
               Text(
-                tutor.name,
+                tutorInfo.name ?? "",
                 style: GoogleFonts.poppins(
                     textStyle: FontConst.medium.copyWith(fontSize: 22)),
               ),
 
               Text(
-                tutor.country,
+                tutorInfo.country ?? "",
                 style: GoogleFonts.roboto(
                     textStyle: FontConst.regular.copyWith(
                         fontSize: 14, color: ColorConst.hintTextColor)),
@@ -69,7 +70,7 @@ class ProfileTile extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: RatingBarIndicator(
-                    rating: tutor.rated_star,
+                    rating: tutorInfo.rating ?? 0,
                     itemBuilder: (context, index) => const Icon(
                       Icons.star,
                       color: Colors.amber,
@@ -88,9 +89,8 @@ class ProfileTile extends StatelessWidget {
                 runSpacing: -10,
                 spacing: 5,
                 maxLines: 2,
-                children:
-                    List<Widget>.generate(tutor.specialites.length, (index) {
-                  return ItemChip(content: tutor.specialites[index]);
+                children: List<Widget>.generate(specialities.length, (index) {
+                  return ItemChip(content: specialities[index]);
                 }).toList(),
               ),
 
@@ -101,7 +101,7 @@ class ProfileTile extends StatelessWidget {
               //description
 
               Text(
-                tutor.description,
+                tutorInfo.bio ?? "",
                 style: GoogleFonts.roboto(
                     textStyle: FontConst.regular.copyWith(
                         fontSize: 14, color: Colors.black.withOpacity(0.6))),

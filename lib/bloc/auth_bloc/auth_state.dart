@@ -10,9 +10,10 @@ class AuthLoading extends AuthState {
 }
 
 class Authenticated extends AuthState {
-  final AccountInfo accountInfo;
+  final String? accessToken;
+  final String? refreshToken;
 
-  const Authenticated(this.accountInfo);
+  const Authenticated(this.accessToken, this.refreshToken);
   @override
   List<Object> get props => [];
 }

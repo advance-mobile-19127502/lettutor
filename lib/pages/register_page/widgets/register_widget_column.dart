@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
+import 'package:lettutor/common_widget/dialog_back_to_login.dart';
 import 'package:lettutor/constants/font_const.dart';
+import 'package:lettutor/pages/login_page/login_page.dart';
 import 'package:lettutor/pages/register_page/widgets/register_form_field.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -36,7 +38,12 @@ class _RegisterWidgetColumnState extends State<RegisterWidgetColumn> {
       bloc: authBloc,
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          Navigator.pop(context);
+          showDialog(
+              context: context,
+              builder: (context) => const DialogBackToLogin(
+                  title: "Register successfully",
+                  content: "Check your email inbox for a message from us and"
+                      " click on the activation link to activate your account"));
         }
       },
       builder: (context, state) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/course.dart';
@@ -15,7 +16,7 @@ import 'package:lettutor/pages/register_page/register_page.dart';
 import 'package:lettutor/pages/splash_screen/splash_screen.dart';
 import 'package:lettutor/pages/tutor_detail_page/tutor_detail_page.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
-import 'package:provider/provider.dart';
+import 'package:lettutor/repositories/user_repository.dart';
 
 class RouteGenerator {
   static const String splashRoute = '/splash';
@@ -36,7 +37,12 @@ class RouteGenerator {
       case loginRoute:
         return MaterialPageRoute(builder: (context) => LoginPage());
       case forgotPassRoute:
-        return MaterialPageRoute(builder: (context) => const ForgotPassPage());
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => ForgotPasswordBloc(
+                      UserRepository("${UrlConst.baseUrl}/user")),
+                  child: ForgotPassPage(),
+                ));
       case registerRoute:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
@@ -60,9 +66,7 @@ class RouteGenerator {
           final routeArgs = settings.arguments as Map;
           final Tutor tutorDetail = routeArgs['tutor'] as Tutor;
           return MaterialPageRoute(
-              builder: (context) => Provider(
-                  create: (context) => tutorDetail,
-                  child: const TutorDetailPage()));
+              builder: (context) => const TutorDetailPage());
         }
       case editProfileRoute:
         {

@@ -44,7 +44,6 @@ dependencies:
 
 
   video_player: ^2.5.1
-  provider: ^6.0.5
   readmore: ^2.2.0
 
   youtube_player_flutter: ^8.1.2
@@ -67,6 +66,14 @@ dependencies:
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
+
+  #local secure storage
+  flutter_secure_storage: 8.0.0
+  #jwt_decode
+  jwt_decoder: 2.0.1
+
+  cached_network_image: ^3.2.3
+
 
 
 dev_dependencies:

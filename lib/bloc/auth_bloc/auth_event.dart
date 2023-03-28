@@ -14,3 +14,14 @@ class LoginEvent extends AuthEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class CheckTokenEvent extends AuthEvent {
+  final String? accessTokenStorage;
+  final String? refreshTokenStorage;
+
+  const CheckTokenEvent(this.accessTokenStorage, this.refreshTokenStorage);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

@@ -8,7 +8,6 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/login_page/widgets/login_widget_column.dart';
 import 'package:lettutor/providers/locale_provider.dart';
 import 'package:lettutor/route_generator.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
