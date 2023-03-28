@@ -8,7 +8,6 @@ import 'package:lettutor/data/history_list.dart';
 import 'package:lettutor/models/booking_history.dart';
 import 'package:lettutor/pages/history_page/widgets/header_history_row.dart';
 import 'package:lettutor/pages/history_page/widgets/history_tile.dart';
-import 'package:provider/provider.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -23,9 +22,11 @@ class HistoryPage extends StatelessWidget {
           child: Column(
             children: [
               const HeaderHistoryRow(),
-              const SizedBox(height: StyleConst.kDefaultPadding,),
-              ...listHistoryExample
-                  .map((e) => Provider(create: (_) => e, child: const HistoryTile()))
+              const SizedBox(
+                height: StyleConst.kDefaultPadding,
+              ),
+              // ...listHistoryExample.map(
+              //     (e) => Provider(create: (_) => e, child: const HistoryTile()))
             ],
           ),
         ),

@@ -6,7 +6,6 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/review.dart';
 import 'package:lettutor/providers/locale_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ReviewTile extends StatelessWidget {
@@ -39,9 +38,7 @@ class ReviewTile extends StatelessWidget {
                   const TextSpan(text: "  ", style: TextStyle(fontSize: 12)),
                   TextSpan(
                       text: timeago.format(review.createdAt,
-                          clock: DateTime.now(),
-                          locale:
-                              Provider.of<LocaleProvider>(context).getLocale == const Locale('en') ? "en" : "vi"),
+                          clock: DateTime.now(), locale: "en"),
                       style: GoogleFonts.roboto(
                           textStyle: FontConst.regular.copyWith(
                               fontSize: 12,

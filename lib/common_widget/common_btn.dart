@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 
@@ -36,7 +35,10 @@ class CommonButtonWidget extends StatelessWidget {
           )
         : ElevatedButton.icon(
             onPressed: onPress,
-            icon: Icon(icon, color: Colors.blue,),
+            icon: Icon(
+              icon,
+              color: Colors.blue,
+            ),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 elevation: 0,

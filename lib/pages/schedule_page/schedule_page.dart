@@ -6,7 +6,6 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/schedule_list.dart';
 import 'package:lettutor/pages/schedule_page/widgets/schedule_tile.dart';
-import 'package:provider/provider.dart';
 
 class SchedulePage extends StatelessWidget {
   const SchedulePage({Key? key}) : super(key: key);
@@ -50,15 +49,13 @@ class SchedulePage extends StatelessWidget {
                 style: GoogleFonts.roboto(
                     textStyle: FontConst.regular.copyWith(
                         fontSize: 18, color: ColorConst.greyTextColor))),
-
             const SizedBox(
               height: StyleConst.kDefaultPadding,
             ),
-
-            ...listScheduleExample.map((e) => Provider(
-                  create: (_) => e,
-                  child: const ScheduleTile(),
-                ))
+            // ...listScheduleExample.map((e) => Provider(
+            //       create: (_) => e,
+            //       child: const ScheduleTile(),
+            //     ))
           ],
         ),
       ),
