@@ -31,11 +31,13 @@ class TutorRepository extends BaseRepository {
   Future<List<TutorInfoPagination>> filterTutorList(
       int perPage, int page, Filters filters, String tutorName) async {
     try {
+      var temp = filters.toJson();
+      print(temp);
       final response = await apiProvider.post(url: "/search", data: {
         "perPage": perPage,
         "page": page,
         "search": tutorName,
-        "filters": filters.toJson()
+        "filters": temp
       });
       Iterable l = response["rows"];
       return List<TutorInfoPagination>.from(

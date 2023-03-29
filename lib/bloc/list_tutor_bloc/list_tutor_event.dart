@@ -14,20 +14,28 @@ class FetchListTutorEvent extends ListTutorEvent {
 }
 
 class OnFilterListTutorEvent extends ListTutorEvent {
-  String? tutorName;
-  bool? isNative, isVietnamese;
-  String? speciality;
-  OnFilterListTutorEvent(
-      this.tutorName, this.isNative, this.isVietnamese, this.speciality);
+  final String? tutorName;
+  final Nationality? nationality;
+  final String? speciality;
+  const OnFilterListTutorEvent(
+      this.tutorName, this.nationality, this.speciality);
   @override
   // TODO: implement props
-  List<Object?> get props => [tutorName, isNative, isVietnamese];
+  List<Object?> get props => [tutorName, nationality];
 }
 
 class FetchFilterListTutorEvent extends ListTutorEvent {
   final int perPage;
 
   const FetchFilterListTutorEvent(this.perPage);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+class ResetFilterListTutorEvent extends ListTutorEvent {
+  const ResetFilterListTutorEvent();
 
   @override
   // TODO: implement props

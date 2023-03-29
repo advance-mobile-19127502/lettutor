@@ -26,3 +26,6 @@ class ListTutorError extends ListTutorState {
 class ListTutorEmpty extends ListTutorState {}
 
 class ListTutorFetchMore extends ListTutorState {}
+
+class ListTutorResetFilter extends ListTutorState {}
+

@@ -34,8 +34,12 @@ class Nationality {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['isNative'] = isNative;
-    data['isVietNamese'] = isVietNamese;
+    if (isNative != null) {
+      data['isNative'] = isNative;
+    }
+    if (isVietNamese != null) {
+      data['isVietNamese'] = isVietNamese;
+    }
     return data;
   }
 }

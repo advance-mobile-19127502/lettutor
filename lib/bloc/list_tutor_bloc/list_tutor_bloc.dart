@@ -14,7 +14,7 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
   TutorRepository repository;
   int page = 1;
   List<TutorInfoPagination> listTutor = [];
-  Filters filters = Filters();
+  Filters filters = Filters(specialties: []);
   String tutorName = "";
   bool isFilter = false;
 
@@ -76,14 +76,13 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
       }
     });
 
-    on<OnFilterListTutorEvent>((event, emit) async {
+    on<OnFilterListTutorEvent>((event, emit) {
       page = 1;
       listTutor = [];
       isFilter = true;
-      filters.nationality?.isNative =
-          event.isNative ?? filters.nationality?.isNative;
-      filters.nationality?.isVietNamese =
-          event.isVietnamese ?? filters.nationality?.isVietNamese;
+
+      filters.nationality = event.nationality;
+
       if (event.speciality == "all") {
         filters.specialties = [];
       } else {
@@ -94,6 +93,16 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
       tutorName = event.tutorName ?? tutorName;
       emit(ListTutorInitial());
       add(const FetchFilterListTutorEvent(10));
+    });
+    on<ResetFilterListTutorEvent>((event, emit) {
+      emit(ListTutorResetFilter());
+      page = 1;
+      listTutor = [];
+      isFilter = false;
+      tutorName = "";
+      filters = Filters(specialties: []);
+      emit(ListTutorInitial());
+      add(const FetchListTutorEvent(10));
     });
   }
 }

@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     height: StyleConst.kDefaultPadding,
                   ),
                   //form tutor name
-                  const TutorNameRow(),
+                  TutorNameRow(),
 
                   const SizedBox(
                     height: StyleConst.kDefaultPadding,
@@ -109,8 +109,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  //select date
-                  const SelectDateTimeWidget(),
+                  // //select date
+                  // const SelectDateTimeWidget(),
 
                   //List Chip Filter
                   const ListChipWidget(),
@@ -118,7 +118,9 @@ class _HomePageState extends State<HomePage> {
                   //Reset filter button
                   CommonButtonWidget(
                     title: AppLocalizations.of(context)!.resetFilter,
-                    onPress: () {},
+                    onPress: () {
+                      listTutorBloc.add(const ResetFilterListTutorEvent());
+                    },
                   ),
 
                   const SizedBox(

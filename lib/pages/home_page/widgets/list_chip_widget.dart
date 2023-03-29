@@ -14,11 +14,25 @@ class ListChipWidget extends StatefulWidget {
 }
 
 class _ListChipWidgetState extends State<ListChipWidget> {
+  late ListTutorBloc listTutorBloc;
+
   int? _selectedIndex = 0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    listTutorBloc = BlocProvider.of<ListTutorBloc>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListTutorBloc, ListTutorState>(
+    return BlocConsumer<ListTutorBloc, ListTutorState>(
+      listener: (context, state) {
+        if (state is ListTutorResetFilter) {
+          _selectedIndex = 0;
+        }
+      },
       builder: (context, state) {
         return Wrap(
           spacing: 5,
@@ -38,8 +52,10 @@ class _ListChipWidgetState extends State<ListChipWidget> {
               selected: _selectedIndex == index,
               onSelected: (bool selected) {
                 _selectedIndex = index;
-                BlocProvider.of<ListTutorBloc>(context).add(
-                    OnFilterListTutorEvent(null, null, null, tempValue.value));
+                listTutorBloc.add(OnFilterListTutorEvent(
+                    listTutorBloc.tutorName,
+                    listTutorBloc.filters.nationality,
+                    tempValue.value));
               },
             );
           }).toList(),
