@@ -43,7 +43,9 @@ class _HomePageState extends State<HomePage> {
   void _scrollListener() {
     if (_isScrollAble &&
         scrollController.position.maxScrollExtent == scrollController.offset) {
-      listTutorBloc.add(const FetchListTutorEvent(10));
+      listTutorBloc.isFilter
+          ? listTutorBloc.add(const FetchFilterListTutorEvent(10))
+          : listTutorBloc.add(const FetchListTutorEvent(10));
     }
   }
 
@@ -59,7 +61,9 @@ class _HomePageState extends State<HomePage> {
               _isScrollAble = isScrollable;
             }
             if (!_isScrollAble) {
-              listTutorBloc.add(const FetchListTutorEvent(10));
+              listTutorBloc.isFilter
+                  ? listTutorBloc.add(const FetchFilterListTutorEvent(10))
+                  : listTutorBloc.add(const FetchListTutorEvent(10));
             }
           }
           if (state is ListTutorInitial) {
@@ -70,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Current course
-            const CurrentCourse(),
+            // const CurrentCourse(),
 
             Container(
               padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
@@ -108,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   //select date
                   const SelectDateTimeWidget(),
 
-                  //List Chip
+                  //List Chip Filter
                   const ListChipWidget(),
 
                   //Reset filter button

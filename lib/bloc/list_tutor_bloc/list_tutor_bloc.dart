@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lettutor/models/from_api/filters.dart';
 import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
 import 'package:lettutor/repositories/tutor_repository.dart';
 
@@ -13,6 +14,9 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
   TutorRepository repository;
   int page = 1;
   List<TutorInfoPagination> listTutor = [];
+  Filters filters = Filters();
+  String tutorName = "";
+  bool isFilter = false;
 
   ListTutorBloc(this.repository) : super(ListTutorInitial()) {
     on<FetchListTutorEvent>((event, emit) async {
@@ -42,6 +46,54 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
           emit(ListTutorError(error.toString()));
         }
       }
+    });
+    on<FetchFilterListTutorEvent>((event, emit) async {
+      if (state is! ListTutorEmpty || state is ListTutorLoading) {
+        try {
+          if (state is ListTutorInitial) {
+            emit(ListTutorLoading());
+          }
+          if (state is ListTutorSuccess) {
+            emit(ListTutorFetchMore());
+          }
+
+          print("before fetch : $page");
+          final response = await repository.filterTutorList(
+              event.perPage, page, filters, tutorName);
+          page++;
+          print("after fetch : $page");
+
+          if (response.isEmpty) {
+            emit(ListTutorEmpty());
+          } else {
+            listTutor.addAll(response);
+            emit(ListTutorSuccess(listTutor));
+          }
+        } catch (error) {
+          print(error);
+          emit(ListTutorError(error.toString()));
+        }
+      }
+    });
+
+    on<OnFilterListTutorEvent>((event, emit) async {
+      page = 1;
+      listTutor = [];
+      isFilter = true;
+      filters.nationality?.isNative =
+          event.isNative ?? filters.nationality?.isNative;
+      filters.nationality?.isVietNamese =
+          event.isVietnamese ?? filters.nationality?.isVietNamese;
+      if (event.speciality == "all") {
+        filters.specialties = [];
+      } else {
+        filters.specialties = event.speciality == null
+            ? filters.specialties
+            : [event.speciality!];
+      }
+      tutorName = event.tutorName ?? tutorName;
+      emit(ListTutorInitial());
+      add(const FetchFilterListTutorEvent(10));
     });
   }
 }
