@@ -5,14 +5,11 @@ import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/common_widget/common_btn.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/data/list_tutor.dart';
 import 'package:lettutor/pages/home_page/widgets/current_course.dart';
 import 'package:lettutor/pages/home_page/widgets/list_chip_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/list_tutor_widget.dart';
-import 'package:lettutor/pages/home_page/widgets/profile_tile.dart';
 import 'package:lettutor/pages/home_page/widgets/seletec_date_time_widget.dart';
 import 'package:lettutor/pages/home_page/widgets/tutor_name_row.dart';
-import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,15 +51,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       controller: scrollController,
-      child: BlocConsumer<ListTutorBloc, ListTutorState>(
+      child: BlocListener<ListTutorBloc, ListTutorState>(
         listener: (context, state) {
           if (state is ListTutorSuccess) {
+            final isScrollable = scrollController.position.maxScrollExtent > 0;
+            if (_isScrollAble != isScrollable) {
+              _isScrollAble = isScrollable;
+            }
             if (!_isScrollAble) {
-              final isScrollable =
-                  scrollController.position.maxScrollExtent > 0;
-              if (_isScrollAble != isScrollable) {
-                _isScrollAble = isScrollable;
-              }
               listTutorBloc.add(const FetchListTutorEvent(10));
             }
           }
@@ -70,112 +66,109 @@ class _HomePageState extends State<HomePage> {
             _isScrollAble = false;
           }
         },
-        builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //Current course
-              const CurrentCourse(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //Current course
+            const CurrentCourse(),
 
-              Container(
-                padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //find a tutor
-                    Text(
-                      AppLocalizations.of(context)!.findATutor,
-                      style: GoogleFonts.poppins(
-                          textStyle: FontConst.semiBold.copyWith(
-                              fontWeight: FontWeight.bold, fontSize: 29)),
+            Container(
+              padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //find a tutor
+                  Text(
+                    AppLocalizations.of(context)!.findATutor,
+                    style: GoogleFonts.poppins(
+                        textStyle: FontConst.semiBold.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 29)),
+                  ),
+
+                  const SizedBox(
+                    height: StyleConst.kDefaultPadding,
+                  ),
+                  //form tutor name
+                  const TutorNameRow(),
+
+                  const SizedBox(
+                    height: StyleConst.kDefaultPadding,
+                  ),
+
+                  //Select available tutoring time:
+                  Text(
+                    AppLocalizations.of(context)!.selectAvailableTime,
+                    //
+                    style: GoogleFonts.openSans(
+                      textStyle: FontConst.bold.copyWith(fontSize: 14),
                     ),
+                  ),
 
-                    const SizedBox(
-                      height: StyleConst.kDefaultPadding,
-                    ),
-                    //form tutor name
-                    const TutorNameRow(),
+                  //select date
+                  const SelectDateTimeWidget(),
 
-                    const SizedBox(
-                      height: StyleConst.kDefaultPadding,
-                    ),
+                  //List Chip
+                  const ListChipWidget(),
 
-                    //Select available tutoring time:
-                    Text(
-                      AppLocalizations.of(context)!.selectAvailableTime,
-                      //
-                      style: GoogleFonts.openSans(
-                        textStyle: FontConst.bold.copyWith(fontSize: 14),
-                      ),
-                    ),
+                  //Reset filter button
+                  CommonButtonWidget(
+                    title: AppLocalizations.of(context)!.resetFilter,
+                    onPress: () {},
+                  ),
 
-                    //select date
-                    const SelectDateTimeWidget(),
+                  const SizedBox(
+                    height: StyleConst.kDefaultPadding,
+                  ),
 
-                    //List Chip
-                    const ListChipWidget(),
+                  const Divider(
+                    height: 2,
+                    thickness: 1,
+                  ),
 
-                    //Reset filter button
-                    CommonButtonWidget(
-                      title: AppLocalizations.of(context)!.resetFilter,
-                      onPress: () {},
-                    ),
+                  const SizedBox(
+                    height: StyleConst.kDefaultPadding,
+                  ),
 
-                    const SizedBox(
-                      height: StyleConst.kDefaultPadding,
-                    ),
+                  Text(
+                    AppLocalizations.of(context)!.recommendedTutor,
+                    style: GoogleFonts.roboto(
+                        textStyle: FontConst.bold.copyWith(fontSize: 25)),
+                  ),
 
-                    const Divider(
-                      height: 2,
-                      thickness: 1,
-                    ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.seeFavoriteTutor,
+                              style: GoogleFonts.roboto(
+                                  textStyle: FontConst.regular.copyWith(
+                                      fontSize: 12, color: Colors.blueAccent)),
+                            ),
+                            const Icon(Icons.arrow_forward_ios_outlined,
+                                size: 12, color: Colors.blueAccent)
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
 
-                    const SizedBox(
-                      height: StyleConst.kDefaultPadding,
-                    ),
+                  const SizedBox(
+                    height: StyleConst.kDefaultPadding / 3,
+                  ),
 
-                    Text(
-                      AppLocalizations.of(context)!.recommendedTutor,
-                      style: GoogleFonts.roboto(
-                          textStyle: FontConst.bold.copyWith(fontSize: 25)),
-                    ),
+                  //Recommended tutor
 
-                    Row(
-                      children: [
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {},
-                          child: Row(
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!.seeFavoriteTutor,
-                                style: GoogleFonts.roboto(
-                                    textStyle: FontConst.regular.copyWith(
-                                        fontSize: 12,
-                                        color: Colors.blueAccent)),
-                              ),
-                              const Icon(Icons.arrow_forward_ios_outlined,
-                                  size: 12, color: Colors.blueAccent)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-
-                    const SizedBox(
-                      height: StyleConst.kDefaultPadding / 3,
-                    ),
-
-                    //Recommended tutor
-
-                    const ListTutorWidget(),
-                  ],
-                ),
-              )
-            ],
-          );
-        },
+                  const ListTutorWidget(),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

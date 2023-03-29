@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lettutor/models/from_api/tutor_info.dart';
+import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
 import 'package:lettutor/repositories/tutor_repository.dart';
 
 part 'list_tutor_event.dart';
@@ -12,7 +12,7 @@ part 'list_tutor_state.dart';
 class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
   TutorRepository repository;
   int page = 1;
-  List<TutorInfo> listTutor = [];
+  List<TutorInfoPagination> listTutor = [];
 
   ListTutorBloc(this.repository) : super(ListTutorInitial()) {
     on<FetchListTutorEvent>((event, emit) async {

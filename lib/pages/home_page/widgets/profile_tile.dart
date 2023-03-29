@@ -7,8 +7,7 @@ import 'package:lettutor/common_widget/item_chip.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/from_api/tutor_info.dart';
-import 'package:lettutor/models/tutor_info.dart';
+import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
 import 'package:lettutor/pages/home_page/widgets/avatar_heart_widget.dart';
 import 'package:lettutor/route_generator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,7 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ProfileTile extends StatelessWidget {
   const ProfileTile({Key? key, required this.tutorInfo}) : super(key: key);
 
-  final TutorInfo tutorInfo;
+  final TutorInfoPagination tutorInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +27,8 @@ class ProfileTile extends StatelessWidget {
           bottom: StyleConst.kDefaultPadding),
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
-          //     arguments: {'tutor': tutor});
+          Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
+              arguments: {'tutorID': tutorInfo.userId});
         },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),

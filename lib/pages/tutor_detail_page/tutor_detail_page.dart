@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/avatar_name_row.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/favorite_report_review_row.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_chip.dart';
@@ -17,107 +18,125 @@ class TutorDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final tutor = Provider.of<Tutor>(context, listen: false);
-    return Text("TutorDetailPage");
-    // return SafeArea(
-    //   child: Scaffold(
-    //     appBar: AppBar(),
-    //     body: SingleChildScrollView(
-    //       child: Padding(
-    //         padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
-    //         child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: [
-    //             const AvatarNameRow(),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //description
-    //
-    //             ReadMoreText(
-    //               tutor.description,
-    //               trimLines: 2,
-    //               trimMode: TrimMode.Line,
-    //               trimCollapsedText: 'Show more',
-    //               trimExpandedText: '  Show less',
-    //               lessStyle: GoogleFonts.roboto(
-    //                   textStyle: FontConst.regular
-    //                       .copyWith(fontSize: 15, color: Colors.blueAccent)),
-    //               moreStyle: GoogleFonts.roboto(
-    //                   textStyle: FontConst.regular
-    //                       .copyWith(fontSize: 15, color: Colors.blueAccent)),
-    //               style: GoogleFonts.roboto(
-    //                   textStyle: FontConst.medium.copyWith(
-    //                       fontSize: 15, color: ColorConst.greyTextColor)),
-    //             ),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //Row favorite, report, reviews
-    //
-    //             const FavoriteReportReviewRow(),
-    //
-    //             //Video player
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             // VideoPlayerWidget(
-    //             //   video_url: tutor.video_url,
-    //             // ),//
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //Language
-    //
-    //             SectionWithChipWidget(
-    //                 title: AppLocalizations.of(context)!.languages,
-    //                 listChip: tutor.languages),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //Specialities
-    //
-    //             SectionWithChipWidget(
-    //                 title: AppLocalizations.of(context)!.specialities,
-    //                 listChip: tutor.specialites),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //Interests
-    //             SectionWithTextWidget(
-    //                 title: AppLocalizations.of(context)!.interest,
-    //                 description: tutor.interests),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             //Teaching experience
-    //             SectionWithTextWidget(
-    //                 title: AppLocalizations.of(context)!.teachingExperience,
-    //                 description: tutor.teaching_experience),
-    //
-    //             const SizedBox(
-    //               height: StyleConst.kDefaultPadding,
-    //             ),
-    //
-    //             TimeTableWidget(),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
+    TutorDetailBloc tutorDetailBloc = BlocProvider.of<TutorDetailBloc>(context);
+
+    return BlocBuilder<TutorDetailBloc, TutorDetailState>(
+      builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const AvatarNameRow(),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //description
+
+                    ReadMoreText(
+                      state is TutorDetailSuccess
+                          ? state.tutorInfo.bio ?? ""
+                          : "",
+                      trimLines: 2,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'Show more',
+                      trimExpandedText: '  Show less',
+                      lessStyle: GoogleFonts.roboto(
+                          textStyle: FontConst.regular.copyWith(
+                              fontSize: 15, color: Colors.blueAccent)),
+                      moreStyle: GoogleFonts.roboto(
+                          textStyle: FontConst.regular.copyWith(
+                              fontSize: 15, color: Colors.blueAccent)),
+                      style: GoogleFonts.roboto(
+                          textStyle: FontConst.medium.copyWith(
+                              fontSize: 15, color: ColorConst.greyTextColor)),
+                    ),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //Row favorite, report, reviews
+
+                    FavoriteReportReviewRow(
+                      tutorId: state is TutorDetailSuccess
+                          ? state.tutorInfo.user?.id ?? ""
+                          : "",
+                    ),
+
+                    //Video player
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    // VideoPlayerWidget(
+                    //   video_url: tutor.video_url,
+                    // ),//
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //Language
+
+                    SectionWithChipWidget(
+                        title: AppLocalizations.of(context)!.languages,
+                        listChip: state is TutorDetailSuccess
+                            ? state.tutorInfo.languages?.split(",") ?? []
+                            : []),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //Specialities
+
+                    SectionWithChipWidget(
+                        title: AppLocalizations.of(context)!.specialities,
+                        listChip: state is TutorDetailSuccess
+                            ? state.tutorInfo.specialties?.split(",") ?? []
+                            : []),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //Interests
+                    SectionWithTextWidget(
+                        title: AppLocalizations.of(context)!.interest,
+                        description: state is TutorDetailSuccess
+                            ? state.tutorInfo.interests ?? ""
+                            : ""),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    //Teaching experience
+                    SectionWithTextWidget(
+                        title: AppLocalizations.of(context)!.teachingExperience,
+                        description: state is TutorDetailSuccess
+                            ? state.tutorInfo.experience ?? ""
+                            : ""),
+
+                    const SizedBox(
+                      height: StyleConst.kDefaultPadding,
+                    ),
+
+                    const TimeTableWidget(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

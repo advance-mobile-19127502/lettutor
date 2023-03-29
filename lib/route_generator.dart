@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
+import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/course.dart';
-import 'package:lettutor/models/tutor_info.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
 import 'package:lettutor/pages/course_detail_page/course_detail_page.dart';
 import 'package:lettutor/pages/edit_your_profile_page/edit_your_profile_page.dart';
@@ -16,6 +16,7 @@ import 'package:lettutor/pages/register_page/register_page.dart';
 import 'package:lettutor/pages/splash_screen/splash_screen.dart';
 import 'package:lettutor/pages/tutor_detail_page/tutor_detail_page.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
+import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
 
 class RouteGenerator {
@@ -64,9 +65,13 @@ class RouteGenerator {
       case tutorDetailRoute:
         {
           final routeArgs = settings.arguments as Map;
-          final Tutor tutorDetail = routeArgs['tutor'] as Tutor;
+          final String? tutorId = routeArgs['tutorID'] as String?;
           return MaterialPageRoute(
-              builder: (context) => const TutorDetailPage());
+              builder: (context) => BlocProvider(
+                  create: (BuildContext context) => TutorDetailBloc(
+                      TutorRepository("${UrlConst.baseUrl}/tutor"))
+                    ..add(FetchTutorDetailEvent(tutorId)),
+                  child: const TutorDetailPage()));
         }
       case editProfileRoute:
         {

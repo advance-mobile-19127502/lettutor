@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/list_reviews_bloc/list_review_bloc.dart';
 import 'package:lettutor/common_widget/icon_text_btn.dart';
 import 'package:lettutor/constants/font_const.dart';
-import 'package:lettutor/data/list_review.dart';
-import 'package:lettutor/models/tutor_info.dart';
+import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/review_dialog.dart';
-import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/repositories/review_repository.dart';
 
 class FavoriteReportReviewRow extends StatefulWidget {
-  const FavoriteReportReviewRow({Key? key}) : super(key: key);
+  const FavoriteReportReviewRow({Key? key, required this.tutorId})
+      : super(key: key);
+  final String tutorId;
 
   @override
   State<FavoriteReportReviewRow> createState() =>
@@ -17,58 +20,51 @@ class FavoriteReportReviewRow extends StatefulWidget {
 }
 
 class _FavoriteReportReviewRowState extends State<FavoriteReportReviewRow> {
-  // late Tutor tutor;
-
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    // tutor = Provider.of<Tutor>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text("FavoriteReportReviewRow");
-    // return Row(
-    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //   children: [
-    //     Consumer<ListTutorProvider>(
-    //       builder: (context, listTutorProvider, child) => InkWell(
-    //         onTap: () {
-    //           listTutorProvider.setFavoriteAt(tutor);
-    //         },
-    //         child: Column(
-    //           children: [
-    //             Icon(
-    //               tutor.isFavorite ? Icons.favorite : Icons.favorite_border,
-    //               color: tutor.isFavorite ? Colors.red : Colors.blue,
-    //             ),
-    //             Text(
-    //               AppLocalizations.of(context)!.favorites,
-    //               style: GoogleFonts.roboto(
-    //                   textStyle: FontConst.medium.copyWith(
-    //                       fontSize: 13,
-    //                       color: tutor.isFavorite ? Colors.red : Colors.blue)),
-    //             )
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //     IconTextButton(
-    //         title: AppLocalizations.of(context)!.report,
-    //         icon: Icons.report_gmailerrorred,
-    //         onPress: () {}),
-    //     IconTextButton(
-    //         title: AppLocalizations.of(context)!.review,
-    //         icon: Icons.star_border_outlined,
-    //         onPress: () {
-    //           showDialog(
-    //               context: context,
-    //               builder: (context) => ReviewDialog(
-    //                     listReview: listReviewExample,
-    //                   ));
-    //         }),
-    //   ],
-    // );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: [
+              Icon(
+                Icons.favorite_border,
+                color: Colors.blue,
+              ),
+              Text(
+                AppLocalizations.of(context)!.favorites,
+                style: GoogleFonts.roboto(
+                    textStyle: FontConst.medium
+                        .copyWith(fontSize: 13, color: Colors.blue)),
+              )
+            ],
+          ),
+        ),
+        IconTextButton(
+            title: AppLocalizations.of(context)!.report,
+            icon: Icons.report_gmailerrorred,
+            onPress: () {}),
+        IconTextButton(
+            title: AppLocalizations.of(context)!.review,
+            icon: Icons.star_border_outlined,
+            onPress: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => BlocProvider(
+                      create: (BuildContext context) => ListReviewBloc(
+                          ReviewsRepository("${UrlConst.baseUrl}/feedback/v2"))
+                        ..add(FetchListReviewEvent(12, widget.tutorId)),
+                      child: ReviewDialog(tutorId: widget.tutorId)));
+            }),
+      ],
+    );
   }
 }
