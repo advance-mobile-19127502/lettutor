@@ -12,7 +12,7 @@ class ListTutorInitial extends ListTutorState {}
 class ListTutorLoading extends ListTutorState {}
 
 class ListTutorSuccess extends ListTutorState {
-  final List<TutorInfo> listTutor;
+  final List<TutorInfoPagination> listTutor;
 
   const ListTutorSuccess(this.listTutor);
 }
@@ -26,3 +26,6 @@ class ListTutorError extends ListTutorState {
 class ListTutorEmpty extends ListTutorState {}
 
 class ListTutorFetchMore extends ListTutorState {}
+
+class ListTutorResetFilter extends ListTutorState {}
+

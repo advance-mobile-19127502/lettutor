@@ -41,26 +41,27 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
                   textStyle: FontConst.regular.copyWith(fontSize: 14)),
             ),
             Expanded(
-              child: ListBody(
-                children: choicesListExample
-                    .map((value) => CheckboxListTile(
-                        dense: true,
-                        visualDensity: const VisualDensity(
-                            horizontal: -4.0, vertical: -4.0),
-                        contentPadding: EdgeInsets.zero,
-                        value: selectedSpecialitis.contains(value),
-                        title: Text(
-                          value,
-                          style: GoogleFonts.openSans(
-                              textStyle:
-                                  FontConst.regular.copyWith(fontSize: 14)),
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        onChanged: (isChecked) =>
-                            _itemChange(value, isChecked!)))
-                    .toList(),
-              ),
-            ),
+                child: ListBody(
+              children:
+                  List<Widget>.generate(choicesListExample.length, (index) {
+                String tempValue =
+                    choicesListExample.entries.toList()[index].key;
+                return CheckboxListTile(
+                    dense: true,
+                    visualDensity:
+                        const VisualDensity(horizontal: -4.0, vertical: -4.0),
+                    contentPadding: EdgeInsets.zero,
+                    value: selectedSpecialitis.contains(tempValue),
+                    title: Text(
+                      tempValue,
+                      style: GoogleFonts.openSans(
+                          textStyle: FontConst.regular.copyWith(fontSize: 14)),
+                    ),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    onChanged: (isChecked) =>
+                        _itemChange(tempValue, isChecked!));
+              }),
+            )),
           ],
         )
       ],

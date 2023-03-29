@@ -4,8 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/review.dart';
-import 'package:lettutor/providers/locale_provider.dart';
+import 'package:lettutor/models/from_api/review.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ReviewTile extends StatelessWidget {
@@ -18,8 +17,19 @@ class ReviewTile extends StatelessWidget {
       padding: const EdgeInsets.only(top: StyleConst.kDefaultPadding),
       child: Row(
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(review.avaUrl),
+          ClipOval(
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(15),
+              child: Image.network(
+                review.firstInfo?.avatar ??
+                    "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ",
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) {
+                  return Image.network(
+                      "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
+                },
+              ),
+            ),
           ),
           const SizedBox(
             width: StyleConst.defaultRadius,
@@ -31,13 +41,13 @@ class ReviewTile extends StatelessWidget {
                 RichText(
                     text: TextSpan(children: [
                   TextSpan(
-                      text: review.name,
+                      text: review.firstInfo!.name!,
                       style: GoogleFonts.roboto(
                           textStyle: FontConst.regular.copyWith(
                               fontSize: 12, color: ColorConst.greyTextColor))),
                   const TextSpan(text: "  ", style: TextStyle(fontSize: 12)),
                   TextSpan(
-                      text: timeago.format(review.createdAt,
+                      text: timeago.format(DateTime.parse(review.createdAt!),
                           clock: DateTime.now(), locale: "en"),
                       style: GoogleFonts.roboto(
                           textStyle: FontConst.regular.copyWith(
@@ -51,13 +61,13 @@ class ReviewTile extends StatelessWidget {
                     Icons.star,
                     color: Colors.amber,
                   ),
-                  rating: review.ratedStar,
+                  rating: review.rating!.toDouble(),
                   itemSize: 12,
                 ),
-                review.content.isEmpty
+                review.content == null
                     ? const SizedBox()
                     : Text(
-                        review.content,
+                        review.content!,
                         style: GoogleFonts.openSans(
                             textStyle:
                                 FontConst.regular.copyWith(fontSize: 14)),

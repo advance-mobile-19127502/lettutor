@@ -4,8 +4,6 @@ import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
 
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
-import 'package:lettutor/data/list_tutor.dart';
-import 'package:lettutor/providers/list_tutor_provider.dart';
 import 'package:lettutor/providers/locale_provider.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
 import 'package:lettutor/route_generator.dart';

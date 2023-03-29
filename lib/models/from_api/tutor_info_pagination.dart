@@ -1,4 +1,4 @@
-class TutorInfo {
+class TutorInfoPagination {
   String? level;
   String? email;
   String? google;
@@ -43,7 +43,7 @@ class TutorInfo {
   int? price;
   bool? isOnline;
 
-  TutorInfo(
+  TutorInfoPagination(
       {this.level,
       this.email,
       this.google,
@@ -88,7 +88,7 @@ class TutorInfo {
       this.price,
       this.isOnline});
 
-  TutorInfo.fromJson(Map<String, dynamic> json) {
+  TutorInfoPagination.fromJson(Map<String, dynamic> json) {
     level = json['level'];
     email = json['email'];
     google = json['google'];
