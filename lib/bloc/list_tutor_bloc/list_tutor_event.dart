@@ -41,3 +41,12 @@ class ResetFilterListTutorEvent extends ListTutorEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class FavoriteTutorEvent extends ListTutorEvent {
+  final String tutorId;
+
+  const FavoriteTutorEvent(this.tutorId);
+
+  @override
+  List<Object?> get props => [tutorId];
+}

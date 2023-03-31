@@ -11,11 +11,11 @@ class TutorInfoSearch {
   String? interests;
   String? languages;
   String? specialties;
-  double? rating;
+  num? rating;
   bool? isNative;
   Tutor? user;
   bool? isFavorite;
-  double? avgRating;
+  num? avgRating;
   int? totalFeedback;
 
   TutorInfoSearch(

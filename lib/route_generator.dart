@@ -20,7 +20,7 @@ import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
 
 class RouteGenerator {
-  static const String splashRoute = '/';
+  static const String splashRoute = '/splash';
   static const String loginRoute = '/login';
   static const String forgotPassRoute = '/forgot-pass';
   static const String registerRoute = '/register';
@@ -66,6 +66,7 @@ class RouteGenerator {
         {
           final routeArgs = settings.arguments as Map;
           final String? tutorId = routeArgs['tutorID'] as String?;
+          print(tutorId);
           return MaterialPageRoute(
               builder: (context) => BlocProvider(
                   create: (BuildContext context) => TutorDetailBloc(

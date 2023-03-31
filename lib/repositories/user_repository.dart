@@ -14,4 +14,14 @@ class UserRepository extends BaseRepository {
       rethrow;
     }
   }
+
+  Future<void> manageFavoriteTutor(String tutorId) async {
+    try {
+      await apiProvider
+          .post(url: "/manageFavoriteTutor", data: {"tutorId": tutorId});
+    } catch (err) {
+      print(err);
+      rethrow;
+    }
+  }
 }

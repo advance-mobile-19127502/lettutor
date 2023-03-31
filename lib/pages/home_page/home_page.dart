@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     height: StyleConst.kDefaultPadding,
                   ),
                   //form tutor name
-                  TutorNameRow(),
+                  const TutorNameRow(),
 
                   const SizedBox(
                     height: StyleConst.kDefaultPadding,
