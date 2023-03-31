@@ -20,7 +20,7 @@ import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
 
 class RouteGenerator {
-  static const String splashRoute = '/splash';
+  static const String splashRoute = '/';
   static const String loginRoute = '/login';
   static const String forgotPassRoute = '/forgot-pass';
   static const String registerRoute = '/register';

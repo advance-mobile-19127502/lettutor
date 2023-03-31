@@ -65,6 +65,7 @@ class AuthRepository extends BaseRepository {
         }
       }
     } catch (error) {
+      print(error);
       rethrow;
     }
   }

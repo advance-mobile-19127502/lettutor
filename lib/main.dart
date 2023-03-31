@@ -14,7 +14,6 @@ void main() async {
   timeago.setLocaleMessages("vi", timeago.ViMessages());
   timeago.setLocaleMessages("en", timeago.EnMessages());
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MyApp());
 }
 

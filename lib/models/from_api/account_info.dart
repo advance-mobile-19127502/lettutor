@@ -36,7 +36,7 @@ class User {
   String? requireNote;
   String? level;
   bool? isPhoneActivated;
-  String? timezone;
+  int? timezone;
   String? studySchedule;
   bool? canSendMessage;
 
