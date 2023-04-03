@@ -50,7 +50,7 @@ class AvatarNameRow extends StatelessWidget {
                   children: [
                     RatingBarIndicator(
                       rating: state is TutorDetailSuccess
-                          ? state.tutorInfo.avgRating ?? 0
+                          ? state.tutorInfo.avgRating?.toDouble() ?? 0
                           : 0,
                       itemBuilder: (context, index) => const Icon(
                         Icons.star,

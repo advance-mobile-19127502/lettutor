@@ -60,8 +60,8 @@ class AuthRepository extends BaseRepository {
               contentType: Headers.jsonContentType,
               data: {'refreshToken': refreshTokenFromStorage});
 
-          accessToken = Token.fromJson(response["access"]).token;
-          refreshToken = Token.fromJson(response["refresh"]).token;
+          accessToken = Token.fromJson(response["tokens"]["access"]).token;
+          refreshToken = Token.fromJson(response["tokens"]["refresh"]).token;
         }
       }
     } catch (error) {

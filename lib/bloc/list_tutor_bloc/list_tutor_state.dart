@@ -15,6 +15,8 @@ class ListTutorSuccess extends ListTutorState {
   final List<TutorInfoPagination> listTutor;
 
   const ListTutorSuccess(this.listTutor);
+  @override
+  List<Object> get props => [];
 }
 
 class ListTutorError extends ListTutorState {
@@ -23,9 +25,14 @@ class ListTutorError extends ListTutorState {
   const ListTutorError(this.message);
 }
 
+class ListTutorFavorite extends ListTutorState {
+  final List<TutorInfoPagination> listTutor;
+
+  const ListTutorFavorite(this.listTutor);
+}
+
 class ListTutorEmpty extends ListTutorState {}
 
 class ListTutorFetchMore extends ListTutorState {}
 
 class ListTutorResetFilter extends ListTutorState {}
-

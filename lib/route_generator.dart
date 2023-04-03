@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
+import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
@@ -20,7 +21,7 @@ import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
 
 class RouteGenerator {
-  static const String splashRoute = '/';
+  static const String splashRoute = '/splash';
   static const String loginRoute = '/login';
   static const String forgotPassRoute = '/forgot-pass';
   static const String registerRoute = '/register';
@@ -66,12 +67,16 @@ class RouteGenerator {
         {
           final routeArgs = settings.arguments as Map;
           final String? tutorId = routeArgs['tutorID'] as String?;
+          final ListTutorBloc listTutorBloc =
+              routeArgs["listTutorBloc"] as ListTutorBloc;
           return MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                  create: (BuildContext context) => TutorDetailBloc(
-                      TutorRepository("${UrlConst.baseUrl}/tutor"))
-                    ..add(FetchTutorDetailEvent(tutorId)),
-                  child: const TutorDetailPage()));
+              builder: (context) => MultiBlocProvider(providers: [
+                    BlocProvider(
+                        create: (BuildContext context) => TutorDetailBloc(
+                            TutorRepository("${UrlConst.baseUrl}/tutor"))
+                          ..add(FetchTutorDetailEvent(tutorId))),
+                    BlocProvider.value(value: listTutorBloc),
+                  ], child: const TutorDetailPage()));
         }
       case editProfileRoute:
         {

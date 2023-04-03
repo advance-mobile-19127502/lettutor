@@ -11,11 +11,11 @@ class TutorInfoSearch {
   String? interests;
   String? languages;
   String? specialties;
-  double? rating;
+  num? rating;
   bool? isNative;
   Tutor? user;
   bool? isFavorite;
-  double? avgRating;
+  num? avgRating;
   int? totalFeedback;
 
   TutorInfoSearch(
@@ -76,6 +76,44 @@ class TutorInfoSearch {
     data['avgRating'] = avgRating;
     data['totalFeedback'] = totalFeedback;
     return data;
+  }
+
+  TutorInfoSearch copyWith({
+    String? video,
+    String? bio,
+    String? education,
+    String? experience,
+    String? profession,
+    String? accent,
+    String? targetStudent,
+    String? interests,
+    String? languages,
+    String? specialties,
+    num? rating,
+    bool? isNative,
+    Tutor? user,
+    bool? isFavorite,
+    num? avgRating,
+    int? totalFeedback,
+  }) {
+    return TutorInfoSearch(
+      video: video ?? this.video,
+      bio: bio ?? this.bio,
+      education: education ?? this.education,
+      experience: experience ?? this.experience,
+      profession: profession ?? this.profession,
+      accent: accent ?? this.accent,
+      targetStudent: targetStudent ?? this.targetStudent,
+      interests: interests ?? this.interests,
+      languages: languages ?? this.languages,
+      specialties: specialties ?? this.specialties,
+      rating: rating ?? this.rating,
+      isNative: isNative ?? this.isNative,
+      user: user ?? this.user,
+      isFavorite: isFavorite ?? this.isFavorite,
+      avgRating: avgRating ?? this.avgRating,
+      totalFeedback: totalFeedback ?? this.totalFeedback,
+    );
   }
 }
 

@@ -67,7 +67,8 @@ class TutorDetailPage extends StatelessWidget {
                       //Row favorite, report, reviews
 
                       FavoriteReportReviewRow(
-                          tutorId: state.tutorInfo.user?.id ?? ""),
+                          tutorId: state.tutorInfo.user?.id ?? "",
+                          isFavorite: state.tutorInfo.isFavorite ?? false),
 
                       //Video player
                       const SizedBox(

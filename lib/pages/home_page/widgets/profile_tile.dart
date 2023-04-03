@@ -1,7 +1,9 @@
 import 'package:extended_wrap/extended_wrap.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/common_widget/common_btn.dart';
 import 'package:lettutor/common_widget/item_chip.dart';
 import 'package:lettutor/constants/colors_const.dart';
@@ -27,8 +29,11 @@ class ProfileTile extends StatelessWidget {
           bottom: StyleConst.kDefaultPadding),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RouteGenerator.tutorDetailRoute,
-              arguments: {'tutorID': tutorInfo.userId});
+          Navigator.of(context)
+              .pushNamed(RouteGenerator.tutorDetailRoute, arguments: {
+            'tutorID': tutorInfo.userId,
+            "listTutorBloc": BlocProvider.of<ListTutorBloc>(context)
+          });
         },
         child: Container(
           padding: const EdgeInsets.all(StyleConst.kDefaultPadding),

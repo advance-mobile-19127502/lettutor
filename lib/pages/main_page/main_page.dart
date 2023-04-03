@@ -10,6 +10,7 @@ import 'package:lettutor/pages/home_page/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/pages/schedule_page/schedule_page.dart';
 import 'package:lettutor/repositories/tutor_repository.dart';
+import 'package:lettutor/repositories/user_repository.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,9 +24,10 @@ class _MainPageState extends State<MainPage> {
 
   List<Widget> listPages = [
     BlocProvider(
-        create: (context) =>
-            ListTutorBloc(TutorRepository("${UrlConst.baseUrl}/tutor"))
-              ..add(const FetchListTutorEvent(10)),
+        create: (context) => ListTutorBloc(
+            TutorRepository("${UrlConst.baseUrl}/tutor"),
+            UserRepository("${UrlConst.baseUrl}/user"))
+          ..add(const FetchListTutorEvent(10)),
         child: const HomePage()),
     const SchedulePage(),
     const CoursePage(),

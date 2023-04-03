@@ -29,13 +29,8 @@ class _ListTutorWidgetState extends State<ListTutorWidget> {
           if (state is ListTutorLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state is ListTutorSuccess) {
-            return Column(
-              children: [
-                ...listTutorBloc.listTutor
-                    .map((e) => ProfileTile(tutorInfo: e)),
-              ],
-            );
+          if (state is ListTutorError) {
+            return const Center(child: Text("Error while fetching data"));
           }
           if (state is ListTutorFetchMore) {
             return Column(
@@ -65,7 +60,11 @@ class _ListTutorWidgetState extends State<ListTutorWidget> {
               const Text("No data"),
             ]);
           }
-          return const Center(child: Text("Error while fetching data"));
+          return Column(
+            children: [
+              ...listTutorBloc.listTutor.map((e) => ProfileTile(tutorInfo: e)),
+            ],
+          );
         });
   }
 }
