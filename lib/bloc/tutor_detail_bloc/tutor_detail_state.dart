@@ -12,6 +12,9 @@ class TutorDetailSuccess extends TutorDetailState {
   final TutorInfoSearch tutorInfo;
 
   const TutorDetailSuccess(this.tutorInfo);
+
+  @override
+  List<Object> get props => [tutorInfo];
 }
 
 class TutorDetailLoading extends TutorDetailState {}

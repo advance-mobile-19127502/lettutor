@@ -22,5 +22,14 @@ class TutorDetailBloc extends Bloc<TutorDetailEvent, TutorDetailState> {
         emit(TutorDetailError(err.toString()));
       }
     });
+
+    on<OnFavoriteTutorDetailEvent>((event, emit) {
+      if (state is TutorDetailSuccess) {
+        var tempState = state as TutorDetailSuccess;
+
+        emit(TutorDetailSuccess(tempState.tutorInfo
+            .copyWith(isFavorite: !(tempState.tutorInfo.isFavorite!))));
+      }
+    });
   }
 }

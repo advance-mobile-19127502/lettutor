@@ -13,3 +13,10 @@ class FetchTutorDetailEvent extends TutorDetailEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class OnFavoriteTutorDetailEvent extends TutorDetailEvent {
+  const OnFavoriteTutorDetailEvent();
+
+  @override
+  List<Object?> get props => [];
+}

@@ -108,10 +108,10 @@ class ListTutorBloc extends Bloc<ListTutorEvent, ListTutorState> {
       emit(ListTutorInitial());
       add(const FetchListTutorEvent(10));
     });
-    on<FavoriteTutorEvent>((event, emit) async {
+    on<FavoriteTutorEvent>((event, emit) {
       emit(ListTutorInitial());
       try {
-        await userRepository.manageFavoriteTutor(event.tutorId);
+        userRepository.manageFavoriteTutor(event.tutorId);
         int index =
             listTutor.indexWhere((element) => element.userId == event.tutorId);
         TutorInfoPagination tempTutor = listTutor[index];
