@@ -7,7 +7,7 @@ import 'package:lettutor/bloc/schedule_bloc/schedule_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/from_api/schedule.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/booking_dialog.dart';
-import 'package:lettutor/repositories/note_repository.dart';
+import 'package:lettutor/repositories/booking_repository.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class TimeTableWidget extends StatefulWidget {

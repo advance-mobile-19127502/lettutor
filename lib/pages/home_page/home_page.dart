@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Current course
-            // const CurrentCourse(),
+            const CurrentCourse(),
 
             Container(
               padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
