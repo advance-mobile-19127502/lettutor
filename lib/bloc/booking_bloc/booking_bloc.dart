@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lettutor/repositories/note_repository.dart';
+import 'package:lettutor/repositories/booking_repository.dart';
 
 part 'booking_event.dart';
 

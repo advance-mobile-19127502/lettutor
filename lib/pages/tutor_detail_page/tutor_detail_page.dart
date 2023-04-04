@@ -16,13 +16,16 @@ import 'package:lettutor/repositories/schedule_repository.dart';
 import 'package:readmore/readmore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TutorDetailPage extends StatelessWidget {
+class TutorDetailPage extends StatefulWidget {
   const TutorDetailPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    TutorDetailBloc tutorDetailBloc = BlocProvider.of<TutorDetailBloc>(context);
+  State<TutorDetailPage> createState() => _TutorDetailPageState();
+}
 
+class _TutorDetailPageState extends State<TutorDetailPage> {
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<TutorDetailBloc, TutorDetailState>(
       builder: (context, state) {
         if (state is TutorDetailSuccess) {
@@ -137,7 +140,15 @@ class TutorDetailPage extends StatelessWidget {
             ),
           );
         }
-        return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        if (state is TutorDetailError) {
+          return Scaffold(
+              appBar: AppBar(),
+              body:
+                  const Center(child: Text("Failed to get tutor information")));
+        }
+        return Scaffold(
+            appBar: AppBar(),
+            body: const Center(child: CircularProgressIndicator()));
       },
     );
   }

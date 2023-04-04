@@ -49,5 +49,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(UnAuthenticated());
       }
     });
+
+    on<LogoutEvent>((event, emit) async {
+      await SecuredLocalStorage().deleteAll();
+      emit(UnAuthenticated());
+      repository.accessToken = null;
+      repository.refreshToken = null;
+    });
   }
 }
