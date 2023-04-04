@@ -9,3 +9,9 @@ class FetchBookingEvent extends BookingHistoryEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class FetchBookingHistoryEvent extends BookingHistoryEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

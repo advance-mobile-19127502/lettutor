@@ -6,7 +6,7 @@ part 'total_time_event.dart';
 part 'total_time_state.dart';
 
 class TotalTimeBloc extends Bloc<TotalTimeEvent, TotalTimeState> {
-  TotalTimeRepository repository;
+  MainRepository repository;
   TotalTimeBloc(this.repository) : super(TotalTimeInitial()) {
     on<TotalTimeEvent>((event, emit) async {
       try {

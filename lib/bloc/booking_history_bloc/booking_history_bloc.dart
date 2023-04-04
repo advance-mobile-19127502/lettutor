@@ -40,5 +40,30 @@ class BookingHistoryBloc
         }
       }
     });
+
+    on<FetchBookingHistoryEvent>((event, emit) async {
+      if (state is! BookingHistoryEmpty || state is BookingHistoryLoading) {
+        try {
+          if (state is BookingHistoryInitial) {
+            emit(BookingHistoryLoading());
+          }
+          if (state is BookingHistorySuccess) {
+            emit(BookingHistoryFetchMore());
+          }
+
+          final response = await repository.getHistoryClasses(page);
+          page++;
+
+          if (response.isEmpty) {
+            emit(BookingHistoryEmpty());
+          } else {
+            listBookingHistory.addAll(response);
+            emit(BookingHistorySuccess(listBookingHistory));
+          }
+        } catch (error) {
+          emit(BookingHistoryError(error.toString()));
+        }
+      }
+    });
   }
 }

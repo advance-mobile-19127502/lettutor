@@ -32,4 +32,22 @@ class BookingRepository extends BaseRepository {
       rethrow;
     }
   }
+
+  Future<List<BookingHistory>> getHistoryClasses(int page) async {
+    try {
+      var response =
+          await apiProvider.get(url: "/booking/list/student", queryParams: {
+        "page": page,
+        "perPage": 20,
+        "orderBy": "meeting",
+        "sortBy": "desc",
+        "dateTimeLte": DateTime.now().millisecondsSinceEpoch
+      });
+      Iterable l = response["data"]["rows"];
+      return List<BookingHistory>.from(l.map((e) => BookingHistory.fromJson(e)))
+          .toList();
+    } catch (error) {
+      rethrow;
+    }
+  }
 }

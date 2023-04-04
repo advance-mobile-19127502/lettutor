@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
 import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
+import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/total_time_bloc/total_time_bloc.dart';
 import 'package:lettutor/common_widget/change_locale_widget.dart';
@@ -13,6 +14,7 @@ import 'package:lettutor/pages/home_page/home_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/pages/schedule_page/schedule_page.dart';
 import 'package:lettutor/repositories/booking_repository.dart';
+import 'package:lettutor/repositories/course_repository.dart';
 import 'package:lettutor/repositories/total_time_repository.dart';
 import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
@@ -37,16 +39,20 @@ class _MainPageState extends State<MainPage> {
           ..add(const FetchListTutorEvent(10)),
       ),
       BlocProvider(
-          create: (context) =>
-              TotalTimeBloc(TotalTimeRepository(UrlConst.baseUrl))
-                ..add(const TotalTimeEvent()))
+          create: (context) => TotalTimeBloc(MainRepository(UrlConst.baseUrl))
+            ..add(const TotalTimeEvent()))
     ], child: const HomePage()),
     BlocProvider(
         create: (BuildContext context) =>
             BookingHistoryBloc(BookingRepository(UrlConst.baseUrl))
               ..add(FetchBookingEvent()),
         child: const SchedulePage()),
-    const CoursePage(),
+    BlocProvider(
+        create: (BuildContext context) => ListCourseBloc(
+            CourseRepository("${UrlConst.baseUrl}/course"),
+            MainRepository(UrlConst.baseUrl))
+          ..add(FetchListCourse()),
+        child: const CoursePage()),
     const AccountPage(),
   ];
   late PageController _pageController;
