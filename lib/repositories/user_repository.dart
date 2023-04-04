@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lettutor/models/from_api/account_info.dart';
 import 'package:lettutor/repositories/base_repository.dart';
 
 class UserRepository extends BaseRepository {
@@ -21,6 +22,15 @@ class UserRepository extends BaseRepository {
           .post(url: "/manageFavoriteTutor", data: {"tutorId": tutorId});
     } catch (err) {
       print(err);
+      rethrow;
+    }
+  }
+
+  Future<AccountInfo> getAccountInfo() async {
+    try {
+      final response = await apiProvider.get(url: "/info");
+      return AccountInfo.fromJson(response);
+    } catch (error) {
       rethrow;
     }
   }

@@ -5,6 +5,7 @@ import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
 import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/total_time_bloc/total_time_bloc.dart';
+import 'package:lettutor/bloc/user_bloc.dart';
 import 'package:lettutor/common_widget/change_locale_widget.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/from_api/booking_history.dart';
@@ -53,7 +54,11 @@ class _MainPageState extends State<MainPage> {
             MainRepository(UrlConst.baseUrl))
           ..add(FetchListCourse()),
         child: const CoursePage()),
-    const AccountPage(),
+    BlocProvider(
+        create: (BuildContext context) =>
+            UserBloc(UserRepository("${UrlConst.baseUrl}/user"))
+              ..add(FetchUserInfo()),
+        child: const AccountPage()),
   ];
   late PageController _pageController;
 

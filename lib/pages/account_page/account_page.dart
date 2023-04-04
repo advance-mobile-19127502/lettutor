@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
+import 'package:lettutor/bloc/user_bloc.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/account_page/widgets/ava_name_mail_row.dart';
@@ -18,10 +19,7 @@ class AccountPage extends StatelessWidget {
         padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
         child: Column(
           children: [
-            AvaNameMailRowWidget(
-                avaUrl: myProfile.avaUrl,
-                name: myProfile.name,
-                email: myProfile.email),
+            const AvaNameMailRowWidget(),
             const SizedBox(height: StyleConst.kDefaultPadding),
             const Divider(
               thickness: 2,
@@ -31,7 +29,9 @@ class AccountPage extends StatelessWidget {
                 icon: Icons.person,
                 onPress: () {
                   Navigator.of(context)
-                      .pushNamed(RouteGenerator.editProfileRoute);
+                      .pushNamed(RouteGenerator.editProfileRoute, arguments: {
+                    "userBloc": BlocProvider.of<UserBloc>(context)
+                  });
                 }),
             ListTileWithBorder(
                 title: AppLocalizations.of(context)!.history,
