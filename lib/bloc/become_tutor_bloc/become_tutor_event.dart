@@ -19,3 +19,11 @@ class BackTutorProfile extends BecomeTutorEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class SendBecomeATutorEvent extends BecomeTutorEvent {
+  const SendBecomeATutorEvent();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

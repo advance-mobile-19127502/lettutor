@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:lettutor/models/from_api/filters.dart';
 import 'package:lettutor/models/from_api/tutor_Info_search.dart';
 import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
@@ -68,7 +69,6 @@ class TutorRepository extends BaseRepository {
       int perPage, int page, Filters filters, String tutorName) async {
     try {
       var temp = filters.toJson();
-      print(temp);
       final response = await apiProvider.post(url: "/search", data: {
         "perPage": perPage,
         "page": page,
@@ -79,6 +79,46 @@ class TutorRepository extends BaseRepository {
       return List<TutorInfoPagination>.from(
           l.map((e) => TutorInfoPagination.fromJson(e))).toList();
     } catch (err) {
+      rethrow;
+    }
+  }
+
+  Future<void> registerTutor(
+      String name,
+      String country,
+      String birthDay,
+      String interest,
+      String education,
+      String experience,
+      String profession,
+      String languages,
+      String introduction,
+      String targetStudent,
+      String price,
+      String specialities,
+      String videoPath,
+      String imagePath) async {
+    try {
+      final formData = FormData.fromMap({
+        'name': name,
+        'country': country,
+        'birthday': birthDay,
+        'interests': interest,
+        'education': education,
+        'profession': profession,
+        'experience': experience,
+        'bio': introduction,
+        'languages': languages,
+        'targetStudent': targetStudent,
+        'price': price,
+        'specialties': specialities,
+        'avatar': await MultipartFile.fromFile(imagePath),
+        'video': await MultipartFile.fromFile(videoPath),
+      });
+
+      final response = await apiProvider.post(url: "/register", data: formData);
+      print(response.toString());
+    } catch (error) {
       rethrow;
     }
   }

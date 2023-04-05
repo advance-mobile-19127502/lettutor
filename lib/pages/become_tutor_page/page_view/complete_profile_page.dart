@@ -31,6 +31,13 @@ class _CompleteProfilePageState extends State<CompleteProfilePage>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    languageTextController.dispose();
+  }
+
+  @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 

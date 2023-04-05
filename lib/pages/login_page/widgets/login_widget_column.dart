@@ -30,6 +30,14 @@ class _LoginWidgetColumnState extends State<LoginWidgetColumn> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailEditingController.dispose();
+    passwordEditingController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       bloc: authBloc,

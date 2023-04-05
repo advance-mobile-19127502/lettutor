@@ -108,7 +108,9 @@ class RouteGenerator {
           return MaterialPageRoute(
               builder: (context) => MultiBlocProvider(providers: [
                     BlocProvider.value(value: userBloc),
-                    BlocProvider(create: (context) => BecomeTutorBloc())
+                    BlocProvider(
+                        create: (context) => BecomeTutorBloc(
+                            TutorRepository("${UrlConst.baseUrl}/tutor")))
                   ], child: const BecomeTutorPage()));
         }
       case historyRoute:

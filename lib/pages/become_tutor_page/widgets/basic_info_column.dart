@@ -39,6 +39,13 @@ class _BasicInfoColumnState extends State<BasicInfoColumn> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    dobTextController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [

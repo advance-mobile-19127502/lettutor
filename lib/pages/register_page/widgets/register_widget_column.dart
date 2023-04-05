@@ -33,6 +33,14 @@ class _RegisterWidgetColumnState extends State<RegisterWidgetColumn> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailEditingController.dispose();
+    passwordEditingController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterBloc, RegisterState>(
       bloc: authBloc,

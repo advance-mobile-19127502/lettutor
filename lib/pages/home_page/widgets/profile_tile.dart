@@ -74,7 +74,7 @@ class ProfileTile extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: RatingBarIndicator(
-                    rating: tutorInfo.rating ?? 0,
+                    rating: tutorInfo.rating?.toDouble() ?? 0,
                     itemBuilder: (context, index) => const Icon(
                       Icons.star,
                       color: Colors.amber,

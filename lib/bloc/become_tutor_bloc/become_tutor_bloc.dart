@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lettutor/repositories/tutor_repository.dart';
 
 part 'become_tutor_event.dart';
 
@@ -22,8 +23,9 @@ class BecomeTutorBloc extends Bloc<BecomeTutorEvent, BecomeTutorState> {
   String specialities = "";
   String? videoPath;
   String? imagePath;
+  TutorRepository repository;
 
-  BecomeTutorBloc() : super(BecomeTutorInitial()) {
+  BecomeTutorBloc(this.repository) : super(BecomeTutorInitial()) {
     on<BecomeTutorEvent>((event, emit) {});
 
     on<BackTutorProfile>((event, emit) {
@@ -44,10 +46,11 @@ class BecomeTutorBloc extends Bloc<BecomeTutorEvent, BecomeTutorState> {
         'introduction': introduction,
         'target student': targetStudent,
         'specialities': specialities,
+        'image': imagePath
       };
 
       for (var entry in fields.entries) {
-        if (entry.value.isEmpty) {
+        if (entry.value == null || entry.value!.isEmpty) {
           messageValidate = "Please input ${entry.key}";
           break;
         }
@@ -57,6 +60,36 @@ class BecomeTutorBloc extends Bloc<BecomeTutorEvent, BecomeTutorState> {
         emit(BecomeTutorInvalid(messageValidate));
       } else {
         emit(const BecomeTutorNext());
+      }
+    });
+
+    on<SendBecomeATutorEvent>((event, emit) async {
+      emit(BecomeTutorInitial());
+      if (videoPath == null || videoPath!.isEmpty) {
+        emit(const BecomeTutorInvalid("Please input video"));
+      } else {
+        try {
+          emit(BecomeTutorLoading());
+          await repository.registerTutor(
+              name,
+              country,
+              birthDay,
+              interest,
+              education,
+              experience,
+              profession,
+              languages,
+              introduction,
+              targetStudent,
+              price,
+              specialities,
+              videoPath!,
+              imagePath!);
+          emit(BecomeTutorSuccess());
+        } catch (error) {
+          print(error);
+          emit(const BecomeTutorErrorSendReq());
+        }
       }
     });
   }

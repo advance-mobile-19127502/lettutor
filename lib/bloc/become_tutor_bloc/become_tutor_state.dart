@@ -16,10 +16,18 @@ class BecomeTutorInvalid extends BecomeTutorState {
   List<Object> get props => [messageValid];
 }
 
+class BecomeTutorLoading extends BecomeTutorState {}
+
+class BecomeTutorSuccess extends BecomeTutorState {}
+
 class BecomeTutorNext extends BecomeTutorState {
   const BecomeTutorNext();
 }
 
 class BecomeTutorBack extends BecomeTutorState {
   const BecomeTutorBack();
+}
+
+class BecomeTutorErrorSendReq extends BecomeTutorState {
+  const BecomeTutorErrorSendReq();
 }

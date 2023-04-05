@@ -28,6 +28,13 @@ class _ForgotPassColumnState extends State<ForgotPassColumn> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailEditingController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
       bloc: forgotPasswordBloc,

@@ -12,6 +12,7 @@ import 'package:lettutor/pages/tutor_detail_page/widgets/favorite_report_review_
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_chip.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/section_with_text.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/timetable_widget.dart';
+import 'package:lettutor/pages/tutor_detail_page/widgets/video_player_widget.dart';
 import 'package:lettutor/repositories/schedule_repository.dart';
 import 'package:readmore/readmore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -78,9 +79,9 @@ class _TutorDetailPageState extends State<TutorDetailPage> {
                         height: StyleConst.kDefaultPadding,
                       ),
 
-                      // VideoPlayerWidget(
-                      //   video_url: tutor.video_url,
-                      // ),//
+                      VideoPlayerWidget(
+                        videoUrl: state.tutorInfo.video ?? "",
+                      ), //
 
                       const SizedBox(
                         height: StyleConst.kDefaultPadding,
