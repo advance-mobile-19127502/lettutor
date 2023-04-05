@@ -6,6 +6,7 @@ import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
@@ -91,8 +92,12 @@ class RouteGenerator {
         }
       case editProfileRoute:
         {
+          final routeArgs = settings.arguments as Map;
+
+          final UserBloc userBloc = routeArgs["userBloc"] as UserBloc;
           return MaterialPageRoute(
-              builder: (context) => const EditYourProfilePage());
+              builder: (context) => BlocProvider.value(
+                  value: userBloc, child: const EditYourProfilePage()));
         }
       case becomeTutorRoute:
         {

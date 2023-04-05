@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/colors_const.dart';
@@ -48,15 +49,14 @@ class CourseTile extends StatelessWidget {
                   borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(StyleConst.defaultRadius),
                       topLeft: Radius.circular(StyleConst.defaultRadius)),
-                  child: Image.network(
-                    courseInfo.imageUrl ??
-                        "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ",
-                    fit: BoxFit.fitWidth,
-                    errorBuilder: (_, __, ___) {
-                      return Image.network(
-                          "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
-                    },
-                  ),
+                  child: CachedNetworkImage(
+                      imageUrl: courseInfo.imageUrl ??
+                          "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ",
+                      fit: BoxFit.fitWidth,
+                      errorWidget: (_, __, ___) {
+                        return Image.network(
+                            "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
+                      }),
                 ),
               ),
             ),

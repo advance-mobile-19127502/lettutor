@@ -76,6 +76,12 @@ dependencies:
 
   cached_network_image: ^3.2.3
 
+  shimmer: ^2.0.0
+
+  image_picker: ^0.8.7+1
+
+  country_code_picker: ^3.0.0
+
 
 dev_dependencies:
   flutter_test:

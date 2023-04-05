@@ -4,6 +4,7 @@ import 'package:lettutor/models/from_api/account_info.dart';
 import 'package:lettutor/models/from_api/token.dart';
 import 'package:lettutor/repositories/base_repository.dart';
 import 'package:lettutor/utils/secured_local_storage.dart';
+import 'package:flutter/services.dart';
 
 class AuthRepository extends BaseRepository {
   AuthRepository(super.baseUrl);
@@ -55,6 +56,7 @@ class AuthRepository extends BaseRepository {
         refreshToken = refreshTokenFromStorage;
       } else {
         if (refreshTokenFromStorage != null) {
+          Clipboard.setData(ClipboardData(text: refreshTokenFromStorage));
           final response = await apiProvider.post(
               url: "/refresh-token",
               contentType: Headers.jsonContentType,
