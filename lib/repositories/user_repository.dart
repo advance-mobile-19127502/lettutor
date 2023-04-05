@@ -29,8 +29,10 @@ class UserRepository extends BaseRepository {
   Future<AccountInfo> getAccountInfo() async {
     try {
       final response = await apiProvider.get(url: "/info");
+      print(response.toString());
       return AccountInfo.fromJson(response);
     } catch (error) {
+      print(error);
       rethrow;
     }
   }

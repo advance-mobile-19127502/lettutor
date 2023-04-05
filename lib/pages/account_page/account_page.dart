@@ -44,7 +44,9 @@ class AccountPage extends StatelessWidget {
                 icon: Icons.grading,
                 onPress: () {
                   Navigator.of(context)
-                      .pushNamed(RouteGenerator.becomeTutorRoute);
+                      .pushNamed(RouteGenerator.becomeTutorRoute, arguments: {
+                    "userBloc": BlocProvider.of<UserBloc>(context)
+                  });
                 }),
             ListTileWithBorder(
                 title: AppLocalizations.of(context)!.settings,
