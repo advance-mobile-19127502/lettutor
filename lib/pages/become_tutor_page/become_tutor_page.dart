@@ -132,7 +132,7 @@ class _BecomeTutorPageState extends State<BecomeTutorPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          StepperWidget(curentIndex: _currentStep),
+                          StepperWidget(currentIndex: _currentStep),
                           const SizedBox(
                             height: StyleConst.kDefaultPadding,
                           ),
