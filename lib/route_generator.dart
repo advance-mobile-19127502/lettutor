@@ -6,7 +6,7 @@ import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
-import 'package:lettutor/bloc/user_bloc.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';

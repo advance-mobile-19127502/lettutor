@@ -34,4 +34,35 @@ class UserRepository extends BaseRepository {
       rethrow;
     }
   }
+
+  Future<AccountInfo> uploadAvatar(String imagePath) async {
+    try {
+      final formDataImage = FormData.fromMap({
+        'avatar': await MultipartFile.fromFile(
+          imagePath,
+        ),
+      });
+      var response =
+          await apiProvider.post(url: "/uploadAvatar", data: formDataImage);
+      User tempUser = User.fromJson(response);
+      AccountInfo tempAccountInfo = AccountInfo(user: tempUser);
+      return tempAccountInfo;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<AccountInfo> updateInfo(
+      String name, String country, String birthday) async {
+    try {
+      var response = await apiProvider.put(
+          url: "/info",
+          data: {'name': name, 'country': country, 'birthday': birthday});
+      print(response.toString());
+      return AccountInfo.fromJson(response);
+    } catch (error) {
+      print(error);
+      rethrow;
+    }
+  }
 }

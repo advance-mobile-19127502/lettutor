@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/bloc/user_bloc.dart';
-import 'package:lettutor/bloc/user_bloc.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
@@ -30,52 +30,46 @@ class _AvaNameMailRowWidgetState extends State<AvaNameMailRowWidget> {
     return BlocBuilder<UserBloc, UserState>(
       bloc: userBloc,
       builder: (context, state) {
-        if (state is UserSuccess) {
-          return Row(
-            children: [
-              ClipOval(
-                child: SizedBox.fromSize(
-                  size: const Size.fromRadius(40),
-                  child: Image.network(
-                    userBloc.accountInfo?.user?.avatar ??
-                        "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ",
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) {
-                      return Image.network(
-                          "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
-                    },
-                  ),
+        if (state is UserLoading) {
+          return shimmerLoadingUserInfo();
+        }
+        return Row(
+          children: [
+            ClipOval(
+              child: SizedBox.fromSize(
+                size: const Size.fromRadius(40),
+                child: Image.network(
+                  userBloc.accountInfo?.user?.avatar ??
+                      "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ",
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) {
+                    return Image.network(
+                        "https://play-lh.googleusercontent.com/7pMjZVSZahaqMHzY1mtc0A1uCI0eH0m9K_kRZ9r9PmUCwKfm5TYEaMuZP6S6s-TdjQ");
+                  },
                 ),
               ),
-              const SizedBox(
-                width: StyleConst.kDefaultPadding,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    userBloc.accountInfo?.user?.name ?? "",
-                    style: GoogleFonts.roboto(
-                        textStyle: FontConst.medium.copyWith(fontSize: 15)),
-                  ),
-                  Text(
-                    userBloc.accountInfo?.user?.email ?? "",
-                    style: GoogleFonts.roboto(
-                        textStyle: FontConst.regular.copyWith(
-                            fontSize: 12, color: ColorConst.greyTextColor)),
-                  )
-                ],
-              )
-            ],
-          );
-        }
-        if (state is UserError) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height / 8,
-            child: const Text("Failed to get account Info"),
-          );
-        }
-        return shimmerLoadingUserInfo();
+            ),
+            const SizedBox(
+              width: StyleConst.kDefaultPadding,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  userBloc.accountInfo?.user?.name ?? "",
+                  style: GoogleFonts.roboto(
+                      textStyle: FontConst.medium.copyWith(fontSize: 15)),
+                ),
+                Text(
+                  userBloc.accountInfo?.user?.email ?? "",
+                  style: GoogleFonts.roboto(
+                      textStyle: FontConst.regular.copyWith(
+                          fontSize: 12, color: ColorConst.greyTextColor)),
+                )
+              ],
+            )
+          ],
+        );
       },
     );
   }

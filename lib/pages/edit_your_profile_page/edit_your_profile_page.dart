@@ -1,6 +1,11 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lettutor/bloc/user_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
+import 'package:lettutor/constants/colors_const.dart';
+import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/edit_ava_profile.dart';
@@ -20,6 +25,7 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
   late TextEditingController _countryController;
   late TextEditingController _phoneController;
   late TextEditingController _dobController;
+  late String country;
 
   // late TextEditingController _levelController;
   // late TextEditingController _wantToLearnController;
@@ -35,9 +41,13 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
     _countryController = TextEditingController();
     _phoneController = TextEditingController();
     _dobController = TextEditingController();
+    country = userBloc.accountInfo?.user?.country ?? "";
     // _levelController = TextEditingController();
     // _wantToLearnController = TextEditingController();
     // _studyScheduleController = TextEditingController();
+    if (userBloc.accountInfo?.user?.birthday != null) {
+      _dobController.text = userBloc.accountInfo!.user!.birthday!;
+    }
   }
 
   @override
@@ -58,14 +68,35 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocConsumer<UserBloc, UserState>(
       bloc: userBloc,
+      listener: (context, state) {
+        if (state is UpdateInfoFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                "Upload info failed, try again",
+              ),
+            ),
+          );
+        }
+        if (state is UserSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                "Upload successfully",
+              ),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
             appBar: AppBar(),
-            body: state is UserSuccess
-                ? SingleChildScrollView(
+            body: state is UserLoading
+                ? const Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
                       child: Column(
@@ -90,29 +121,82 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                             textProfile:
                                 userBloc.accountInfo?.user?.email ?? "",
                           ),
-                          FormFieldWidget(
-                            title: AppLocalizations.of(context)!.country,
-                            hintTitle: "",
-                            isEnabled: true,
-                            controller: _countryController,
-                            textProfile:
-                                userBloc.accountInfo?.user?.country ?? "",
+
+                          Text(
+                            AppLocalizations.of(context)!.country,
+                            style: GoogleFonts.openSans(
+                                textStyle:
+                                    FontConst.semiBold.copyWith(fontSize: 14)),
+                          ),
+                          const SizedBox(
+                            height: StyleConst.kDefaultPadding / 3,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white54,
+                              borderRadius: BorderRadius.circular(
+                                  StyleConst.defaultRadius),
+                              border: Border.all(
+                                color: Colors.black38,
+                                width: 1,
+                              ),
+                            ),
+                            height: 56,
+                            child: CountryCodePicker(
+                              onChanged: (CountryCode countryCode) {
+                                setState(() {
+                                  country = countryCode.code.toString();
+                                });
+                              },
+                              initialSelection: country,
+                              showOnlyCountryWhenClosed: true,
+                              showCountryOnly: true,
+                              alignLeft: true,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: StyleConst.kDefaultPadding,
                           ),
                           FormFieldWidget(
                             title: AppLocalizations.of(context)!.phoneNumber,
                             hintTitle: "0123456879",
-                            isEnabled: true,
+                            isEnabled: false,
                             controller: _phoneController,
                             textProfile:
                                 userBloc.accountInfo?.user?.phone ?? "",
                           ),
-                          FormFieldWidget(
-                            title: AppLocalizations.of(context)!.birthDay,
-                            hintTitle: "",
-                            isEnabled: true,
+
+                          Text(
+                            AppLocalizations.of(context)!.birthDay,
+                            style: GoogleFonts.openSans(
+                                textStyle:
+                                    FontConst.semiBold.copyWith(fontSize: 14)),
+                          ),
+                          const SizedBox(
+                            height: StyleConst.kDefaultPadding / 3,
+                          ),
+                          TextFormField(
+                            autovalidateMode: AutovalidateMode.always,
                             controller: _dobController,
-                            textProfile:
-                                userBloc.accountInfo?.user?.birthday ?? "",
+                            readOnly: true,
+                            style: const TextStyle(fontSize: 14),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              suffixIcon: IconButton(
+                                icon: const Icon(Icons.calendar_month),
+                                onPressed: () async {
+                                  selectDate(context);
+                                },
+                              ),
+                              border: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: ColorConst.hintTextColor),
+                                  borderRadius: BorderRadius.circular(
+                                      StyleConst.defaultRadius)),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: StyleConst.kDefaultPadding,
                           ),
                           // FormFieldWidget(
                           //   title: AppLocalizations.of(context)!.myLevel,
@@ -139,19 +223,37 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
                             width: screenSize.width,
                             child: ElevatedButton(
                               child: Text(AppLocalizations.of(context)!.save),
-                              onPressed: () {},
+                              onPressed: () {
+                                updateInfo();
+                              },
                             ),
                           )
                         ],
                       ),
                     ),
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
                   ),
           ),
         );
       },
     );
+  }
+
+  void selectDate(BuildContext context) async {
+    final DateTime? datePicked = await showDatePicker(
+        context: context,
+        initialDate: userBloc.accountInfo?.user?.birthday != null
+            ? DateFormat("yyyy-MM-dd")
+                .parse(userBloc.accountInfo!.user!.birthday!)
+            : DateTime.now(),
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100));
+    if (datePicked != null) {
+      _dobController.text = DateFormat("yyyy-MM-dd").format(datePicked);
+    }
+  }
+
+  void updateInfo() {
+    userBloc.add(
+        UpdateInfoEvent(_nameController.text, country, _dobController.text));
   }
 }

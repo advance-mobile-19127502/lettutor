@@ -25,7 +25,7 @@ class ApiProvider {
     }, onError: (DioError error, handler) async {
       //only run if access Token expired or invalid.
       //Need to discuss with Nam to have the message of Expired Token
-
+      print("321");
       if (error.response?.statusCode == 401 &&
           error.response?.data["message"] == "Please authenticate") {
         String? refreshToken =
@@ -46,12 +46,15 @@ class ApiProvider {
       {required String url,
       Map<String, dynamic>? headers,
       String? contentType,
-      Map<String, dynamic>? data,
+      Object? data,
       Map<String, dynamic>? queryParams,
       CancelToken? cancelToken}) async {
     try {
       final response = await api.post(url,
-          options: Options(headers: headers, contentType: contentType),
+          options: Options(
+              headers: headers,
+              contentType: contentType,
+              receiveTimeout: const Duration(seconds: 10)),
           data: data,
           queryParameters: queryParams,
           cancelToken: cancelToken);
@@ -84,14 +87,38 @@ class ApiProvider {
     }
   }
 
+  Future<dynamic> put(
+      {required String url,
+      Map<String, dynamic>? headers,
+      String? contentType,
+      Object? data,
+      Map<String, dynamic>? queryParams,
+      CancelToken? cancelToken}) async {
+    try {
+      final response = await api.put(url,
+          options: Options(
+              headers: headers,
+              contentType: contentType,
+              receiveTimeout: const Duration(seconds: 10)),
+          data: data,
+          queryParameters: queryParams,
+          cancelToken: cancelToken);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return response.data;
+      }
+    } on DioError catch (err) {
+      throw CustomException(err.response?.data["message"]);
+    }
+  }
+
   Future<bool> refreshTokenApi(String refreshToken) async {
     try {
-      final response =
-          await Dio().post("${UrlConst.baseUrl}/auth/refresh-token",
-              options: Options(
-                contentType: Headers.jsonContentType,
-              ),
-              data: {'refreshToken': refreshToken});
+      final response = await Dio().post(
+          "${UrlConst.baseUrl}/auth/refresh-token",
+          options: Options(
+              contentType: Headers.jsonContentType,
+              receiveTimeout: const Duration(seconds: 10)),
+          data: {'refreshToken': refreshToken});
       if (response.statusCode == 200) {
         //get new access token
         accessToken = response.data["tokens"]["access"]["access"];

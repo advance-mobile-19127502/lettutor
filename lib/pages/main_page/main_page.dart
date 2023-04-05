@@ -5,7 +5,7 @@ import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
 import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/total_time_bloc/total_time_bloc.dart';
-import 'package:lettutor/bloc/user_bloc.dart';
+import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/common_widget/change_locale_widget.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/from_api/booking_history.dart';

@@ -71,6 +71,7 @@ class _SplashPageState extends State<SplashPage>
 
     refressTokenLocalStorage =
         await SecuredLocalStorage().readString(KEY_CONST.REFRESH_TOKEN_KEY);
+
     authBloc.add(
         CheckTokenEvent(accessTokenLocalStorage, refressTokenLocalStorage));
   }
