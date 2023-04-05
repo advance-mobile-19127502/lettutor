@@ -31,6 +31,7 @@ class UserRepository extends BaseRepository {
       final response = await apiProvider.get(url: "/info");
       return AccountInfo.fromJson(response);
     } catch (error) {
+      print(error);
       rethrow;
     }
   }

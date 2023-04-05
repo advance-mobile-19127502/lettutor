@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/alert_container.dart';
@@ -31,18 +33,30 @@ class _CVColumnState extends State<CVColumn> {
         TextFormFieldBecomeATutor(
           title: AppLocalizations.of(context)!.interest,
           hintTitle: AppLocalizations.of(context)!.hintInterests,
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).interest = value;
+          },
         ),
         TextFormFieldBecomeATutor(
           title: AppLocalizations.of(context)!.education,
           hintTitle: AppLocalizations.of(context)!.hintEducation,
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).education = value;
+          },
         ),
         TextFormFieldBecomeATutor(
           title: AppLocalizations.of(context)!.experience,
           hintTitle: '',
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).experience = value;
+          },
         ),
         TextFormFieldBecomeATutor(
           title: AppLocalizations.of(context)!.currentPrevProfession,
           hintTitle: '',
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).profession = value;
+          },
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
 import 'package:lettutor/bloc/course_detail_bloc/course_detail_bloc.dart';
 import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
@@ -101,8 +102,16 @@ class RouteGenerator {
         }
       case becomeTutorRoute:
         {
+          final routeArgs = settings.arguments as Map;
+
+          final UserBloc userBloc = routeArgs["userBloc"] as UserBloc;
           return MaterialPageRoute(
-              builder: (context) => const BecomeTutorPage());
+              builder: (context) => MultiBlocProvider(providers: [
+                    BlocProvider.value(value: userBloc),
+                    BlocProvider(
+                        create: (context) => BecomeTutorBloc(
+                            TutorRepository("${UrlConst.baseUrl}/tutor")))
+                  ], child: const BecomeTutorPage()));
         }
       case historyRoute:
         {

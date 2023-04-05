@@ -42,6 +42,7 @@ class _TextFormWidgetState extends State<TextFormWidget> {
     // TODO: implement dispose
     tutorNameFocusNode.removeListener(() {});
     tutorNameFocusNode.dispose();
+    textEditingController.dispose();
     super.dispose();
   }
 

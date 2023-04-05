@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/choice_list.dart';
@@ -29,8 +31,12 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
           height: StyleConst.kDefaultPadding,
         ),
         TextFormFieldBecomeATutor(
-            title: AppLocalizations.of(context)!.introduction,
-            hintTitle: AppLocalizations.of(context)!.hintIntroduction),
+          title: AppLocalizations.of(context)!.introduction,
+          hintTitle: AppLocalizations.of(context)!.hintIntroduction,
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).introduction = value;
+          },
+        ),
         const ChooseWhoRadioWidget(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,5 +82,7 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
         selectedSpecialitis.remove(itemValue);
       }
     });
+    BlocProvider.of<BecomeTutorBloc>(context).specialities =
+        selectedSpecialitis.join(",");
   }
 }

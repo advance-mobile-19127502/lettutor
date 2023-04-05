@@ -38,7 +38,7 @@ class TutorInfoPagination {
   String? languages;
   String? specialties;
   String? resume;
-  double? rating;
+  num? rating;
   bool? isNative;
   int? price;
   bool? isOnline;

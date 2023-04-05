@@ -4,11 +4,10 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class StepperWidget extends StatelessWidget {
-  const StepperWidget({Key? key, this.curentIndex}) : super(key: key);
+  const StepperWidget({Key? key, required this.currentIndex}) : super(key: key);
 
-  final curentIndex;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,8 @@ class StepperWidget extends StatelessWidget {
                   shape: BoxShape.circle),
               child: CircleAvatar(
                 backgroundColor:
-                    curentIndex == 0 ? Colors.blue : Colors.transparent,
-                child: curentIndex > 0
+                    currentIndex == 0 ? Colors.blue : Colors.transparent,
+                child: currentIndex > 0
                     ? const Icon(
                         Icons.check,
                         color: Colors.green,
@@ -32,7 +31,7 @@ class StepperWidget extends StatelessWidget {
                         "1",
                         style: TextStyle(
                             color:
-                                curentIndex == 0 ? Colors.white : Colors.grey),
+                                currentIndex == 0 ? Colors.white : Colors.grey),
                       ),
               ),
             ),
@@ -41,11 +40,10 @@ class StepperWidget extends StatelessWidget {
             ),
             Text(
               AppLocalizations.of(context)!.completeProfile,
-              style:
-                  GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
-                    fontSize: 16,
-                    color: curentIndex == 0 ? Colors.black : Colors.grey
-                  )),
+              style: GoogleFonts.roboto(
+                  textStyle: FontConst.regular.copyWith(
+                      fontSize: 16,
+                      color: currentIndex == 0 ? Colors.black : Colors.grey)),
             )
           ],
         ),
@@ -60,8 +58,8 @@ class StepperWidget extends StatelessWidget {
                   shape: BoxShape.circle),
               child: CircleAvatar(
                 backgroundColor:
-                    curentIndex == 1 ? Colors.blue : Colors.transparent,
-                child: curentIndex > 1
+                    currentIndex == 1 ? Colors.blue : Colors.transparent,
+                child: currentIndex > 1
                     ? const Icon(
                         Icons.check,
                         color: Colors.green,
@@ -70,19 +68,20 @@ class StepperWidget extends StatelessWidget {
                         "2",
                         style: TextStyle(
                             color:
-                                curentIndex == 1 ? Colors.white : Colors.grey),
+                                currentIndex == 1 ? Colors.white : Colors.grey),
                       ),
               ),
             ),
             const SizedBox(
               width: StyleConst.kDefaultPadding,
             ),
-            Text(AppLocalizations.of(context)!.videoIntroduction,
-              style:
-              GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
-                  fontSize: 16,
-                  color: curentIndex == 1 ? Colors.black : Colors.grey
-              )),)
+            Text(
+              AppLocalizations.of(context)!.videoIntroduction,
+              style: GoogleFonts.roboto(
+                  textStyle: FontConst.regular.copyWith(
+                      fontSize: 16,
+                      color: currentIndex == 1 ? Colors.black : Colors.grey)),
+            )
           ],
         ),
         const SizedBox(
@@ -96,8 +95,8 @@ class StepperWidget extends StatelessWidget {
                   shape: BoxShape.circle),
               child: CircleAvatar(
                 backgroundColor:
-                    curentIndex == 2 ? Colors.blue : Colors.transparent,
-                child: curentIndex > 2
+                    currentIndex == 2 ? Colors.blue : Colors.transparent,
+                child: currentIndex > 2
                     ? const Icon(
                         Icons.check,
                         color: Colors.green,
@@ -106,19 +105,20 @@ class StepperWidget extends StatelessWidget {
                         "3",
                         style: TextStyle(
                             color:
-                                curentIndex == 2 ? Colors.white : Colors.grey),
+                                currentIndex == 2 ? Colors.white : Colors.grey),
                       ),
               ),
             ),
             const SizedBox(
               width: StyleConst.kDefaultPadding,
             ),
-            Text(AppLocalizations.of(context)!.approval,
-              style:
-              GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(
-                  fontSize: 16,
-                  color: curentIndex == 2 ? Colors.black : Colors.grey
-              )),)
+            Text(
+              AppLocalizations.of(context)!.approval,
+              style: GoogleFonts.roboto(
+                  textStyle: FontConst.regular.copyWith(
+                      fontSize: 16,
+                      color: currentIndex == 2 ? Colors.black : Colors.grey)),
+            )
           ],
         ),
       ],

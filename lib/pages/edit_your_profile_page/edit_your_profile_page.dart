@@ -96,142 +96,152 @@ class _EditYourProfilePageState extends State<EditYourProfilePage> {
             appBar: AppBar(),
             body: state is UserLoading
                 ? const Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(StyleConst.kDefaultPadding),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const EditAvaProfile(),
-                          const SizedBox(
-                            height: StyleConst.kDefaultPadding,
-                          ),
-                          FormFieldWidget(
-                            title: AppLocalizations.of(context)!.name,
-                            hintTitle: "",
-                            isEnabled: true,
-                            controller: _nameController,
-                            textProfile: userBloc.accountInfo?.user?.name ?? "",
-                          ),
-                          FormFieldWidget(
-                            title: AppLocalizations.of(context)!.emailAddress,
-                            hintTitle: "Example@gmail.com",
-                            isEnabled: false,
-                            controller: _emailController,
-                            textProfile:
-                                userBloc.accountInfo?.user?.email ?? "",
-                          ),
-
-                          Text(
-                            AppLocalizations.of(context)!.country,
-                            style: GoogleFonts.openSans(
-                                textStyle:
-                                    FontConst.semiBold.copyWith(fontSize: 14)),
-                          ),
-                          const SizedBox(
-                            height: StyleConst.kDefaultPadding / 3,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white54,
-                              borderRadius: BorderRadius.circular(
-                                  StyleConst.defaultRadius),
-                              border: Border.all(
-                                color: Colors.black38,
-                                width: 1,
+                : state is UserError
+                    ? const Center(
+                        child:
+                            Text("Failed to get information, please try again"),
+                      )
+                    : SingleChildScrollView(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.all(StyleConst.kDefaultPadding),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const EditAvaProfile(),
+                              const SizedBox(
+                                height: StyleConst.kDefaultPadding,
                               ),
-                            ),
-                            height: 56,
-                            child: CountryCodePicker(
-                              onChanged: (CountryCode countryCode) {
-                                setState(() {
-                                  country = countryCode.code.toString();
-                                });
-                              },
-                              initialSelection: country,
-                              showOnlyCountryWhenClosed: true,
-                              showCountryOnly: true,
-                              alignLeft: true,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: StyleConst.kDefaultPadding,
-                          ),
-                          FormFieldWidget(
-                            title: AppLocalizations.of(context)!.phoneNumber,
-                            hintTitle: "0123456879",
-                            isEnabled: false,
-                            controller: _phoneController,
-                            textProfile:
-                                userBloc.accountInfo?.user?.phone ?? "",
-                          ),
-
-                          Text(
-                            AppLocalizations.of(context)!.birthDay,
-                            style: GoogleFonts.openSans(
-                                textStyle:
-                                    FontConst.semiBold.copyWith(fontSize: 14)),
-                          ),
-                          const SizedBox(
-                            height: StyleConst.kDefaultPadding / 3,
-                          ),
-                          TextFormField(
-                            autovalidateMode: AutovalidateMode.always,
-                            controller: _dobController,
-                            readOnly: true,
-                            style: const TextStyle(fontSize: 14),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              suffixIcon: IconButton(
-                                icon: const Icon(Icons.calendar_month),
-                                onPressed: () async {
-                                  selectDate(context);
-                                },
+                              FormFieldWidget(
+                                title: AppLocalizations.of(context)!.name,
+                                hintTitle: "",
+                                isEnabled: true,
+                                controller: _nameController,
+                                textProfile:
+                                    userBloc.accountInfo?.user?.name ?? "",
                               ),
-                              border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: ColorConst.hintTextColor),
+                              FormFieldWidget(
+                                title:
+                                    AppLocalizations.of(context)!.emailAddress,
+                                hintTitle: "Example@gmail.com",
+                                isEnabled: false,
+                                controller: _emailController,
+                                textProfile:
+                                    userBloc.accountInfo?.user?.email ?? "",
+                              ),
+
+                              Text(
+                                AppLocalizations.of(context)!.country,
+                                style: GoogleFonts.openSans(
+                                    textStyle: FontConst.semiBold
+                                        .copyWith(fontSize: 14)),
+                              ),
+                              const SizedBox(
+                                height: StyleConst.kDefaultPadding / 3,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white54,
                                   borderRadius: BorderRadius.circular(
-                                      StyleConst.defaultRadius)),
-                            ),
+                                      StyleConst.defaultRadius),
+                                  border: Border.all(
+                                    color: Colors.black38,
+                                    width: 1,
+                                  ),
+                                ),
+                                height: 56,
+                                child: CountryCodePicker(
+                                  onChanged: (CountryCode countryCode) {
+                                    setState(() {
+                                      country = countryCode.code.toString();
+                                    });
+                                  },
+                                  initialSelection: country,
+                                  showOnlyCountryWhenClosed: true,
+                                  showCountryOnly: true,
+                                  alignLeft: true,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: StyleConst.kDefaultPadding,
+                              ),
+                              FormFieldWidget(
+                                title:
+                                    AppLocalizations.of(context)!.phoneNumber,
+                                hintTitle: "0123456879",
+                                isEnabled: false,
+                                controller: _phoneController,
+                                textProfile:
+                                    userBloc.accountInfo?.user?.phone ?? "",
+                              ),
+
+                              Text(
+                                AppLocalizations.of(context)!.birthDay,
+                                style: GoogleFonts.openSans(
+                                    textStyle: FontConst.semiBold
+                                        .copyWith(fontSize: 14)),
+                              ),
+                              const SizedBox(
+                                height: StyleConst.kDefaultPadding / 3,
+                              ),
+                              TextFormField(
+                                autovalidateMode: AutovalidateMode.always,
+                                controller: _dobController,
+                                readOnly: true,
+                                style: const TextStyle(fontSize: 14),
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  suffixIcon: IconButton(
+                                    icon: const Icon(Icons.calendar_month),
+                                    onPressed: () async {
+                                      selectDate(context);
+                                    },
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: ColorConst.hintTextColor),
+                                      borderRadius: BorderRadius.circular(
+                                          StyleConst.defaultRadius)),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: StyleConst.kDefaultPadding,
+                              ),
+                              // FormFieldWidget(
+                              //   title: AppLocalizations.of(context)!.myLevel,
+                              //   hintTitle: "",
+                              //   isEnabled: true,
+                              //   controller: _levelController,
+                              //   textProfile: myProfile.myLevel,
+                              // ),
+                              // FormFieldWidget(
+                              //   title: AppLocalizations.of(context)!.wantToLearn,
+                              //   hintTitle: "",
+                              //   isEnabled: true,
+                              //   controller: _wantToLearnController,
+                              //   textProfile: myProfile.wantToLearn,
+                              // ),
+                              // FormFieldWidget(
+                              //   title: AppLocalizations.of(context)!.studySchedule,
+                              //   hintTitle: AppLocalizations.of(context)!.noteTheTime,
+                              //   isEnabled: true,
+                              //   controller: _studyScheduleController,
+                              //   textProfile: myProfile.studySchedule,
+                              // ),
+                              SizedBox(
+                                width: screenSize.width,
+                                child: ElevatedButton(
+                                  child:
+                                      Text(AppLocalizations.of(context)!.save),
+                                  onPressed: () {
+                                    updateInfo();
+                                  },
+                                ),
+                              )
+                            ],
                           ),
-                          const SizedBox(
-                            height: StyleConst.kDefaultPadding,
-                          ),
-                          // FormFieldWidget(
-                          //   title: AppLocalizations.of(context)!.myLevel,
-                          //   hintTitle: "",
-                          //   isEnabled: true,
-                          //   controller: _levelController,
-                          //   textProfile: myProfile.myLevel,
-                          // ),
-                          // FormFieldWidget(
-                          //   title: AppLocalizations.of(context)!.wantToLearn,
-                          //   hintTitle: "",
-                          //   isEnabled: true,
-                          //   controller: _wantToLearnController,
-                          //   textProfile: myProfile.wantToLearn,
-                          // ),
-                          // FormFieldWidget(
-                          //   title: AppLocalizations.of(context)!.studySchedule,
-                          //   hintTitle: AppLocalizations.of(context)!.noteTheTime,
-                          //   isEnabled: true,
-                          //   controller: _studyScheduleController,
-                          //   textProfile: myProfile.studySchedule,
-                          // ),
-                          SizedBox(
-                            width: screenSize.width,
-                            child: ElevatedButton(
-                              child: Text(AppLocalizations.of(context)!.save),
-                              onPressed: () {
-                                updateInfo();
-                              },
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
           ),
         );
       },

@@ -1,4 +1,5 @@
 import 'package:lettutor/models/from_api/token.dart';
+import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
 
 class AccountInfo {
   User? user;
@@ -39,6 +40,7 @@ class User {
   int? timezone;
   String? studySchedule;
   bool? canSendMessage;
+  TutorInfoPagination? tutorInfo;
 
   User(
       {this.id,
@@ -55,7 +57,8 @@ class User {
       this.isPhoneActivated,
       this.timezone,
       this.studySchedule,
-      this.canSendMessage});
+      this.canSendMessage,
+      this.tutorInfo});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -73,6 +76,9 @@ class User {
     timezone = json['timezone'];
     studySchedule = json['studySchedule'];
     canSendMessage = json['canSendMessage'];
+    tutorInfo = json['tutorInfo'] != null
+        ? TutorInfoPagination.fromJson(json['tutorInfo'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -92,6 +98,9 @@ class User {
     data['timezone'] = timezone;
     data['studySchedule'] = studySchedule;
     data['canSendMessage'] = canSendMessage;
+    if (tutorInfo != null) {
+      data['tutorInfo'] = tutorInfo;
+    }
     return data;
   }
 }
