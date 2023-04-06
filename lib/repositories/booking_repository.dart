@@ -15,12 +15,12 @@ class BookingRepository extends BaseRepository {
     }
   }
 
-  Future<List<BookingHistory>> getBookedClass(int page) async {
+  Future<List<BookingHistory>> getBookedClass(int page, int perPage) async {
     try {
       var response =
           await apiProvider.get(url: "/booking/list/student", queryParams: {
         "page": page,
-        "perPage": 10,
+        "perPage": perPage,
         "orderBy": "meeting",
         "sortBy": "asc",
         "dateTimeGte": DateTime.now().millisecondsSinceEpoch

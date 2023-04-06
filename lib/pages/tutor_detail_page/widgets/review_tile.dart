@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/settings_bloc/settings_bloc.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
@@ -48,7 +50,9 @@ class ReviewTile extends StatelessWidget {
                   const TextSpan(text: "  ", style: TextStyle(fontSize: 12)),
                   TextSpan(
                       text: timeago.format(DateTime.parse(review.createdAt!),
-                          clock: DateTime.now(), locale: "en"),
+                          clock: DateTime.now(),
+                          locale: BlocProvider.of<SettingsBloc>(context)
+                              .languageSelected),
                       style: GoogleFonts.roboto(
                           textStyle: FontConst.regular.copyWith(
                               fontSize: 12,

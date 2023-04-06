@@ -7,7 +7,6 @@ import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/edit_ava_profile.dart';
 import 'package:lettutor/pages/edit_your_profile_page/widgets/form_field_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

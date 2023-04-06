@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/booking_schedule.dart';
 import 'package:lettutor/models/from_api/booking_history.dart';
 import 'package:lettutor/pages/schedule_page/widgets/edit_request_dialog.dart';
 

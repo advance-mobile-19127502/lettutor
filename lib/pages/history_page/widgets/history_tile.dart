@@ -1,16 +1,11 @@
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/data/history_list.dart';
-import 'package:lettutor/models/booking_history.dart';
 import 'package:lettutor/models/from_api/booking_history.dart';
 import 'package:lettutor/pages/history_page/widgets/ava_name_history_container.dart';
 import 'package:lettutor/pages/history_page/widgets/expansion_container.dart';
 import 'package:lettutor/pages/history_page/widgets/time_ago_widget.dart';
-import 'package:lettutor/providers/locale_provider.dart';
 
 class HistoryTile extends StatelessWidget {
   const HistoryTile({Key? key, required this.bookingHistory}) : super(key: key);

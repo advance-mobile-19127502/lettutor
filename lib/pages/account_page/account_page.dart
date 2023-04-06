@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
 import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/data/my_profile.dart';
 import 'package:lettutor/pages/account_page/widgets/ava_name_mail_row.dart';
 import 'package:lettutor/pages/account_page/widgets/list_tile_with_border.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

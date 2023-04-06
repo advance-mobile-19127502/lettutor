@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/common_widget/common_btn.dart';
 import 'package:lettutor/common_widget/item_chip.dart';
@@ -32,7 +33,8 @@ class ProfileTile extends StatelessWidget {
           Navigator.of(context)
               .pushNamed(RouteGenerator.tutorDetailRoute, arguments: {
             'tutorID': tutorInfo.userId,
-            "listTutorBloc": BlocProvider.of<ListTutorBloc>(context)
+            "listTutorBloc": BlocProvider.of<ListTutorBloc>(context),
+            "bookingHistoryBloc": BlocProvider.of<BookingHistoryBloc>(context)
           });
         },
         child: Container(

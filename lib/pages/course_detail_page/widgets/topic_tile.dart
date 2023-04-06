@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/from_api/topic_course.dart';
-import 'package:lettutor/models/topic.dart';
-import 'package:lettutor/pages/course_detail_page/pdf_view_page.dart';
 import 'package:lettutor/route_generator.dart';
 
 class TopicTile extends StatelessWidget {

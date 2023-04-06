@@ -101,13 +101,13 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   //Select available tutoring time:
-                  Text(
-                    AppLocalizations.of(context)!.selectAvailableTime,
-                    //
-                    style: GoogleFonts.openSans(
-                      textStyle: FontConst.bold.copyWith(fontSize: 14),
-                    ),
-                  ),
+                  // Text(
+                  //   AppLocalizations.of(context)!.selectAvailableTime,
+                  //   //
+                  //   style: GoogleFonts.openSans(
+                  //     textStyle: FontConst.bold.copyWith(fontSize: 14),
+                  //   ),
+                  // ),
 
                   // //select date
                   // const SelectDateTimeWidget(),
@@ -140,27 +140,6 @@ class _HomePageState extends State<HomePage> {
                     AppLocalizations.of(context)!.recommendedTutor,
                     style: GoogleFonts.roboto(
                         textStyle: FontConst.bold.copyWith(fontSize: 25)),
-                  ),
-
-                  Row(
-                    children: [
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {},
-                        child: Row(
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.seeFavoriteTutor,
-                              style: GoogleFonts.roboto(
-                                  textStyle: FontConst.regular.copyWith(
-                                      fontSize: 12, color: Colors.blueAccent)),
-                            ),
-                            const Icon(Icons.arrow_forward_ios_outlined,
-                                size: 12, color: Colors.blueAccent)
-                          ],
-                        ),
-                      )
-                    ],
                   ),
 
                   const SizedBox(

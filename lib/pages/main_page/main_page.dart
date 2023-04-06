@@ -6,9 +6,7 @@ import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
 import 'package:lettutor/bloc/total_time_bloc/total_time_bloc.dart';
 import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
-import 'package:lettutor/common_widget/change_locale_widget.dart';
 import 'package:lettutor/constants/url_const.dart';
-import 'package:lettutor/models/from_api/booking_history.dart';
 import 'package:lettutor/pages/account_page/account_page.dart';
 import 'package:lettutor/pages/course_page/course_page.dart';
 import 'package:lettutor/pages/home_page/home_page.dart';
@@ -41,12 +39,16 @@ class _MainPageState extends State<MainPage> {
       ),
       BlocProvider(
           create: (context) => TotalTimeBloc(MainRepository(UrlConst.baseUrl))
-            ..add(const TotalTimeEvent()))
+            ..add(const TotalTimeEvent())),
+      BlocProvider(
+          create: (context) =>
+              BookingHistoryBloc(BookingRepository(UrlConst.baseUrl))
+                ..add(const FetchLastestBooking(1)))
     ], child: const HomePage()),
     BlocProvider(
         create: (BuildContext context) =>
             BookingHistoryBloc(BookingRepository(UrlConst.baseUrl))
-              ..add(FetchBookingEvent()),
+              ..add(const FetchBookingEvent(10)),
         child: const SchedulePage()),
     BlocProvider(
         create: (BuildContext context) => ListCourseBloc(
