@@ -7,6 +7,7 @@ import 'package:lettutor/pages/account_page/widgets/ava_name_mail_row.dart';
 import 'package:lettutor/pages/account_page/widgets/list_tile_with_border.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/route_generator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -33,6 +34,15 @@ class AccountPage extends StatelessWidget {
                   });
                 }),
             ListTileWithBorder(
+                title: AppLocalizations.of(context)!.chatWithBot,
+                icon: Icons.android,
+                onPress: () {
+                  Navigator.of(context).pushNamed(RouteGenerator.chatGPTRoute,
+                      arguments: {
+                        "userBloc": BlocProvider.of<UserBloc>(context)
+                      });
+                }),
+            ListTileWithBorder(
                 title: AppLocalizations.of(context)!.history,
                 icon: Icons.history,
                 onPress: () {
@@ -50,7 +60,9 @@ class AccountPage extends StatelessWidget {
             ListTileWithBorder(
                 title: AppLocalizations.of(context)!.settings,
                 icon: Icons.settings,
-                onPress: () {}),
+                onPress: () {
+                  Navigator.of(context).pushNamed(RouteGenerator.settingRoute);
+                }),
             const SizedBox(height: StyleConst.kDefaultPadding * 2),
             SizedBox(
                 width: double.infinity,

@@ -7,6 +7,7 @@ import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/schedule_page/widgets/build_list_schedule_history.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Schedule",
+                        AppLocalizations.of(context)!.schedule,
                         style: GoogleFonts.poppins(
                             textStyle:
                                 FontConst.semiBold.copyWith(fontSize: 30)),
@@ -88,14 +89,12 @@ class _SchedulePageState extends State<SchedulePage> {
                 ],
               ),
               Text(
-                "Here is a list of the sessions you have booked",
+                AppLocalizations.of(context)!.hereIsListSession,
                 style: GoogleFonts.roboto(
                     textStyle: FontConst.regular.copyWith(
                         fontSize: 18, color: ColorConst.greyTextColor)),
               ),
-              Text(
-                  "You can track when the meeting starts, join the meeting with one"
-                  " click or can cancel the meeting before 2 hours",
+              Text(AppLocalizations.of(context)!.youCanTrack,
                   style: GoogleFonts.roboto(
                       textStyle: FontConst.regular.copyWith(
                           fontSize: 18, color: ColorConst.greyTextColor))),

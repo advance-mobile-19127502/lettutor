@@ -5,7 +5,6 @@ import 'package:lettutor/common_widget/change_locale_widget.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/pages/register_page/widgets/register_widget_column.dart';
-import 'package:lettutor/providers/locale_provider.dart';
 
 import '../../constants/colors_const.dart';
 import '../../constants/font_const.dart';
