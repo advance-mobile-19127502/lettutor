@@ -56,7 +56,7 @@ class _BuildListHistoryState extends State<BuildListHistory> {
                     )
                   ],
                 )),
-            const Text("No data"),
+            const Center(child: Text("No data")),
           ]);
         }
         return Column(

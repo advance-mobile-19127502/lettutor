@@ -39,7 +39,7 @@ class _SchedulePageState extends State<SchedulePage> {
   void _scrollListener() {
     if (_isScrollAble &&
         scrollController.position.maxScrollExtent == scrollController.offset) {
-      bookingHistoryBloc.add(FetchBookingEvent());
+      bookingHistoryBloc.add(const FetchBookingEvent(10));
     }
   }
 
@@ -55,7 +55,7 @@ class _SchedulePageState extends State<SchedulePage> {
               _isScrollAble = isScrollable;
             }
             if (!_isScrollAble) {
-              bookingHistoryBloc.add(FetchBookingEvent());
+              bookingHistoryBloc.add(const FetchBookingEvent(10));
             }
           }
           if (state is BookingHistoryInitial) {

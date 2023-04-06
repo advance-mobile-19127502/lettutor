@@ -57,7 +57,7 @@ class _ListTutorWidgetState extends State<ListTutorWidget> {
                       )
                     ],
                   )),
-              const Text("No data"),
+              const Center(child: Text("No data")),
             ]);
           }
           return Column(

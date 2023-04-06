@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/booking_schedule.dart';
 import 'package:lettutor/models/from_api/tutor_info_pagination.dart';
 
 class AvaNameScheduleContainer extends StatelessWidget {

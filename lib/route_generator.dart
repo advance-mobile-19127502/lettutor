@@ -9,7 +9,6 @@ import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
 import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
-import 'package:lettutor/models/course.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
 import 'package:lettutor/pages/course_detail_page/course_detail_page.dart';
 import 'package:lettutor/pages/course_detail_page/pdf_view_page.dart';
@@ -82,6 +81,8 @@ class RouteGenerator {
           final String? tutorId = routeArgs['tutorID'] as String?;
           final ListTutorBloc listTutorBloc =
               routeArgs["listTutorBloc"] as ListTutorBloc;
+          final BookingHistoryBloc bookingHistoryBloc =
+              routeArgs["bookingHistoryBloc"] as BookingHistoryBloc;
           return MaterialPageRoute(
               builder: (context) => MultiBlocProvider(providers: [
                     BlocProvider(
@@ -89,6 +90,7 @@ class RouteGenerator {
                             TutorRepository("${UrlConst.baseUrl}/tutor"))
                           ..add(FetchTutorDetailEvent(tutorId))),
                     BlocProvider.value(value: listTutorBloc),
+                    BlocProvider.value(value: bookingHistoryBloc)
                   ], child: const TutorDetailPage()));
         }
       case editProfileRoute:

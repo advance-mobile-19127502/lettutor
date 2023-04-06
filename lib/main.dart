@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
 
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
+import 'package:lettutor/bloc/settings_bloc/settings_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/providers/locale_provider.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
 import 'package:lettutor/route_generator.dart';
+import 'package:lettutor/utils/hive_helper.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -14,6 +17,9 @@ void main() async {
   timeago.setLocaleMessages("vi", timeago.ViMessages());
   timeago.setLocaleMessages("en", timeago.EnMessages());
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox("lettutor-19127502");
+
   runApp(const MyApp());
 }
 
@@ -36,18 +42,27 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
               create: (context) =>
-                  AuthBloc(AuthRepository("${UrlConst.baseUrl}/auth")))
+                  AuthBloc(AuthRepository("${UrlConst.baseUrl}/auth"))),
+          BlocProvider(
+              create: (context) =>
+                  SettingsBloc(HiveHelper(), HiveHelper().getLanguage()))
         ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          initialRoute: RouteGenerator.splashRoute,
-          onGenerateRoute: RouteGenerator.generateRoute,
+        child: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              locale: Locale(
+                  BlocProvider.of<SettingsBloc>(context).languageSelected),
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              initialRoute: RouteGenerator.splashRoute,
+              onGenerateRoute: RouteGenerator.generateRoute,
+            );
+          },
         ),
       ),
     );

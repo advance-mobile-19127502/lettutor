@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/constants/colors_const.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/level_options.dart';
-import 'package:lettutor/models/course.dart';
 import 'package:lettutor/models/from_api/course_info.dart';
 import 'package:lettutor/route_generator.dart';
 

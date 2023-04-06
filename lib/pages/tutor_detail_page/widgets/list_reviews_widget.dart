@@ -65,15 +65,10 @@ class _ListReviewWidgetState extends State<ListReviewWidget> {
                     )
                   ],
                 )),
-            const Text("No data"),
+            const Center(child: Text("No data")),
           ]);
         }
-        return const Text("Xảy ra lỗi trong lúc lấy dữ liệu");
-        return Column(children: [
-          // ...List.generate(widget.listReview.length,
-          //     (index) => ),
-          Text("Show more")
-        ]);
+        return const Center(child: Text("Xảy ra lỗi trong lúc lấy dữ liệu"));
       },
     );
   }

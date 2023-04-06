@@ -26,7 +26,7 @@ class BookingHistoryBloc
             emit(BookingHistoryFetchMore());
           }
 
-          final response = await repository.getBookedClass(page);
+          final response = await repository.getBookedClass(page, event.perPage);
           page++;
 
           if (response.isEmpty) {
@@ -40,7 +40,17 @@ class BookingHistoryBloc
         }
       }
     });
-
+    on<FetchLastestBooking>((event, emit) async {
+      emit(BookingHistoryLoading());
+      try {
+        final response = await repository.getBookedClass(1, event.perPage);
+        listBookingHistory.clear();
+        listBookingHistory.addAll(response);
+        emit(BookingHistorySuccess(listBookingHistory));
+      } catch (error) {
+        emit(BookingHistoryError(error.toString()));
+      }
+    });
     on<FetchBookingHistoryEvent>((event, emit) async {
       if (state is! BookingHistoryEmpty || state is BookingHistoryLoading) {
         try {

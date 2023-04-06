@@ -4,7 +4,6 @@ import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/models/from_api/categories_course.dart';
 import 'package:lettutor/models/from_api/course_info.dart';
-import 'package:lettutor/models/section_course.dart';
 import 'package:lettutor/pages/course_page/widgets/course_tile.dart';
 
 class SectionCourseTile extends StatelessWidget {

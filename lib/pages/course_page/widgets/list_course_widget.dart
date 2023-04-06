@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
-import 'package:lettutor/data/section_course_list.dart';
 import 'package:lettutor/models/from_api/course_info.dart';
 import 'package:lettutor/pages/course_page/widgets/section_course_tile.dart';
 

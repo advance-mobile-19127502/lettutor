@@ -57,7 +57,7 @@ class _BuildListScheduleHistoryState extends State<BuildListScheduleHistory> {
                     )
                   ],
                 )),
-            const Text("No data"),
+            const Center(child: Text("No data")),
           ]);
         }
         return Column(

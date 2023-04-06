@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/bloc/booking_bloc/booking_bloc.dart';
+import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
 import 'package:lettutor/bloc/schedule_bloc/schedule_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/from_api/schedule.dart';
@@ -91,6 +92,8 @@ class _TimeTableWidgetState extends State<TimeTableWidget> {
                         if (state is BookingSuccess) {
                           calendarAppointmentDetails
                               .appointments.first.subject = "Booked";
+                          BlocProvider.of<BookingHistoryBloc>(context)
+                              .add(const FetchLastestBooking(1));
                         }
                       },
                       builder: (context, state) {

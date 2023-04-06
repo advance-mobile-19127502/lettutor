@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
-import 'package:lettutor/constants/colors_const.dart';
-import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/data/history_list.dart';
-import 'package:lettutor/models/booking_history.dart';
 import 'package:lettutor/pages/history_page/widgets/build_list_history.dart';
 import 'package:lettutor/pages/history_page/widgets/header_history_row.dart';
-import 'package:lettutor/pages/history_page/widgets/history_tile.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);

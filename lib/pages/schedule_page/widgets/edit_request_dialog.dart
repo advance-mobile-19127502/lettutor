@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/booking_schedule.dart';
 
 class EditRequestDialog extends StatelessWidget {
   EditRequestDialog({Key? key, required this.studentRequest}) : super(key: key);
