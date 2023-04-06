@@ -12,6 +12,7 @@ import 'package:lettutor/constants/style_const.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/models/from_api/booking_history.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CurrentCourse extends StatefulWidget {
   const CurrentCourse({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
             children: [
               Text(
                   bookingHistoryBloc.listBookingHistory.isNotEmpty
-                      ? "Upcoming lesson"
+                      ? AppLocalizations.of(context)!.upcomingLesson
                       : AppLocalizations.of(context)!.noUpcomingLesson,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
@@ -106,14 +107,15 @@ class _CurrentCourseState extends State<CurrentCourse> {
                                   ?.startPeriodTimestamp,
                               widgetBuilder: (_, remainingTime) {
                                 if (remainingTime == null) {
-                                  return Text("(Class has started)",
+                                  return Text(
+                                      "(${AppLocalizations.of(context)!.classStarted})",
                                       style: GoogleFonts.roboto(
                                           textStyle: FontConst.regular.copyWith(
                                               fontSize: 16,
                                               color: Colors.yellowAccent)));
                                 } else {
                                   return Text(
-                                      "(starts in ${remainingTime.hours ?? 0}:${remainingTime.min ?? 0}:${remainingTime.sec ?? 0})",
+                                      "(${AppLocalizations.of(context)!.startIn} ${remainingTime.hours ?? 0}:${remainingTime.min ?? 0}:${remainingTime.sec ?? 0})",
                                       style: GoogleFonts.roboto(
                                           textStyle: FontConst.regular.copyWith(
                                               fontSize: 16,
@@ -143,7 +145,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
                 builder: (context, state) {
                   if (state is TotalTimeSuccess) {
                     return Text(
-                      "Total lesson time is ${state.totalLessonLearned}",
+                      "${AppLocalizations.of(context)!.totalTime} ${state.totalLessonLearned}",
                       style: GoogleFonts.roboto(
                           textStyle: FontConst.regular
                               .copyWith(fontSize: 16, color: Colors.white)),
@@ -151,7 +153,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
                     );
                   }
                   return Text(
-                    "Total lesson time is 0 hour",
+                    "${AppLocalizations.of(context)!.totalTime} 0 hour",
                     style: GoogleFonts.roboto(
                         textStyle: FontConst.regular
                             .copyWith(fontSize: 16, color: Colors.white)),

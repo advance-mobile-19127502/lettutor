@@ -1,7 +1,10 @@
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
+import 'package:lettutor/bloc/chat_bloc/chat_bloc.dart';
 import 'package:lettutor/bloc/course_detail_bloc/course_detail_bloc.dart';
 import 'package:lettutor/bloc/forgot_password_bloc/forgot_password_bloc.dart';
 import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
@@ -10,6 +13,7 @@ import 'package:lettutor/bloc/tutor_detail_bloc/tutor_detail_bloc.dart';
 import 'package:lettutor/bloc/user_bloc/user_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
 import 'package:lettutor/pages/become_tutor_page/become_tutor_page.dart';
+import 'package:lettutor/pages/chat_page/chat_page.dart';
 import 'package:lettutor/pages/course_detail_page/course_detail_page.dart';
 import 'package:lettutor/pages/course_detail_page/pdf_view_page.dart';
 import 'package:lettutor/pages/edit_your_profile_page/edit_your_profile_page.dart';
@@ -18,6 +22,7 @@ import 'package:lettutor/pages/history_page/history_page.dart';
 import 'package:lettutor/pages/login_page/login_page.dart';
 import 'package:lettutor/pages/main_page/main_page.dart';
 import 'package:lettutor/pages/register_page/register_page.dart';
+import 'package:lettutor/pages/settings_page/settings_page.dart';
 import 'package:lettutor/pages/splash_screen/splash_screen.dart';
 import 'package:lettutor/pages/tutor_detail_page/tutor_detail_page.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
@@ -25,9 +30,10 @@ import 'package:lettutor/repositories/booking_repository.dart';
 import 'package:lettutor/repositories/course_repository.dart';
 import 'package:lettutor/repositories/tutor_repository.dart';
 import 'package:lettutor/repositories/user_repository.dart';
+import 'package:lettutor/utils/hive_helper.dart';
 
 class RouteGenerator {
-  static const String splashRoute = '/splash';
+  static const String splashRoute = '/';
   static const String loginRoute = '/login';
   static const String forgotPassRoute = '/forgot-pass';
   static const String registerRoute = '/register';
@@ -38,6 +44,8 @@ class RouteGenerator {
   static const String becomeTutorRoute = '/become-a-tutor';
   static const String historyRoute = '/history';
   static const String pdfViewerRoute = '/pdf-view';
+  static const String settingRoute = '/settings';
+  static const String chatGPTRoute = "/chat-gpt";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -134,6 +142,20 @@ class RouteGenerator {
               builder: (context) =>
                   PdfViewPage(pdfUrl: pdfUrl, pdfName: pdfName));
         }
+      case settingRoute:
+        {
+          return MaterialPageRoute(builder: (context) => const SettingsPage());
+        }
+      case chatGPTRoute:
+        {
+          final routeArgs = settings.arguments as Map;
+
+          final UserBloc userBloc = routeArgs["userBloc"] as UserBloc;
+          return MaterialPageRoute(
+              builder: (context) =>
+                  BlocProvider.value(value: userBloc, child: const ChatPage()));
+        }
+
       default:
         return _errorRoute();
     }

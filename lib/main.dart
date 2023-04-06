@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lettutor/bloc/auth_bloc/auth_bloc.dart';
 
 import 'package:lettutor/bloc/register_bloc/register_bloc.dart';
 import 'package:lettutor/bloc/settings_bloc/settings_bloc.dart';
 import 'package:lettutor/constants/url_const.dart';
-import 'package:lettutor/providers/locale_provider.dart';
+import 'package:lettutor/models/chat/chat.dart';
 import 'package:lettutor/repositories/auth_repository.dart';
 import 'package:lettutor/route_generator.dart';
 import 'package:lettutor/utils/hive_helper.dart';
@@ -17,7 +18,9 @@ void main() async {
   timeago.setLocaleMessages("vi", timeago.ViMessages());
   timeago.setLocaleMessages("en", timeago.EnMessages());
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
   await Hive.initFlutter();
+  Hive.registerAdapter<Chat>(ChatAdapter());
   await Hive.openBox("lettutor-19127502");
 
   runApp(const MyApp());
