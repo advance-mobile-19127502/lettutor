@@ -111,6 +111,7 @@ class _BecomeTutorPageState extends State<BecomeTutorPage> {
               }
               if (becomeTutorState is BecomeTutorSuccess) {
                 Navigator.pop(context);
+                userBloc.add(FetchUserInfo());
                 _currentStep++;
                 _pageController.jumpToPage(_currentStep);
               }

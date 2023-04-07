@@ -59,9 +59,6 @@ class _TextFormWidgetState extends State<TextFormWidget> {
         child: TextField(
           focusNode: tutorNameFocusNode,
           controller: textEditingController,
-          onSubmitted: (value) {
-            _onSummitedTutorName();
-          },
           decoration: InputDecoration(
               isDense: true,
               border: OutlineInputBorder(
