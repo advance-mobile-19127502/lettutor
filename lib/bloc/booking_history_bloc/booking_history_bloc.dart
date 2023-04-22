@@ -75,5 +75,18 @@ class BookingHistoryBloc
         }
       }
     });
+
+    on<CancelBookedClassEvent>((event, emit) async {
+      emit(CancelBookingHistoryLoading(event.scheduleID));
+      try {
+        await repository.cancelBookedClass(event.scheduleID);
+        listBookingHistory
+            .removeWhere((element) => element.id == event.scheduleID);
+
+        emit(BookingHistorySuccess(listBookingHistory));
+      } catch (error) {
+        emit(CancelBookingHistoryError(error.toString()));
+      }
+    });
   }
 }

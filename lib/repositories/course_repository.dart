@@ -4,10 +4,22 @@ import 'package:lettutor/repositories/base_repository.dart';
 class CourseRepository extends BaseRepository {
   CourseRepository(super.baseUrl);
 
-  Future<List<CourseInfo>> getListCourse() async {
+  Future<List<CourseInfo>> getListCourse(
+      String nameCourse, Map<String, int> selectedLevel) async {
     try {
-      final response =
-          await apiProvider.get(url: "", queryParams: {"page": 1, "size": 100});
+      Map<String, List<int>> tempSelectedLevel = {};
+      if (selectedLevel.isNotEmpty) {
+        tempSelectedLevel = {"level[]": []};
+        selectedLevel.forEach((key, value) {
+          tempSelectedLevel["level[]"]?.add(value);
+        });
+      }
+      final response = await apiProvider.get(url: "", queryParams: {
+        "page": 1,
+        "size": 100,
+        "q": nameCourse,
+        ...tempSelectedLevel
+      });
       Iterable l = response["data"]["rows"];
       return List<CourseInfo>.from(l.map((e) => CourseInfo.fromJson(e)))
           .toList();

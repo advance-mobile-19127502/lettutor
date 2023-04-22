@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/common_widget/drop_select_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/data/level_options.dart';
+import 'package:lettutor/pages/course_page/widgets/select_level_course_widget.dart';
 
 class FiltersWidget extends StatelessWidget {
   FiltersWidget({Key? key}) : super(key: key);
@@ -30,10 +31,7 @@ class FiltersWidget extends StatelessWidget {
       spacing: 5,
       runSpacing: 5,
       children: [
-        DropDownSelectMenuItem(
-            optionsList: levelOption,
-            selectedList: selectedLevel,
-            hintTitle: AppLocalizations.of(context)!.selectLevel),
+        const SelectLevelCourseWidget(),
         DropDownSelectMenuItem(
             optionsList: categoryOption,
             selectedList: selectedCategory,

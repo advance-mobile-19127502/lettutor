@@ -9,3 +9,13 @@ class FetchListCourse extends ListCourseEvent {
   // TODO: implement props
   List<Object?> get props => [];
 }
+
+class OnFilterListCourseEvent extends ListCourseEvent {
+  final String? nameCourse;
+  final Map<String, int>? selectedLevel;
+
+  const OnFilterListCourseEvent(this.nameCourse, this.selectedLevel);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

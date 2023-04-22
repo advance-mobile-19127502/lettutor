@@ -1,47 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lettutor/bloc/list_tutor_bloc/list_tutor_bloc.dart';
-import 'package:lettutor/common_widget/multi_select.dart';
-import 'package:lettutor/models/from_api/filters.dart';
+import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
+import 'package:lettutor/common_widget/multi_select_map_key_value.dart';
+import 'package:lettutor/constants/style_const.dart';
+import 'package:lettutor/data/level_options.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SelectNationalityWidget extends StatefulWidget {
-  const SelectNationalityWidget({Key? key}) : super(key: key);
+class SelectLevelCourseWidget extends StatefulWidget {
+  const SelectLevelCourseWidget({Key? key}) : super(key: key);
 
   @override
-  State<SelectNationalityWidget> createState() =>
-      _SelectNationalityWidgetState();
+  State<SelectLevelCourseWidget> createState() =>
+      _SelectLevelCourseWidgetState();
 }
 
-class _SelectNationalityWidgetState extends State<SelectNationalityWidget> {
-  late ListTutorBloc listTutorBloc;
-  final List<String> nationalityOption = [
-    "Foreign Tutor",
-    "Vietnamese Tutor",
-    "Native Tutor"
-  ];
-
-  List<String> selectedNationality = [];
+class _SelectLevelCourseWidgetState extends State<SelectLevelCourseWidget> {
   bool isForcus = false;
+  Map<String, int> selectedLevel = {};
+  late ListCourseBloc listCourseBloc;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    listTutorBloc = BlocProvider.of<ListTutorBloc>(context);
+    listCourseBloc = BlocProvider.of<ListCourseBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ListTutorBloc, ListTutorState>(
-      listener: (context, state) {
-        if (state is ListTutorResetFilter) {
-          selectedNationality = [];
-        }
-      },
+    return BlocBuilder<ListCourseBloc, ListCourseState>(
+      bloc: listCourseBloc,
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            _showMultiSelect();
+            _showMultiSelectKeyValue();
           },
           child: Container(
             padding: const EdgeInsets.only(left: 12),
@@ -58,22 +49,23 @@ class _SelectNationalityWidgetState extends State<SelectNationalityWidget> {
                   child: Stack(
                     children: [
                       Text(
-                        selectedNationality.isEmpty
-                            ? "Select your nationality"
+                        selectedLevel.isEmpty
+                            ? AppLocalizations.of(context)!.selectLevel
                             : "",
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       Wrap(
                         spacing: 4,
-                        children: selectedNationality
+                        children: selectedLevel.entries
                             .map((e) => Chip(
-                                  label: Text(e,
+                                  label: Text(e.key,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(fontSize: 14)),
                                   onDeleted: () {
-                                    selectedNationality.remove(e);
-                                    checkNationality();
+                                    selectedLevel.remove(e.key);
+                                    listCourseBloc.add(OnFilterListCourseEvent(
+                                        null, selectedLevel));
                                   },
                                 ))
                             .toList(),
@@ -99,43 +91,26 @@ class _SelectNationalityWidgetState extends State<SelectNationalityWidget> {
     );
   }
 
-  void _showMultiSelect() async {
+  void _showMultiSelectKeyValue() async {
     setState(() {
       isForcus = true;
     });
-    List<String>? tempSelected = await showDialog(
+    Map<String, dynamic>? tempSelected = await showDialog(
         context: context,
         builder: (context) {
-          return MultiSelect(
-              items: nationalityOption,
+          return MultiSelectMapKeyValue(
+              items: levelOptionKeyValue,
               title: "Select tutor nationality",
-              selectedItems: selectedNationality);
+              selectedItems: selectedLevel);
         });
     if (tempSelected != null) {
-      selectedNationality = tempSelected;
+      selectedLevel = tempSelected.cast();
       isForcus = false;
-      checkNationality();
+      listCourseBloc.add(OnFilterListCourseEvent(null, selectedLevel));
     } else {
       setState(() {
         isForcus = false;
       });
-    }
-  }
-
-  void checkNationality() {
-    if (selectedNationality.contains("Foreign Tutor")) {
-      listTutorBloc.add(OnFilterListTutorEvent(listTutorBloc.tutorName,
-          Nationality(isNative: false, isVietNamese: false), null));
-    } else {
-      listTutorBloc.add(OnFilterListTutorEvent(
-          listTutorBloc.tutorName,
-          Nationality(
-            isNative:
-                selectedNationality.contains("Native Tutor") ? true : null,
-            isVietNamese:
-                selectedNationality.contains("Vietnamese Tutor") ? true : null,
-          ),
-          null));
     }
   }
 }

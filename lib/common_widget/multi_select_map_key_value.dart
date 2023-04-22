@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 
-class MultiSelect extends StatefulWidget {
-  const MultiSelect(
+class MultiSelectMapKeyValue extends StatefulWidget {
+  const MultiSelectMapKeyValue(
       {Key? key,
       required this.items,
       required this.title,
       required this.selectedItems})
       : super(key: key);
-  final List<String> items;
+  final Map<String, dynamic> items;
   final String title;
-  final List<String> selectedItems;
+  final Map<String, dynamic> selectedItems;
 
   @override
-  State<MultiSelect> createState() => _MultiSelectState();
+  State<MultiSelectMapKeyValue> createState() => _MultiSelectMapKeyValueState();
 }
 
-class _MultiSelectState extends State<MultiSelect> {
-  List<String> tempSelectedItems = [];
-
+class _MultiSelectMapKeyValueState extends State<MultiSelectMapKeyValue> {
+  Map<String, dynamic> tempSelectedItem = {};
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    tempSelectedItems.addAll(widget.selectedItems);
+    tempSelectedItem.addAll(widget.selectedItems);
   }
 
   @override
@@ -31,10 +30,10 @@ class _MultiSelectState extends State<MultiSelect> {
       title: Text(widget.title),
       content: SingleChildScrollView(
         child: ListBody(
-          children: widget.items
+          children: widget.items.entries
               .map((value) => CheckboxListTile(
-                  value: tempSelectedItems.contains(value),
-                  title: Text(value),
+                  value: tempSelectedItem.containsKey(value.key),
+                  title: Text(value.key),
                   controlAffinity: ListTileControlAffinity.leading,
                   onChanged: (isChecked) => _itemChange(value, isChecked!)))
               .toList(),
@@ -47,12 +46,12 @@ class _MultiSelectState extends State<MultiSelect> {
     );
   }
 
-  void _itemChange(String itemValue, bool isSelected) {
+  void _itemChange(MapEntry<String, dynamic> itemValue, bool isSelected) {
     setState(() {
       if (isSelected) {
-        tempSelectedItems.add(itemValue);
+        tempSelectedItem[itemValue.key] = itemValue.value;
       } else {
-        tempSelectedItems.remove(itemValue);
+        tempSelectedItem.remove(itemValue.key);
       }
     });
   }
@@ -62,6 +61,6 @@ class _MultiSelectState extends State<MultiSelect> {
   }
 
   void _submit() {
-    Navigator.pop(context, tempSelectedItems);
+    Navigator.pop(context, tempSelectedItem);
   }
 }

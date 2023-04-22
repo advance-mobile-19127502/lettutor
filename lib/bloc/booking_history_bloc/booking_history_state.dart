@@ -27,3 +27,17 @@ class BookingHistoryError extends BookingHistoryState {
 
   const BookingHistoryError(this.message);
 }
+
+class CancelBookingHistoryLoading extends BookingHistoryState {
+  final String scheduleId;
+
+  const CancelBookingHistoryLoading(this.scheduleId);
+}
+
+class CancelBookingHistorySuccess extends BookingHistoryState {}
+
+class CancelBookingHistoryError extends BookingHistoryState {
+  final String message;
+
+  const CancelBookingHistoryError(this.message);
+}

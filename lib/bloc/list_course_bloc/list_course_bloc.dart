@@ -16,6 +16,8 @@ class ListCourseBloc extends Bloc<ListCourseEvent, ListCourseState> {
   CourseRepository courseRepository;
   MainRepository mainRepository;
   List<Categories> listCategory = [];
+  String nameCourse = "";
+  Map<String, int> levelSelected = {};
 
   ListCourseBloc(this.courseRepository, this.mainRepository)
       : super(ListCourseInitial()) {
@@ -25,11 +27,18 @@ class ListCourseBloc extends Bloc<ListCourseEvent, ListCourseState> {
         if (listCategory.isEmpty) {
           listCategory = await mainRepository.getCategories();
         }
-        final courseResponse = await courseRepository.getListCourse();
+        final courseResponse =
+            await courseRepository.getListCourse(nameCourse, levelSelected);
         emit(ListCourseSuccess(courseResponse));
       } catch (error) {
         emit(ListCourseError(error.toString()));
       }
+    });
+
+    on<OnFilterListCourseEvent>((event, emit) {
+      nameCourse = event.nameCourse ?? nameCourse;
+      levelSelected = event.selectedLevel ?? levelSelected;
+      add(FetchListCourse());
     });
   }
 }

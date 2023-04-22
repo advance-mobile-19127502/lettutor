@@ -15,6 +15,16 @@ class BookingRepository extends BaseRepository {
     }
   }
 
+  Future<void> cancelBookedClass(String scheduleId) async {
+    try {
+      var res = await apiProvider.delete(url: "/booking", data: {
+        "scheduleDetailIds": [scheduleId]
+      });
+    } catch (error) {
+      rethrow;
+    }
+  }
+
   Future<List<BookingHistory>> getBookedClass(int page, int perPage) async {
     try {
       var response =
