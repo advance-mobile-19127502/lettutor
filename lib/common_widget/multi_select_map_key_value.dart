@@ -5,11 +5,13 @@ class MultiSelectMapKeyValue extends StatefulWidget {
       {Key? key,
       required this.items,
       required this.title,
-      required this.selectedItems})
+      required this.selectedItems,
+      required this.isMultiSelect})
       : super(key: key);
   final Map<String, dynamic> items;
   final String title;
   final Map<String, dynamic> selectedItems;
+  final bool isMultiSelect;
 
   @override
   State<MultiSelectMapKeyValue> createState() => _MultiSelectMapKeyValueState();
@@ -47,13 +49,22 @@ class _MultiSelectMapKeyValueState extends State<MultiSelectMapKeyValue> {
   }
 
   void _itemChange(MapEntry<String, dynamic> itemValue, bool isSelected) {
-    setState(() {
-      if (isSelected) {
-        tempSelectedItem[itemValue.key] = itemValue.value;
-      } else {
-        tempSelectedItem.remove(itemValue.key);
+    if (widget.isMultiSelect) {
+      setState(() {
+        if (isSelected) {
+          tempSelectedItem[itemValue.key] = itemValue.value;
+        } else {
+          tempSelectedItem.remove(itemValue.key);
+        }
+      });
+    } else {
+      if (!tempSelectedItem.containsKey(itemValue.key)) {
+        setState(() {
+          tempSelectedItem.clear();
+          tempSelectedItem[itemValue.key] = itemValue.value;
+        });
       }
-    });
+    }
   }
 
   void _cancel() {

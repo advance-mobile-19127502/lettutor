@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/common_widget/drop_select_item.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor/data/level_options.dart';
+import 'package:lettutor/pages/course_page/widgets/select_category_course_widget.dart';
 import 'package:lettutor/pages/course_page/widgets/select_level_course_widget.dart';
+import 'package:lettutor/pages/course_page/widgets/select_sort_level_widget.dart';
 
 class FiltersWidget extends StatelessWidget {
   FiltersWidget({Key? key}) : super(key: key);
@@ -29,17 +31,17 @@ class FiltersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 5,
-      runSpacing: 5,
+      runSpacing: 15,
       children: [
-        const SelectLevelCourseWidget(),
-        DropDownSelectMenuItem(
-            optionsList: categoryOption,
-            selectedList: selectedCategory,
-            hintTitle: AppLocalizations.of(context)!.selectCategory),
-        DropDownSelectMenuItem(
-            optionsList: sortOption,
-            selectedList: selectedSort,
-            hintTitle: AppLocalizations.of(context)!.sortLevel),
+        SizedBox(
+            width: MediaQuery.of(context).size.width / 2.25,
+            child: const SelectLevelCourseWidget()),
+        SizedBox(
+            width: MediaQuery.of(context).size.width / 2.25,
+            child: const SelectCategoryCourseWidget()),
+        SizedBox(
+            width: MediaQuery.of(context).size.width / 2.25,
+            child: const SelectSortLevel()),
       ],
     );
   }

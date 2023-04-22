@@ -76,7 +76,10 @@ class _DiscoverySearchRowState extends State<DiscoverySearchRow> {
                                           nameCourseController.text.isNotEmpty;
                                       listCourseBloc.add(
                                           OnFilterListCourseEvent(
-                                              nameCourseController.text, null));
+                                              nameCourseController.text,
+                                              null,
+                                              null,
+                                              null));
                                     })
                                 : const SizedBox(),
                             contentPadding:
@@ -97,7 +100,7 @@ class _DiscoverySearchRowState extends State<DiscoverySearchRow> {
                         iconSize: 16,
                         onPressed: () {
                           listCourseBloc.add(OnFilterListCourseEvent(
-                              nameCourseController.text, null));
+                              nameCourseController.text, null, null, null));
                         },
                         icon: const Icon(Icons.search_outlined),
                       ),

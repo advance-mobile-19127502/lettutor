@@ -34,8 +34,6 @@ class AuthRepository extends BaseRepository {
       AccountInfo tempAccountInfo = AccountInfo.fromJson(response);
       accessToken = tempAccountInfo.tokens?.access?.token;
       refreshToken = tempAccountInfo.tokens?.refresh?.token;
-      print("accesstoken" + accessToken!);
-      print("refreshToken" + refreshToken!);
 
       SecuredLocalStorage _storage = SecuredLocalStorage();
       await _storage.saveString(KEY_CONST.ACCESS_TOKEN_KEY, accessToken!);

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lettutor/bloc/list_course_bloc/list_course_bloc.dart';
-import 'package:lettutor/common_widget/multi_select_map_key_value.dart';
-import 'package:lettutor/data/level_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/common_widget/multi_select_map_key_value.dart';
 
-class SelectLevelCourseWidget extends StatefulWidget {
-  const SelectLevelCourseWidget({Key? key}) : super(key: key);
+class SelectCategoryCourseWidget extends StatefulWidget {
+  const SelectCategoryCourseWidget({Key? key}) : super(key: key);
 
   @override
-  State<SelectLevelCourseWidget> createState() =>
-      _SelectLevelCourseWidgetState();
+  State<SelectCategoryCourseWidget> createState() =>
+      _SelectCategoryCourseWidgetState();
 }
 
-class _SelectLevelCourseWidgetState extends State<SelectLevelCourseWidget> {
+class _SelectCategoryCourseWidgetState
+    extends State<SelectCategoryCourseWidget> {
   bool isForcus = false;
-  Map<String, int> selectedLevel = {};
+  Map<String, String> selectedCategory = {};
   late ListCourseBloc listCourseBloc;
+  Map<String, String> categoryOptions = {};
 
   @override
   void initState() {
@@ -26,13 +27,22 @@ class _SelectLevelCourseWidgetState extends State<SelectLevelCourseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ListCourseBloc, ListCourseState>(
+    return BlocConsumer<ListCourseBloc, ListCourseState>(
       bloc: listCourseBloc,
+      listener: (context, state) {
+        if (state is ListCourseSuccess) {
+          for (var element in listCourseBloc.listCategory) {
+            categoryOptions[element.title!] = element.id!;
+          }
+        }
+      },
       builder: (context, state) {
         return GestureDetector(
-          onTap: () {
-            _showMultiSelectKeyValue();
-          },
+          onTap: state is ListCourseLoading
+              ? null
+              : () {
+                  _showMultiSelectKeyValue();
+                },
           child: Container(
             padding: const EdgeInsets.only(left: 12),
             decoration: BoxDecoration(
@@ -48,23 +58,23 @@ class _SelectLevelCourseWidgetState extends State<SelectLevelCourseWidget> {
                   child: Stack(
                     children: [
                       Text(
-                        selectedLevel.isEmpty
-                            ? AppLocalizations.of(context)!.selectLevel
+                        selectedCategory.isEmpty
+                            ? AppLocalizations.of(context)!.selectCategory
                             : "",
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       Wrap(
                         spacing: 4,
-                        children: selectedLevel.entries
+                        children: selectedCategory.entries
                             .map((e) => Chip(
                                   label: Text(e.key,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(fontSize: 14)),
                                   onDeleted: () {
-                                    selectedLevel.remove(e.key);
+                                    selectedCategory.remove(e.key);
                                     listCourseBloc.add(OnFilterListCourseEvent(
-                                        null, selectedLevel, null, null));
+                                        null, null, selectedCategory, null));
                                   },
                                 ))
                             .toList(),
@@ -98,17 +108,17 @@ class _SelectLevelCourseWidgetState extends State<SelectLevelCourseWidget> {
         context: context,
         builder: (context) {
           return MultiSelectMapKeyValue(
-            items: levelOptionKeyValue,
+            items: categoryOptions,
             title: "Select tutor nationality",
-            selectedItems: selectedLevel,
+            selectedItems: selectedCategory,
             isMultiSelect: true,
           );
         });
     if (tempSelected != null) {
-      selectedLevel = tempSelected.cast();
+      selectedCategory = tempSelected.cast();
       isForcus = false;
       listCourseBloc
-          .add(OnFilterListCourseEvent(null, selectedLevel, null, null));
+          .add(OnFilterListCourseEvent(null, null, selectedCategory, null));
     } else {
       setState(() {
         isForcus = false;

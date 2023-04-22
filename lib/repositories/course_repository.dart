@@ -5,20 +5,43 @@ class CourseRepository extends BaseRepository {
   CourseRepository(super.baseUrl);
 
   Future<List<CourseInfo>> getListCourse(
-      String nameCourse, Map<String, int> selectedLevel) async {
+      String nameCourse,
+      Map<String, int> levelSelected,
+      Map<String, String> categorySelected,
+      Map<String, String> sortLevelSelected) async {
     try {
-      Map<String, List<int>> tempSelectedLevel = {};
-      if (selectedLevel.isNotEmpty) {
-        tempSelectedLevel = {"level[]": []};
-        selectedLevel.forEach((key, value) {
-          tempSelectedLevel["level[]"]?.add(value);
+      Map<String, List<int>> tempLevelSelected = {};
+      Map<String, List<String>> tempCategorySelected = {};
+      Map<String, String> tempLevel = {};
+      Map<String, List<String>> tempsortLevelSelected = {};
+
+      if (levelSelected.isNotEmpty) {
+        tempLevelSelected = {"level[]": []};
+        levelSelected.forEach((key, value) {
+          tempLevelSelected["level[]"]?.add(value);
+        });
+      }
+      if (categorySelected.isNotEmpty) {
+        tempCategorySelected = {"categoryId[]": []};
+        categorySelected.forEach((key, value) {
+          tempCategorySelected["categoryId[]"]?.add(value);
+        });
+      }
+      if (sortLevelSelected.isNotEmpty) {
+        tempLevel = {"order[]": "level"};
+        tempsortLevelSelected = {"orderBy[]": []};
+        sortLevelSelected.forEach((key, value) {
+          tempsortLevelSelected["orderBy[]"]?.add(value);
         });
       }
       final response = await apiProvider.get(url: "", queryParams: {
         "page": 1,
         "size": 100,
         "q": nameCourse,
-        ...tempSelectedLevel
+        ...tempLevelSelected,
+        ...tempCategorySelected,
+        ...tempLevel,
+        ...tempsortLevelSelected
       });
       Iterable l = response["data"]["rows"];
       return List<CourseInfo>.from(l.map((e) => CourseInfo.fromJson(e)))

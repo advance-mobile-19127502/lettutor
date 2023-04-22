@@ -66,7 +66,6 @@ class _BuildListScheduleHistoryState extends State<BuildListScheduleHistory> {
             const Center(child: Text("No data")),
           ]);
         }
-        print("123");
         return Column(
           children: [
             ...bookingHistoryBloc.listBookingHistory
