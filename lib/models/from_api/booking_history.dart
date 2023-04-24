@@ -20,7 +20,7 @@ class BookingHistory {
   String? calendarId;
   bool? isDeleted;
   ScheduleDetailInfo? scheduleDetailInfo;
-  String? classReview;
+  // String? classReview;
   bool? showRecordUrl;
 
   BookingHistory(
@@ -43,7 +43,7 @@ class BookingHistory {
       this.calendarId,
       this.isDeleted,
       this.scheduleDetailInfo,
-      this.classReview,
+      // this.classReview,
       this.showRecordUrl});
 
   BookingHistory.fromJson(Map<String, dynamic> json) {
@@ -68,7 +68,7 @@ class BookingHistory {
     scheduleDetailInfo = json['scheduleDetailInfo'] != null
         ? ScheduleDetailInfo.fromJson(json['scheduleDetailInfo'])
         : null;
-    classReview = json['classReview'];
+    // classReview = json['classReview'];
     showRecordUrl = json['showRecordUrl'];
   }
 
@@ -95,7 +95,7 @@ class BookingHistory {
     if (scheduleDetailInfo != null) {
       data['scheduleDetailInfo'] = scheduleDetailInfo!.toJson();
     }
-    data['classReview'] = classReview;
+    // data['classReview'] = classReview;
     data['showRecordUrl'] = showRecordUrl;
     return data;
   }

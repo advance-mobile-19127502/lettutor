@@ -95,6 +95,8 @@ dependencies:
 
   flutter_spinkit: ^5.1.0
 
+  flutter_launcher_icons: ^0.13.1
+
 
 
 dev_dependencies:
@@ -112,6 +114,13 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon_lettutor.jpg"
+  adaptive_icon_foreground: "assets/icon/icon_lettutor.jpg"
+  adaptive_icon_background: "#FFFFFF"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 # The following section is specific to Flutter packages.
 flutter:

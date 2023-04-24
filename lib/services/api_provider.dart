@@ -143,10 +143,10 @@ class ApiProvider {
           data: {'refreshToken': refreshToken});
       if (response.statusCode == 200) {
         //get new access token
-        accessToken = response.data["tokens"]["access"]["access"];
+        accessToken = response.data["tokens"]["access"]["token"];
         await _storage.saveString(KEY_CONST.ACCESS_TOKEN_KEY, accessToken!);
         await _storage.saveString(KEY_CONST.REFRESH_TOKEN_KEY,
-            response.data["tokens"]["refresh"]["access"]);
+            response.data["tokens"]["refresh"]["token"]);
         return true;
       } else {
         //invalid refresh token
