@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor/bloc/booking_bloc/booking_bloc.dart';
+import 'package:lettutor/bloc/booking_history_bloc/booking_history_bloc.dart';
+import 'package:lettutor/bloc/schedule_bloc/schedule_bloc.dart';
+import 'package:lettutor/constants/url_const.dart';
+import 'package:lettutor/models/from_api/schedule.dart';
 import 'package:lettutor/pages/tutor_detail_page/widgets/booking_dialog.dart';
+import 'package:lettutor/repositories/booking_repository.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class TimeTableWidget extends StatefulWidget {
-  const TimeTableWidget({Key? key}) : super(key: key);
+  const TimeTableWidget({Key? key, required this.tutorId}) : super(key: key);
+  final String tutorId;
 
   @override
   State<TimeTableWidget> createState() => _TimeTableWidgetState();
@@ -12,118 +21,188 @@ class TimeTableWidget extends StatefulWidget {
 
 class _TimeTableWidgetState extends State<TimeTableWidget> {
   final DateTime _curentDate = DateTime.now();
-  final _dayMonthFormat = DateFormat("dd/MM");
-  final _dateFormat = DateFormat("EE");
+  late ScheduleBloc scheduleBloc;
   late DateTime _startDay, _endDay;
-
-  final List<DataColumn> listDataColumn = [];
-  final List<DataRow> listDataRow = [];
-
-  List<DateTime> listDayTimeTable = [];
 
   @override
   void initState() {
-    _startDay = _curentDate;
-    _endDay = _startDay.add(const Duration(days: 6));
-
+    // TODO: implement initState
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() async {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-
-    _getDateColumn(_curentDate);
-    _getDataRow();
-  }
-
-  _getDateColumn(DateTime startingDate) {
-    listDataColumn.clear();
-    listDayTimeTable.clear();
-    listDataColumn
-        .add(DataColumn(label: Expanded(child: Center(child: Text("Time")))));
-    for (int i = 0; i < 7; i++) {
-      final tempDate = startingDate.add(Duration(days: i));
-      listDayTimeTable.add(tempDate);
-
-      listDataColumn.add(DataColumn(
-          label: Expanded(
-        child: Center(
-          child: Text(
-            "${_dayMonthFormat.format(tempDate)}\n"
-            "${_dateFormat.format(tempDate).toUpperCase()}",
-            textAlign: TextAlign.center,
-          ),
-        ),
-      )));
-    }
-  }
-
-  _getDataRow() {
-    listDataRow.add(DataRow(cells: [DataCell(Text("7:55 - 9:55"))]));
-    for (int i = 0; i < 7; i++) {
-      listDataRow[0].cells.add(DataCell(i % 2 == 0
-          ? ElevatedButton(
-              onPressed: () {
-                showDialog(
-                    context: context, builder: (context) => BookingDialog());
-              },
-              child: Text(AppLocalizations.of(context)!.book))
-          : const SizedBox()));
-    }
+    scheduleBloc = BlocProvider.of<ScheduleBloc>(context);
+    _startDay =
+        DateTime(_curentDate.year, _curentDate.month, _curentDate.day, 0, 0, 0);
+    _endDay = _startDay
+        .add(const Duration(days: 6, hours: 23, minutes: 59, seconds: 59));
+    scheduleBloc.add(FetchScheduleEvent(widget.tutorId,
+        _startDay.millisecondsSinceEpoch, _endDay.millisecondsSinceEpoch));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return BlocBuilder<ScheduleBloc, ScheduleState>(
+      bloc: scheduleBloc,
+      builder: (context, state) {
+        return Column(
           children: [
-            IconButton(
-                onPressed: _startDay.isAtSameMomentAs(_curentDate) ||
-                        _startDay.isBefore(_curentDate)
-                    ? null
-                    : () {
-                        _decreaseStartDate();
-                        _getDateColumn(_startDay);
+            Row(
+              children: [
+                IconButton(
+                    onPressed: _startDay.isAtSameMomentAs(_curentDate) ||
+                            _startDay.isBefore(_curentDate)
+                        ? null
+                        : () {
+                            _decreaseStartDate();
+                          },
+                    icon: const Icon(Icons.arrow_back_ios)),
+                IconButton(
+                    onPressed: () {
+                      _increaseStartDate();
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios)),
+                Text(
+                    "${DateFormat("dd/MM").format(_startDay)} - ${DateFormat("dd/MM").format(_endDay)}, "
+                    "${_curentDate.year}")
+              ],
+            ),
+            if (state is ScheduleLoading)
+              const Center(
+                child: CircularProgressIndicator(),
+              )
+            else if (state is ScheduleError)
+              Text(
+                state.message,
+                style: const TextStyle(color: Colors.red),
+              )
+            else
+              SfCalendar(
+                minDate: _startDay,
+                maxDate: _endDay,
+                onTap: null,
+                dataSource:
+                    _getCalendarDataSource(scheduleBloc.scheduleDetailList),
+                backgroundColor: Colors.white,
+                cellBorderColor: Colors.black,
+                appointmentBuilder: (context, calendarAppointmentDetails) {
+                  BookingBloc bookingBloc =
+                      BookingBloc(BookingRepository(UrlConst.baseUrl));
+                  return BlocProvider(
+                    create: (context) => bookingBloc,
+                    child: BlocConsumer<BookingBloc, BookingState>(
+                      listener: (context, state) {
+                        if (state is BookingSuccess) {
+                          calendarAppointmentDetails
+                              .appointments.first.subject = "Booked";
+                          BlocProvider.of<BookingHistoryBloc>(context)
+                              .add(const FetchLastestBooking(1));
+                        }
                       },
-                icon: Icon(Icons.arrow_back_ios)),
-            IconButton(
-                onPressed: () {
-                  _increaseStartDate();
-                  _getDateColumn(_startDay);
+                      builder: (context, state) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            state is BookingSuccess
+                                ? const Text(
+                                    "Booked",
+                                    style: TextStyle(color: Colors.green),
+                                  )
+                                : calendarAppointmentDetails
+                                            .appointments.first.subject ==
+                                        "Booked"
+                                    ? const Text(
+                                        "Booked",
+                                        style: TextStyle(color: Colors.green),
+                                      )
+                                    : SizedBox(
+                                        width: calendarAppointmentDetails
+                                                .bounds.width /
+                                            3,
+                                        child: ElevatedButton(
+                                            onPressed:
+                                                calendarAppointmentDetails
+                                                            .appointments
+                                                            .first
+                                                            .subject ==
+                                                        "Unable to book"
+                                                    ? null
+                                                    : () async {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (context) =>
+                                                                    BlocProvider
+                                                                        .value(
+                                                                      value:
+                                                                          bookingBloc,
+                                                                      child:
+                                                                          BookingDialog(
+                                                                        appointment: calendarAppointmentDetails
+                                                                            .appointments
+                                                                            .first,
+                                                                      ),
+                                                                    ));
+                                                      },
+                                            style: ElevatedButton.styleFrom(
+                                                shape: const StadiumBorder()),
+                                            child: const Text("Book")))
+                          ],
+                        );
+                      },
+                    ),
+                  );
                 },
-                icon: Icon(Icons.arrow_forward_ios)),
-            Text(
-                "${_dayMonthFormat.format(_startDay)} - ${_dayMonthFormat.format(_endDay)}, "
-                "${_curentDate.year}")
+                timeSlotViewSettings: const TimeSlotViewSettings(
+                    timeIntervalHeight: 100,
+                    timeInterval: Duration(minutes: 30),
+                    timeFormat: "HH:mm"),
+              )
           ],
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-              border: TableBorder.all(
-                width: 0.2,
-              ),
-              columns: listDataColumn,
-              rows: listDataRow),
-        ),
-      ],
+        );
+      },
     );
   }
 
   void _increaseStartDate() {
-    setState(() {
-      _startDay = _startDay.add(const Duration(days: 7));
-      _endDay = _startDay.add(const Duration(days: 6));
-    });
+    _startDay = _startDay.add(const Duration(days: 7));
+    _endDay = _startDay
+        .add(const Duration(days: 6, hours: 23, minutes: 59, seconds: 59));
+    scheduleBloc.add(FetchScheduleEvent(widget.tutorId,
+        _startDay.millisecondsSinceEpoch, _endDay.millisecondsSinceEpoch));
   }
 
   void _decreaseStartDate() {
-    setState(() {
-      _startDay = _startDay.subtract(const Duration(days: 7));
-      _endDay = _startDay.subtract(const Duration(days: 6));
-    });
+    _startDay = _startDay.subtract(const Duration(days: 7));
+    _endDay = _endDay.subtract(const Duration(days: 7, seconds: 1));
+    scheduleBloc.add(FetchScheduleEvent(widget.tutorId,
+        _startDay.millisecondsSinceEpoch, _endDay.millisecondsSinceEpoch));
+  }
+
+  MeetingDataSource _getCalendarDataSource(
+      List<ScheduleDetails> scheduleDetailList) {
+    List<Appointment> appointments = <Appointment>[];
+    for (ScheduleDetails i in scheduleDetailList) {
+      String temp = "";
+      if (i.isBooked!) {
+        temp = "Booked";
+      } else if (DateTime.now().millisecondsSinceEpoch >=
+          i.startPeriodTimestamp!) {
+        temp = "Unable to book";
+      } else {
+        temp = "Book";
+      }
+      appointments.add(Appointment(
+          startTime:
+              DateTime.fromMillisecondsSinceEpoch(i.startPeriodTimestamp!),
+          endTime: DateTime.fromMillisecondsSinceEpoch(i.endPeriodTimestamp!),
+          id: i.id,
+          subject: temp));
+    }
+    return MeetingDataSource(appointments);
+  }
+}
+
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }

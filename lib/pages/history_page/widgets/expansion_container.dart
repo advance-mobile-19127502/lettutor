@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
-import 'package:lettutor/models/booking_history.dart';
-import 'package:provider/provider.dart';
 
 class ExpansionContainer extends StatefulWidget {
-  const ExpansionContainer({Key? key, required this.isReview})
+  const ExpansionContainer(
+      {Key? key, required this.isReview, required this.content})
       : super(key: key);
   final bool isReview;
+  final String? content;
 
   @override
   State<ExpansionContainer> createState() => _ExpansionContainerState();
 }
 
 class _ExpansionContainerState extends State<ExpansionContainer> {
-  late BookingHostory history;
-
   TextStyle textStyle =
       GoogleFonts.roboto(textStyle: FontConst.regular.copyWith(fontSize: 14));
 
@@ -24,12 +22,11 @@ class _ExpansionContainerState extends State<ExpansionContainer> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    history = Provider.of<BookingHostory>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isReview) {
+    if (!widget.isReview) {
       return Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(
@@ -38,10 +35,10 @@ class _ExpansionContainerState extends State<ExpansionContainer> {
             color: Colors.white,
             border: Border(
                 bottom: BorderSide(color: Colors.grey.withOpacity(0.5)))),
-        child: history.request == null
+        child: widget.content == null
             ? Container(
                 padding: const EdgeInsets.symmetric(
-                    vertical: StyleConst.kDefaultPadding  / 1.25),
+                    vertical: StyleConst.kDefaultPadding / 1.25),
                 child: Text(
                   "No request for lesson",
                   style: textStyle,
@@ -59,9 +56,13 @@ class _ExpansionContainerState extends State<ExpansionContainer> {
                     ),
                     expandedAlignment: Alignment.centerLeft,
                     children: [
-                      Text(
-                        history.request!,
-                        style: textStyle,
+                      Padding(
+                        padding: const EdgeInsets.all(
+                            StyleConst.kDefaultPadding / 2),
+                        child: Text(
+                          widget.content ?? "",
+                          style: textStyle,
+                        ),
                       )
                     ],
                   ),
@@ -77,7 +78,7 @@ class _ExpansionContainerState extends State<ExpansionContainer> {
           color: Colors.white,
           border:
               Border(bottom: BorderSide(color: Colors.grey.withOpacity(0.5)))),
-      child: history.review == null
+      child: widget.content == null
           ? Container(
               padding: const EdgeInsets.symmetric(
                   vertical: StyleConst.kDefaultPadding / 1.25),
@@ -96,9 +97,13 @@ class _ExpansionContainerState extends State<ExpansionContainer> {
                   title: Text("Review from tutor", style: textStyle),
                   expandedAlignment: Alignment.centerLeft,
                   children: [
-                    Text(
-                      history.review!,
-                      style: textStyle,
+                    Padding(
+                      padding:
+                          const EdgeInsets.all(StyleConst.kDefaultPadding / 2),
+                      child: Text(
+                        widget.content ?? "",
+                        style: textStyle,
+                      ),
                     )
                   ],
                 ),

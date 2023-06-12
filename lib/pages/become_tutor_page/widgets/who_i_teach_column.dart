@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/data/choice_list.dart';
@@ -29,8 +31,12 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
           height: StyleConst.kDefaultPadding,
         ),
         TextFormFieldBecomeATutor(
-            title: AppLocalizations.of(context)!.introduction,
-            hintTitle: AppLocalizations.of(context)!.hintIntroduction),
+          title: AppLocalizations.of(context)!.introduction,
+          hintTitle: AppLocalizations.of(context)!.hintIntroduction,
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).introduction = value;
+          },
+        ),
         const ChooseWhoRadioWidget(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,26 +47,27 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
                   textStyle: FontConst.regular.copyWith(fontSize: 14)),
             ),
             Expanded(
-              child: ListBody(
-                children: choicesListExample
-                    .map((value) => CheckboxListTile(
-                        dense: true,
-                        visualDensity: const VisualDensity(
-                            horizontal: -4.0, vertical: -4.0),
-                        contentPadding: EdgeInsets.zero,
-                        value: selectedSpecialitis.contains(value),
-                        title: Text(
-                          value,
-                          style: GoogleFonts.openSans(
-                              textStyle:
-                                  FontConst.regular.copyWith(fontSize: 14)),
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        onChanged: (isChecked) =>
-                            _itemChange(value, isChecked!)))
-                    .toList(),
-              ),
-            ),
+                child: ListBody(
+              children:
+                  List<Widget>.generate(choicesListExample.length, (index) {
+                String tempValue =
+                    choicesListExample.entries.toList()[index].key;
+                return CheckboxListTile(
+                    dense: true,
+                    visualDensity:
+                        const VisualDensity(horizontal: -4.0, vertical: -4.0),
+                    contentPadding: EdgeInsets.zero,
+                    value: selectedSpecialitis.contains(tempValue),
+                    title: Text(
+                      tempValue,
+                      style: GoogleFonts.openSans(
+                          textStyle: FontConst.regular.copyWith(fontSize: 14)),
+                    ),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    onChanged: (isChecked) =>
+                        _itemChange(tempValue, isChecked!));
+              }),
+            )),
           ],
         )
       ],
@@ -75,5 +82,7 @@ class _WhoITeachColumnState extends State<WhoITeachColumn> {
         selectedSpecialitis.remove(itemValue);
       }
     });
+    BlocProvider.of<BecomeTutorBloc>(context).specialities =
+        selectedSpecialitis.join(",");
   }
 }

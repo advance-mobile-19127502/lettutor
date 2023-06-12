@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/bloc/become_tutor_bloc/become_tutor_bloc.dart';
 import 'package:lettutor/constants/font_const.dart';
 import 'package:lettutor/constants/style_const.dart';
 import 'package:lettutor/pages/become_tutor_page/widgets/ava_set_up_widget.dart';
@@ -18,9 +20,30 @@ class CompleteProfilePage extends StatefulWidget {
   State<CompleteProfilePage> createState() => _CompleteProfilePageState();
 }
 
-class _CompleteProfilePageState extends State<CompleteProfilePage> {
+class _CompleteProfilePageState extends State<CompleteProfilePage>
+    with AutomaticKeepAliveClientMixin {
+  late TextEditingController languageTextController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    languageTextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    languageTextController.dispose();
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       children: [
         const AvaSetUpWidget(),
@@ -50,6 +73,9 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
         TextFormFieldBecomeATutor(
           title: AppLocalizations.of(context)!.languages,
           hintTitle: AppLocalizations.of(context)!.hintLanguages,
+          onTextChanged: (value) {
+            BlocProvider.of<BecomeTutorBloc>(context).languages = value;
+          },
         ),
         SectionWidget(
           sectionTitle: AppLocalizations.of(context)!.whoITeach,
